@@ -22,13 +22,14 @@ function filterResults(response){
 function getRecs(response){
 	REC_SETTINGS.ll = [response.location.lat,response.location.lng].join()
 	console.log(REC_SETTINGS.ll);
+	$('.js-location').html(REC_SETTINGS.ll);
 	const payload = {
 		url:'https://api.foursquare.com/v2/venues/explore',
 		dataType:'json',
 		data:REC_SETTINGS,
 		success: filterResults
 	}
-	$.ajax()
+	$.ajax(payload)
 }
 
 function getLocation(){
