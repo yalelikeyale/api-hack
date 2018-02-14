@@ -7,11 +7,12 @@ const data = {
 
 const REC_SETTINGS = {
 		ll:'',
-		radius:500,
-		section:'',
+		radius:0,
 		query:'',
+		limit:15,
 		venuePhotos:1,
-		openNow:1,
+		openNow:0,
+		time:'any',
 		price:'',
 		client_id:'MDDIFKZ5GFSAGZHAOFYPNQRATOT13FY2OYFUY1JDF5UNUZBA',
 		client_secret:'2ZUIA2A15LIKRSBGM3EN5BCCOX0YICNBJETKSRKOHDCQFSTT',
@@ -19,7 +20,21 @@ const REC_SETTINGS = {
 	}
 
 function filterResults(response){
-	console.log(response);
+	let venues = {};
+	let recVenues = response.response.groups[0].items;
+	for(venue in recVenues){
+		console.log(recVenues[venue]);
+		venue = recVenues[venue];
+		let ven_ID = venue.venue.id;
+		venues[ven_ID] = {};
+		venues[ven_ID].rating = venue.venue.rating;
+		venues[ven_ID].priceTier = venue.venue.price.tier;
+		venues[ven_ID].distance = venue.venue.location.distance;
+		// if( rating > data.minRating ) {
+
+		// }
+	}
+	console.log(venues);
 }
 
 function getRecs(response){
@@ -37,8 +52,10 @@ function renderPreferences(response){
 	$('.preferencePage').attr('hidden',false);
 	$('.start').attr('hidden',true);
 	$('.card[role="button"]').click(function(e){
-		console.log($(this).text())
-		REC_SETTINGS.query = $(this).text()
+		$('.card[role="button"]').removeClass('selected');
+		$(this).addClass('selected');
+		REC_SETTINGS.query = $(this).attr('data-query')
+		console.log(REC_SETTINGS.query);
 	});
 	let sliderValue = $('#rangeValue');
 	let sliderObject = $('#rangeFilter');
@@ -52,15 +69,11 @@ function renderPreferences(response){
 	$('.price-option, .rating-option').css({'display':'inline-block'});
 	let rating = $('.rating-option .option');
 	rating.click(function(e){
-		rating.css('background-color','white');
-		$(this).css('background-color','green');
 		rating.removeClass('selected');
 		$(this).addClass('selected');
 	});
 	let price = $('.price-option .option')
 	price.click(function(e){
-		price.css('background-color','white');
-		$(this).css('background-color','green');
 		price.removeClass('selected');
 		$(this).addClass('selected');
 	});
@@ -73,7 +86,6 @@ function renderPreferences(response){
 		}
 		REC_SETTINGS.price = data.priceArray.join();
 		data.minRating = $('.rating-option .selected').attr('data-option');
-		console.log(data.minRating);
 		getRecs();
 	});
 }

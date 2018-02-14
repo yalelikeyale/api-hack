@@ -6,8 +6,8 @@
 	display: inline-block;
 }
 
-.option.selected {
-	background-color:red;
+.selected {
+	background-color:yellow;
 }
 
 .card {
