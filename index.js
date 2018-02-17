@@ -177,7 +177,9 @@ function renderPreferences(response){
 	$('.card[role="button"]').click(function(e){
 		$('.card[role="button"]').removeClass('selected');
 		$(this).addClass('selected');
-		REC_SETTINGS.query = $(this).attr('data-query')
+		REC_SETTINGS.query = $(this).attr('data-query');
+		$('.submit-button').removeAttr('data-tooltip');
+		$('.submit-button').attr('disabled',false);
 	});
 	let sliderValue = $('#rangeValue');
 	let sliderObject = $('#rangeFilter');
@@ -221,7 +223,6 @@ function getLocation(){
 	}
 	$.post(payload)
 }
-
 
 $('#start').click(function(){
 	getLocation()
