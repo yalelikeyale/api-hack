@@ -1,5 +1,5 @@
 const data = {
-	API_KEY:'AIzaSyBiIzpZm4vKrXS_XCBPDOa6HL_4cFq1RWU',
+	GOOGLE_KEY:'AIzaSyBiIzpZm4vKrXS_XCBPDOa6HL_4cFq1RWU',
 	CLIENT_ID:'MDDIFKZ5GFSAGZHAOFYPNQRATOT13FY2OYFUY1JDF5UNUZBA',
 	CLIENT_SECRET:'2ZUIA2A15LIKRSBGM3EN5BCCOX0YICNBJETKSRKOHDCQFSTT',
 	VERSION:'20180210',
@@ -17,7 +17,8 @@ const data = {
 		2:4,
 		3:3,
 		4:2
-	}
+	},
+	venLibrary:[]
 }
 
 const DET_SETTINGS = {
@@ -40,46 +41,46 @@ const REC_SETTINGS = {
 		v:data.VERSION
 	}
 
-function genVenCard(response){
+const GOOGLE_SEARCH = {
+	query:'',
+	location:'',
+	key:data.GOOGLE_KEY
+}
+
+// const GOOGLE_DETAILS = {
+
+// }
+
+function googleDetails(response){
 	console.log(response)
 }
 
-function getTopVenDetails(topVen){
-	let VEN_ID = Object.keys(topVen)[0];
-	console.log(topVen);
-	console.log(VEN_ID);
-	let payload = {
-		url:`https://api.foursquare.com/v2/venues/${VEN_ID}`,
+function googleSearch(topVen){
+	GOOGLE_SEARCH.query = topVen.name;
+	GOOGLE_SEARCH.location = [topVen.lat, topVen.lng].join()
+	const payload = {
+		url:'https://maps.googleapis.com/maps/api/place/textsearch/json',
 		dataType:'json',
-		data:DET_SETTINGS,
-		success: genVenCard
+		data:GOOGLE_SEARCH,
+		success: googleDetails 
 	}
-	$.ajax(payload);
+	$.ajax(payload)
 }
 
-function getTopVenue(venues){
-	let topScore = 0
-	let topVenues = []
-	for (venue in venues){
-		let _id = Object.keys(venues[venue])[0]
-		let _score = venues[venue][_id].score
-		if (topScore < _score ) {
-			topScore = _score
+function rankVenues(venues){
+	function compare(a,b){
+		let id_a = Object.keys(a)[0];
+		let id_b = Object.keys(b)[0];
+		if(a[id_a].score < b[id_b].score){
+			return 1
+		} else if ( a[id_a].score > b[id_b].score){
+			return -1
+		} else {
+			return 0
 		}
 	}
-	for (venue in venues){
-		let _id = Object.keys(venues[venue])[0]
-		let _score = venues[venue][_id].score
-		if ( topScore === _score ) {
-			topVenues.push(venues[venue])
-		}
-	}
-	
-	for (venue in topVenues){
-		let _id = Object.keys(venues[venue])[0]
-		let _score = venues[venue][_id].score
-	}
-	getTopVenDetails(topVenues[0])
+	venues.sort(compare);
+	googleSearch(data.venLibrary[0][Object.keys(venues[0])[0]])
 }
 
 function scoreRecs(venues){
@@ -110,22 +111,28 @@ function scoreRecs(venues){
 		}
 		venues[venue][_id].score = score;
 	}
-	getTopVenue(venues)
+	rankVenues(venues)
 }
 
 function genRecsObj(venue) {
-
-	let venues = {};
+	let venueObj = {};
 	let ven_ID = venue.venue.id;
-	venues[ven_ID] = {};
-	venues[ven_ID].rating = venue.venue.rating;
-	venues[ven_ID].priceTier = venue.venue.price.tier;
-	venues[ven_ID].distance = venue.venue.location.distance;
-	venues[ven_ID].checkins = venue.venue.stats.checkinsCount;
-	return venues;
+	data.venLibrary[0][ven_ID] = {};
+	data.venLibrary[0][ven_ID].name = venue.venue.name;
+	data.venLibrary[0][ven_ID].address = venue.venue.location.formattedAddress.join();
+	data.venLibrary[0][ven_ID].lat = venue.venue.location.lat
+	data.venLibrary[0][ven_ID].lng = venue.venue.location.lng
+	data.venLibrary[0][ven_ID].phone = venue.venue.contact.phone
+	venueObj[ven_ID] = {};
+	venueObj[ven_ID].rating = venue.venue.rating;
+	venueObj[ven_ID].priceTier = venue.venue.price.tier;
+	venueObj[ven_ID].distance = venue.venue.location.distance;
+	venueObj[ven_ID].checkins = venue.venue.stats.checkinsCount;
+	return venueObj;
 }
 
 function rankResults(response){
+	data.venLibrary[0] = {};
 	let recVenues = response.response.groups[0].items;
 	let venues = recVenues.map( venue => genRecsObj(venue));
 	for (venue in venues) {
@@ -216,7 +223,7 @@ function renderPreferences(response){
 
 function getLocation(){
 	const payload = {
-		url:'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBiIzpZm4vKrXS_XCBPDOa6HL_4cFq1RWU',
+		url:`https://www.googleapis.com/geolocation/v1/geolocate?key=${data.GOOGLE_KEY}`,
 		method:'POST',
 		dataType:'json',
 		success:renderPreferences
