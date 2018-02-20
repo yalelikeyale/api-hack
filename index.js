@@ -51,7 +51,6 @@ function genVenCard(selectedVenue){
 }
 
 function filterGoogleReviews(response){
-	console.log('reading google reviews');
 	let reviews = response.result.reviews;
 	for ( review in reviews) {
 		for (sTerm in data.searchKeywords[REC_SETTINGS.query]){
@@ -64,7 +63,6 @@ function filterGoogleReviews(response){
 
 
 function googleDetails(response){
-	console.log('getting venue details from google');
 	const payload = {
 		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${response.results[0].place_id}&key=${data.GOOGLE_KEY}`,
 		success:filterGoogleReviews
@@ -73,7 +71,6 @@ function googleDetails(response){
 }
 
 function googleSearch(topVen){
-	console.log('searching google for venue');
 	const payload = {
 		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${topVen.name}&location=${[topVen.lat, topVen.lng].join()}&key=${data.GOOGLE_KEY}`,
 		success: googleDetails
@@ -95,7 +92,6 @@ function rankVenues(venues){
 	}
 	venues.sort(compare);
 	for(venueKey in venues){
-		console.log('in for loop line 98');
 		if(data.continue === false){
 			break
 		} else {
