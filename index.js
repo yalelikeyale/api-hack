@@ -18,7 +18,11 @@ const data = {
 		3:3,
 		4:2
 	},
-	venLibrary:[]
+	venLibrary:[],
+	searchKeywords:{
+		'live music':['music','live','band','rock','indie','guitar','acoustic']
+	},
+	cont:true
 }
 
 const DET_SETTINGS = {
@@ -41,20 +45,35 @@ const REC_SETTINGS = {
 		v:data.VERSION
 	}
 
-function genVenCard(response){
-	console.log(response);
+function genVenCard(selectedVenue){
+	data.cont = false;
+	console.log(selectedVenue);
+}
+
+function filterGoogleReviews(response){
+	console.log('reading google reviews');
+	let reviews = response.result.reviews;
+	for ( review in reviews) {
+		for (sTerm in data.searchKeywords[REC_SETTINGS.query]){
+			if ( reviews[review].text.toLowerCase().indexOf(data.searchKeywords[REC_SETTINGS.query][sTerm]) >=0){
+				genVenCard(response.result)
+			}
+		}
+	}
 }
 
 
 function googleDetails(response){
+	console.log('getting venue details from google');
 	const payload = {
 		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${response.results[0].place_id}&key=${data.GOOGLE_KEY}`,
-		success:genVenCard
+		success:filterGoogleReviews
 	}
 	$.ajax(payload);
 }
 
 function googleSearch(topVen){
+	console.log('searching google for venue');
 	const payload = {
 		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${topVen.name}&location=${[topVen.lat, topVen.lng].join()}&key=${data.GOOGLE_KEY}`,
 		success: googleDetails
@@ -75,37 +94,45 @@ function rankVenues(venues){
 		}
 	}
 	venues.sort(compare);
-	googleSearch(data.venLibrary[0][Object.keys(venues[0])[0]])
+	for(venueKey in venues){
+		console.log('in for loop line 98');
+		if(data.continue === false){
+			break
+		} else {
+			googleSearch(data.venLibrary[0][Object.keys(venues[venueKey])[0]]);
+		}
+	}
 }
 
 function scoreRecs(venues){
 	let totalVen = venues.length
-	for (venue in venues){
+	venues.forEach(venue => {
 		let score = 0;
-		let _id = Object.keys(venues[venue])[0]
-		let keys = Object.keys(venues[venue][_id])
-		for (key in keys){
-			let _rank = venues[venue][_id][keys[key]]
+		let _id = Object.keys(venue)[0]
+		let keys = Object.keys(venue[_id])
+		keys.forEach(key =>{
+			let _rank = venue[_id][key]
 			let _points = 0;
-			if (keys[key]==='priceTier'){
+			if (key==='priceTier'){
 				_points += (5 - _rank)
 				if ( (data.prefOrder.indexOf('priceTier')===0) && (_rank===1) ){
 					_points += 20
 				}
 			} else {
 				_points += (totalVen - _rank)
-				if ( (data.prefOrder.indexOf(keys[key])===0) && (_rank < 5) ){
+				if ( (data.prefOrder.indexOf(key)===0) && (_rank < 5) ){
 					_points += data.bonusOne[_rank.toString()]
 				}
 			}
-			if ( (data.prefOrder.indexOf(keys[key])===1) && (_rank < 5) ){
+			if ( (data.prefOrder.indexOf(key)===1) && (_rank < 5) ){
 				_points += data.bonusTwo[_rank.toString()]
 			}
-			venues[venue][_id][keys[key]] = _points;
-			score += _points;
-		}
-		venues[venue][_id].score = score;
-	}
+			venue[_id][key] = _points;
+			score += _points;			
+		});
+		venue[_id].score = score;
+		return venue;
+	});
 	rankVenues(venues)
 }
 
@@ -134,21 +161,20 @@ function rankResults(response){
 	data.venLibrary[0] = {};
 	let recVenues = response.response.groups[0].items;
 	let venues = recVenues.map( venue => genRecsObj(venue)).filter(venue => venue);
-	console.log(venues);
-	for (venue in venues) {
-		let _id = Object.keys(venues[venue])[0]
-		let _rating = venues[venue][_id].rating
-		let _dist = venues[venue][_id].distance
-		let _checkins = venues[venue][_id].checkins
+	venues.forEach(venue => {
+		let _id = Object.keys(venue)[0]
+		let _rating = venue[_id].rating
+		let _dist = venue[_id].distance
+		let _checkins = venue[_id].checkins
 		let ratRank = 1
 		let distRank = 1
 		let popRank = 1
-		for (nextVen in venues){
-			let nextID = Object.keys(venues[nextVen])[0]
-			let nextRating = venues[nextVen][nextID].rating
-			let nextDistance = venues[nextVen][nextID].distance
-			let nextCheck = venues[nextVen][nextID].checkins
-			if( (venue !== nextVen) ){
+		venues.forEach(nextVen => {
+			let nextID = Object.keys(nextVen)[0]
+			let nextRating = nextVen[nextID].rating
+			let nextDistance = nextVen[nextID].distance
+			let nextCheck = nextVen[nextID].checkins
+			if( _id !== nextID ){
 				if (nextRating > _rating){
 					ratRank++
 				}
@@ -158,12 +184,13 @@ function rankResults(response){
 				if (nextCheck < _checkins){
 					popRank++
 				}
-			}
-		}
-		venues[venue][_id].rating = ratRank
-		venues[venue][_id].distance = distRank
-		venues[venue][_id].checkins = popRank
-	}
+			}			
+		});
+		venue[_id].rating = ratRank
+		venue[_id].distance = distRank
+		venue[_id].checkins = popRank
+		return venue;
+	});
 	scoreRecs(venues)
 }
 
@@ -214,10 +241,8 @@ function renderPreferences(response){
 		data.prefOrder = $('#sortable').sortable('toArray');
 		REC_SETTINGS.radius = sliderObject.val();
 		data.priceArray = $.map($('.price-option .selected'), function(option){
-			console.log(option);
 			return $(option).attr('data-option');
 		});
-		console.log(data.priceArray);
 		data.minRating = $('.rating-option .selected').attr('data-option');
 		getRecs();
 	});
