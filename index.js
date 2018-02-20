@@ -41,12 +41,6 @@ const REC_SETTINGS = {
 		v:data.VERSION
 	}
 
-const GOOGLE_SEARCH = {
-	query:'',
-	location:'',
-	key:data.GOOGLE_KEY
-}
-
 // const GOOGLE_DETAILS = {
 
 // }
@@ -56,13 +50,14 @@ function googleDetails(response){
 }
 
 function googleSearch(topVen){
-	GOOGLE_SEARCH.query = topVen.name;
-	GOOGLE_SEARCH.location = [topVen.lat, topVen.lng].join()
 	const payload = {
-		url:'https://maps.googleapis.com/maps/api/place/textsearch/json',
-		dataType:'json',
-		data:GOOGLE_SEARCH,
-		success: googleDetails 
+		url:`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${topVen.name}&location=${[topVen.lat, topVen.lng].join()}&key=${data.GOOGLE_KEY}`,
+		crossDomain: true,
+    	dataType: 'jsonp',
+		success: googleDetails,
+		error:function(e){
+			console.log(e);
+		}
 	}
 	$.ajax(payload)
 }
