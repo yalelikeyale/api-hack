@@ -41,23 +41,23 @@ const REC_SETTINGS = {
 		v:data.VERSION
 	}
 
-// const GOOGLE_DETAILS = {
+function genVenCard(response){
+	console.log(response);
+}
 
-// }
 
 function googleDetails(response){
-	console.log(response)
+	const payload = {
+		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${response.results[0].place_id}&key=${data.GOOGLE_KEY}`,
+		success:genVenCard
+	}
+	$.ajax(payload);
 }
 
 function googleSearch(topVen){
 	const payload = {
-		url:`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${topVen.name}&location=${[topVen.lat, topVen.lng].join()}&key=${data.GOOGLE_KEY}`,
-		crossDomain: true,
-    	dataType: 'jsonp',
-		success: googleDetails,
-		error:function(e){
-			console.log(e);
-		}
+		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${topVen.name}&location=${[topVen.lat, topVen.lng].join()}&key=${data.GOOGLE_KEY}`,
+		success: googleDetails
 	}
 	$.ajax(payload)
 }
@@ -112,24 +112,29 @@ function scoreRecs(venues){
 function genRecsObj(venue) {
 	let venueObj = {};
 	let ven_ID = venue.venue.id;
-	data.venLibrary[0][ven_ID] = {};
-	data.venLibrary[0][ven_ID].name = venue.venue.name;
-	data.venLibrary[0][ven_ID].address = venue.venue.location.formattedAddress.join();
-	data.venLibrary[0][ven_ID].lat = venue.venue.location.lat
-	data.venLibrary[0][ven_ID].lng = venue.venue.location.lng
-	data.venLibrary[0][ven_ID].phone = venue.venue.contact.phone
-	venueObj[ven_ID] = {};
-	venueObj[ven_ID].rating = venue.venue.rating;
-	venueObj[ven_ID].priceTier = venue.venue.price.tier;
-	venueObj[ven_ID].distance = venue.venue.location.distance;
-	venueObj[ven_ID].checkins = venue.venue.stats.checkinsCount;
-	return venueObj;
+	if(venue.venue.price && venue.venue.price.tier && venue.venue.rating){
+		data.venLibrary[0][ven_ID] = {};
+		data.venLibrary[0][ven_ID].name = venue.venue.name;
+		data.venLibrary[0][ven_ID].address = venue.venue.location.formattedAddress.join();
+		data.venLibrary[0][ven_ID].lat = venue.venue.location.lat
+		data.venLibrary[0][ven_ID].lng = venue.venue.location.lng
+		data.venLibrary[0][ven_ID].phone = venue.venue.contact.phone
+		venueObj[ven_ID] = {};
+		venueObj[ven_ID].rating = venue.venue.rating;
+		venueObj[ven_ID].priceTier = venue.venue.price.tier;
+		venueObj[ven_ID].distance = venue.venue.location.distance;
+		venueObj[ven_ID].checkins = venue.venue.stats.checkinsCount;
+		return venueObj;
+	} else {
+		return null;
+	}
 }
 
 function rankResults(response){
 	data.venLibrary[0] = {};
 	let recVenues = response.response.groups[0].items;
-	let venues = recVenues.map( venue => genRecsObj(venue));
+	let venues = recVenues.map( venue => genRecsObj(venue)).filter(venue => venue);
+	console.log(venues);
 	for (venue in venues) {
 		let _id = Object.keys(venues[venue])[0]
 		let _rating = venues[venue][_id].rating
@@ -198,19 +203,21 @@ function renderPreferences(response){
 		rating.removeClass('selected');
 		$(this).addClass('selected');
 	});
-	let price = $('.price-option .option')
-	price.click(function(e){
-		price.removeClass('selected');
-		$(this).addClass('selected');
+	$('.price-option .option').click(function(e){
+		if($(this).hasClass('selected')){
+			$(this).removeClass('selected');
+		} else {
+			$(this).addClass('selected');
+		}
 	});
 	$('.submit-button').click(function(e){
 		data.prefOrder = $('#sortable').sortable('toArray');
 		REC_SETTINGS.radius = sliderObject.val();
-		let priceLimit = $('.price-option .selected').attr('data-option');
-		for(i=1;i<priceLimit;i++){
-			data.priceArray.push(i);
-		}
-		REC_SETTINGS.price = data.priceArray.join();
+		data.priceArray = $.map($('.price-option .selected'), function(option){
+			console.log(option);
+			return $(option).attr('data-option');
+		});
+		console.log(data.priceArray);
 		data.minRating = $('.rating-option .selected').attr('data-option');
 		getRecs();
 	});

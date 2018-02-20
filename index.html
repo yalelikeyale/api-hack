@@ -48,6 +48,13 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="card" role="button" data-query="restaurant">
+					<p>Feed Me</p>
+				</div>
+			</div>
+		</div>
 		<p>Please Set these options in order of most important (top) to least important (bottom)</p>
 		<ul id="sortable">
 			<li id="priceTier" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Price</li>
@@ -59,16 +66,24 @@
 			<input type="range" name="myRange" min="500" max="15000" id="rangeFilter">
 		</div>
 		<div>
-			<p>Max Price Acceptable</p>
+			<p>Select which Prices to Include</p>
 			<ul id="priceFilter">
-				<li class="price-option"><button data-option="1" class="option selected">$</button></li>
-				<li class="price-option"><button data-option="2" class="option">$$</button></li>
-				<li class="price-option"><button data-option="3" class="option">$$$</button></li>
-				<li class="price-option"><button data-option="4" class="option">$$$$</button></li>
+				<li class="price-option">
+					<button data-option="1" class="option selected">$</button>
+				</li>
+				<li class="price-option">
+					<button data-option="2" class="option">$$</button>
+				</li>
+				<li class="price-option">
+					<button data-option="3" class="option">$$$</button>
+				</li>
+				<li class="price-option">
+					<button data-option="4" class="option">$$$$</button>
+				</li>
 			</ul>		
 		</div>
 		<div>
-			<p>Min Rating Acceptable</p>
+			<p>Select Minimum Rating to Consider</p>
 			<ul id="ratingFilter">
 				<li class="rating-option"><button data-option="1" class="option selected">*</button></li>
 				<li class="rating-option"><button data-option="4" class="option">**</button></li>
