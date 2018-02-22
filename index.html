@@ -2,119 +2,35 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Google API Sandbox</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="stylesheet" type="text/css" href="grid.css">
-	<link rel="stylesheet" type="text/css" href="modal.css">
+	<title>Date Roulette</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/messaging.css">
 </head>
 <body>
-	<section class="start">
-		<h1>Date Night Roulette</h1>
-		<div class="js-location"></div>
-		<button id="start" type="submit">Let's Go Out</button>	
-	</section>
-	<section class="preferencePage" hidden>
-		<div class="row">
-			<div class="col-4">
-				<div class="card" role="button"  data-query="live music">
-					<p>Live Music</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button" data-query="desert">
-					<p>Desert</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button"  data-query="hike">
-					<p>Walk</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-4">
-				<div class="card" role="button"  data-query="cocktails">
-					<p>Cocktails</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button"  data-query="club">
-					<p>Dancing</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button"  data-query="karaoke">
-					<p>Karaoke</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<div class="card" role="button" data-query="restaurant">
-					<p>Feed Me</p>
-				</div>
-			</div>
-		</div>
-		<p>Please Set these options in order of most important (top) to least important (bottom)</p>
-		<ul id="sortable">
-			<li id="priceTier" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Price</li>
-			<li id="rating" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ratings</li>
-			<li id="distance" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Distance</li>
-		</ul>
-		<div id="rangeValue"></div>
-		<div class="slider-container">
-			<input type="range" name="myRange" min="500" max="15000" id="rangeFilter">
-		</div>
-		<div>
-			<p>Select which Prices to Include</p>
-			<ul id="priceFilter">
-				<li class="price-option">
-					<button data-option="1" class="option selected">$</button>
-				</li>
-				<li class="price-option">
-					<button data-option="2" class="option">$$</button>
-				</li>
-				<li class="price-option">
-					<button data-option="3" class="option">$$$</button>
-				</li>
-				<li class="price-option">
-					<button data-option="4" class="option">$$$$</button>
-				</li>
-			</ul>		
-		</div>
-		<div>
-			<p>Select Minimum Rating to Consider</p>
-			<ul id="ratingFilter">
-				<li class="rating-option"><button data-option="1" class="option selected">*</button></li>
-				<li class="rating-option"><button data-option="4" class="option">**</button></li>
-				<li class="rating-option"><button data-option="6" class="option">***</button></li>
-				<li class="rating-option"><button data-option="8" class="option">****</button></li>
-				<li class="rating-option"><button data-option="9" class="option">*****</button></li>
-			</ul>		
-		</div>
-		<button class="submit-button" data-popup-open="popup-1" data-tooltip="Please Select a Date Category Before Continuing" disabled>Submit</button>
-	</section>
-	<section class="venue-recs" hidden>
-		<div class="row">
-			<div class="col-4">
-				<div class="card">
-					<p>Insert Rec</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card">
-					<p>Insert Rec</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card">
-					<p>Insert Rec</p>
-				</div>
-			</div>
-		</div>
-	</section>
+	<nav class="navbar">
+    	<h1 class="logo">What's Next</h2>
+  	</nav>
+	<div class="intro">
+		<span>Ever had this conversation...</span>
+	</div>
+	<div id="wrapper">
+	  <div class="chat">
+	    <div class="chat-container">
+	      <div class="chat-listcontainer">
+
+	        <ul class="chat-message-list">
+	        </ul>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div>
+		<p>Don't let an invitation turn into an argument, use What's next! The venue picker that weighs data from foursquare and Google to find the best venues near you!</p>
+	</div>
+	<a href="preferences/app.html"><button id="start" type="submit">Let's Go Out</button></a>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-<script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
+<script src="messaging.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+#priceFilter, #ratingFilter {
+	display: inline-block;
+}
+
+.price-option, .rating-option {
+	display: inline-block;
+}
+
+.selected {
+	background-color:yellow;
+}
+
+.card {
+	border: 2px solid black;
+}

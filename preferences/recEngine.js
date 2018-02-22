@@ -18,11 +18,18 @@ const data = {
 		3:3,
 		4:2
 	},
+	venues:[],
 	venLibrary:[],
 	searchKeywords:{
-		'live music':['music','live','band','rock','indie','guitar','acoustic']
+		'cocktails':['cocktails'],
+		'live music':['live music','music venue','band','rock','indie','guitar','acoustic','heavy metal','good music'],
+		'desert':['gelato','ice cream','desert','cake','chocolate','sorbet'],
+		'food':['restaurant','food'],
+		'dancing':['club','dancing','dance','nightclub','salsa'],
+		'karaoke':['karaoke']
 	},
-	cont:true
+	nextVen:0,
+	searchAgain:true
 }
 
 const DET_SETTINGS = {
@@ -46,17 +53,25 @@ const REC_SETTINGS = {
 	}
 
 function genVenCard(selectedVenue){
-	data.cont = false;
 	console.log(selectedVenue);
 }
 
 function filterGoogleReviews(response){
 	let reviews = response.result.reviews;
-	for ( review in reviews) {
-		for (sTerm in data.searchKeywords[REC_SETTINGS.query]){
-			if ( reviews[review].text.toLowerCase().indexOf(data.searchKeywords[REC_SETTINGS.query][sTerm]) >=0){
-				genVenCard(response.result)
+	reviews.forEach(review => {
+		data.searchKeywords[REC_SETTINGS.query].forEach(sTerm => {
+			if ( review.text.toLowerCase().indexOf(sTerm) >=0 ){
+				data.searchAgain = false;
 			}
+		});
+	});
+	if (data.searchAgain===false){
+		genVenCard(response.result);
+	} else {
+		if ((data.nextVen + 1 < data.venues.length)){
+			prepareSearch()
+		} else {
+			renderTryAgain()
 		}
 	}
 }
@@ -70,15 +85,22 @@ function googleDetails(response){
 	$.ajax(payload);
 }
 
-function googleSearch(topVen){
+function googleSearch(venSearchParams){
+	data.nextVen++;
+	let query = venSearchParams.name + ' '+venSearchParams.address
 	const payload = {
-		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${topVen.name}&location=${[topVen.lat, topVen.lng].join()}&key=${data.GOOGLE_KEY}`,
+		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&location=${[venSearchParams.lat, venSearchParams.lng].join()}&key=${data.GOOGLE_KEY}`,
 		success: googleDetails
 	}
 	$.ajax(payload)
 }
 
-function rankVenues(venues){
+function prepareSearch(){
+	let venueToSearch = data.venLibrary[Object.keys(data.venues[data.nextVen])[0]];
+	googleSearch(venueToSearch);
+}
+
+function rankVenues(){
 	function compare(a,b){
 		let id_a = Object.keys(a)[0];
 		let id_b = Object.keys(b)[0];
@@ -90,19 +112,13 @@ function rankVenues(venues){
 			return 0
 		}
 	}
-	venues.sort(compare);
-	for(venueKey in venues){
-		if(data.continue === false){
-			break
-		} else {
-			googleSearch(data.venLibrary[0][Object.keys(venues[venueKey])[0]]);
-		}
-	}
+	data.venues.sort(compare);
+	prepareSearch();
 }
 
-function scoreRecs(venues){
-	let totalVen = venues.length
-	venues.forEach(venue => {
+function scoreRecs(){
+	let totalVen = data.venues.length
+	data.venues.forEach(venue => {
 		let score = 0;
 		let _id = Object.keys(venue)[0]
 		let keys = Object.keys(venue[_id])
@@ -129,19 +145,19 @@ function scoreRecs(venues){
 		venue[_id].score = score;
 		return venue;
 	});
-	rankVenues(venues)
+	rankVenues()
 }
 
 function genRecsObj(venue) {
 	let venueObj = {};
 	let ven_ID = venue.venue.id;
 	if(venue.venue.price && venue.venue.price.tier && venue.venue.rating){
-		data.venLibrary[0][ven_ID] = {};
-		data.venLibrary[0][ven_ID].name = venue.venue.name;
-		data.venLibrary[0][ven_ID].address = venue.venue.location.formattedAddress.join();
-		data.venLibrary[0][ven_ID].lat = venue.venue.location.lat
-		data.venLibrary[0][ven_ID].lng = venue.venue.location.lng
-		data.venLibrary[0][ven_ID].phone = venue.venue.contact.phone
+		data.venLibrary[ven_ID] = {};
+		data.venLibrary[ven_ID].name = venue.venue.name;
+		data.venLibrary[ven_ID].address = venue.venue.location.formattedAddress.join();
+		data.venLibrary[ven_ID].lat = venue.venue.location.lat
+		data.venLibrary[ven_ID].lng = venue.venue.location.lng
+		data.venLibrary[ven_ID].phone = venue.venue.contact.phone
 		venueObj[ven_ID] = {};
 		venueObj[ven_ID].rating = venue.venue.rating;
 		venueObj[ven_ID].priceTier = venue.venue.price.tier;
@@ -154,10 +170,9 @@ function genRecsObj(venue) {
 }
 
 function rankResults(response){
-	data.venLibrary[0] = {};
 	let recVenues = response.response.groups[0].items;
-	let venues = recVenues.map( venue => genRecsObj(venue)).filter(venue => venue);
-	venues.forEach(venue => {
+	data.venues = recVenues.map( venue => genRecsObj(venue)).filter(venue => venue);
+	data.venues.forEach(venue => {
 		let _id = Object.keys(venue)[0]
 		let _rating = venue[_id].rating
 		let _dist = venue[_id].distance
@@ -165,7 +180,7 @@ function rankResults(response){
 		let ratRank = 1
 		let distRank = 1
 		let popRank = 1
-		venues.forEach(nextVen => {
+		data.venues.forEach(nextVen => {
 			let nextID = Object.keys(nextVen)[0]
 			let nextRating = nextVen[nextID].rating
 			let nextDistance = nextVen[nextID].distance
@@ -187,7 +202,7 @@ function rankResults(response){
 		venue[_id].checkins = popRank
 		return venue;
 	});
-	scoreRecs(venues)
+	scoreRecs()
 }
 
 function getRecs(response){
@@ -200,10 +215,30 @@ function getRecs(response){
 	$.ajax(payload)
 }
 
-function renderPreferences(response){
+function grabLocation(response){
 	REC_SETTINGS.ll = [response.location.lat,response.location.lng].join()
-	$('.preferencePage').attr('hidden',false);
-	$('.start').attr('hidden',true);
+	renderPreferences();
+}
+
+function renderTryAgain(){
+	toggleDisplay(['.preferencePage','.try-again'])
+	$('#tryAgain').click(function(e){
+		toggleDisplay(['.preferencePage','.try-again'])
+	});
+}
+
+function toggleDisplay(selectors){
+	selectors.forEach(selector => {
+		let attr = $(selector).attr('hidden');
+		if(attr==null){
+			$(selector).attr('hidden',true);
+		} else {
+			$(selector).attr('hidden',false);
+		}
+	});
+}
+
+function renderPreferences(){
 	$('.card[role="button"]').click(function(e){
 		$('.card[role="button"]').removeClass('selected');
 		$(this).addClass('selected');
@@ -249,11 +284,9 @@ function getLocation(){
 		url:`https://www.googleapis.com/geolocation/v1/geolocate?key=${data.GOOGLE_KEY}`,
 		method:'POST',
 		dataType:'json',
-		success:renderPreferences
+		success:grabLocation
 	}
 	$.post(payload)
 }
 
-$('#start').click(function(){
-	getLocation()
-});
+$(getLocation)
