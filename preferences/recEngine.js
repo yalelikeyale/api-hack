@@ -40,7 +40,7 @@ const DET_SETTINGS = {
 
 const REC_SETTINGS = {
 		ll:'',
-		radius:0,
+		radius:7500,
 		query:'',
 		limit:15,
 		venuePhotos:1,
@@ -217,14 +217,6 @@ function getRecs(response){
 
 function grabLocation(response){
 	REC_SETTINGS.ll = [response.location.lat,response.location.lng].join()
-	renderPreferences();
-}
-
-function renderTryAgain(){
-	toggleDisplay(['.preferencePage','.try-again'])
-	$('#tryAgain').click(function(e){
-		toggleDisplay(['.preferencePage','.try-again'])
-	});
 }
 
 function toggleDisplay(selectors){
@@ -238,46 +230,13 @@ function toggleDisplay(selectors){
 	});
 }
 
-function renderPreferences(){
-	$('.card[role="button"]').click(function(e){
-		$('.card[role="button"]').removeClass('selected');
-		$(this).addClass('selected');
-		REC_SETTINGS.query = $(this).attr('data-query');
-		$('.submit-button').removeAttr('data-tooltip');
-		$('.submit-button').attr('disabled',false);
-	});
-	let sliderValue = $('#rangeValue');
-	let sliderObject = $('#rangeFilter');
-	sliderValue.html(sliderObject.val());
-	sliderObject.on('input', function(e){
-		sliderValue.html(sliderObject.val())
-	});
-	$( "#sortable" ).sortable();
-	$( "#sortable" ).disableSelection();
-	$('#priceFilter, #rangeFilter').css({'display':'inline-block'});
-	$('.price-option, .rating-option').css({'display':'inline-block'});
-	let rating = $('.rating-option .option');
-	rating.click(function(e){
-		rating.removeClass('selected');
-		$(this).addClass('selected');
-	});
-	$('.price-option .option').click(function(e){
-		if($(this).hasClass('selected')){
-			$(this).removeClass('selected');
-		} else {
-			$(this).addClass('selected');
-		}
-	});
-	$('.submit-button').click(function(e){
-		data.prefOrder = $('#sortable').sortable('toArray');
-		REC_SETTINGS.radius = sliderObject.val();
-		data.priceArray = $.map($('.price-option .selected'), function(option){
-			return $(option).attr('data-option');
-		});
-		data.minRating = $('.rating-option .selected').attr('data-option');
-		getRecs();
+function renderTryAgain(){
+	toggleDisplay(['.preferencePage','.try-again'])
+	$('#tryAgain').click(function(e){
+		toggleDisplay(['.preferencePage','.try-again'])
 	});
 }
+
 
 function getLocation(){
 	const payload = {
@@ -289,4 +248,99 @@ function getLocation(){
 	$.post(payload)
 }
 
+$('.card[role="button"]').click(function(e){
+	$('.card[role="button"]').removeClass('selected');
+	$(this).addClass('selected');
+	REC_SETTINGS.query = $(this).attr('data-query');
+	$('.submit-button').removeAttr('data-tooltip');
+	$('.submit-button').attr('disabled',false);
+});
+
+$('#slider').slider({
+	max:15000,
+	min:500,
+	step:500,
+	value:7500,
+	animate:'fast',
+	create:function(event, ui){
+		let initVal = $(this).slider('value');
+		initVal /= 1000;
+		$('.ui-slider-handle').html(initVal.toString()+'km');
+	},
+	slide:function(event, ui){
+		REC_SETTINGS.radius = ui.value;
+		let range = ui.value;
+		if(range > 500){
+			range /= 1000
+			range = range.toString() +'km'
+		} else {
+			range = range.toString()+'m'
+		}
+		$(".ui-slider-handle").html(range);
+	}
+});
+
+$( "#sortable" ).sortable();
+$( "#sortable" ).disableSelection();
+
+/* 1. Visualizing things on Hover - See next part for action on click */
+  $('#stars li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+   
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+    
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+  
+  
+  /* 2. Action to perform on click */
+  $('#stars li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+    
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+    
+  });
+  
+
+
+$('.price-option .option').click(function(e){
+	if($(this).hasClass('selected')){
+		$(this).removeClass('selected');
+	} else {
+		$(this).addClass('selected');
+	}
+});
+
+$('.submit-button').click(function(e){
+	data.prefOrder = $('#sortable').sortable('toArray');
+	REC_SETTINGS.radius = sliderObject.val();
+	data.priceArray = $.map($('.price-option .selected'), function(option){
+		return $(option).attr('data-option');
+	});
+	data.minRating = $('.rating-option .selected').attr('data-option');
+	getRecs();
+});
+
+
 $(getLocation)
+  
+  
+

@@ -2,86 +2,103 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Date Roulette</title>
+	<title>What's Next</title>
 	<link rel="stylesheet" type="text/css" href="css/pref.css">
 	<link rel="stylesheet" type="text/css" href="css/modal.css">
 	<link rel="stylesheet" type="text/css" href="css/grid.css">
+	<link rel="stylesheet" type="text/css" href="css/stars.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 </head>
 <body>
-	<section class="preferencePage">
-		<div class="row">
-			<div class="col-4">
-				<div class="card" role="button"  data-query="cocktails">
-					<p>Cocktails</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button" data-query="desert">
-					<p>Desert</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button"  data-query="food">
-					<p>Feed Me</p>
-				</div>
+	<div class="row">
+		<div class="col-4">
+			<div class="card" role="button"  data-query="cocktails">
+				<p>Cocktails</p>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-4">
-				<div class="card" role="button"  data-query="live music">
-					<p>Live Music</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button"  data-query="dancing">
-					<p>Dancing</p>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" role="button"  data-query="karaoke">
-					<p>Karaoke</p>
-				</div>
+		<div class="col-4">
+			<div class="card" role="button" data-query="dessert">
+				<p>Dessert</p>
 			</div>
 		</div>
-		<p>Please Set these options in order of most important (top) to least important (bottom)</p>
-		<ul id="sortable">
-			<li id="priceTier" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Price</li>
-			<li id="rating" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ratings</li>
-			<li id="distance" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Distance</li>
-		</ul>
-		<div id="rangeValue"></div>
-		<div class="slider-container">
-			<input type="range" name="myRange" min="500" max="15000" id="rangeFilter">
+		<div class="col-4">
+			<div class="card" role="button"  data-query="food">
+				<p>Feed Me</p>
+			</div>
 		</div>
-		<div>
-			<p>Select which Prices to Include</p>
-			<ul id="priceFilter">
-				<li class="price-option">
-					<button data-option="1" class="option selected">$</button>
-				</li>
-				<li class="price-option">
-					<button data-option="2" class="option">$$</button>
-				</li>
-				<li class="price-option">
-					<button data-option="3" class="option">$$$</button>
-				</li>
-				<li class="price-option">
-					<button data-option="4" class="option">$$$$</button>
-				</li>
-			</ul>		
+	</div>
+	<div class="row">
+		<div class="col-4">
+			<div class="card" role="button"  data-query="live music">
+				<p>Live Music</p>
+			</div>
 		</div>
-		<div>
-			<p>Select Minimum Rating to Consider</p>
-			<ul id="ratingFilter">
-				<li class="rating-option"><button data-option="1" class="option selected">*</button></li>
-				<li class="rating-option"><button data-option="4" class="option">**</button></li>
-				<li class="rating-option"><button data-option="6" class="option">***</button></li>
-				<li class="rating-option"><button data-option="8" class="option">****</button></li>
-				<li class="rating-option"><button data-option="9" class="option">*****</button></li>
-			</ul>		
+		<div class="col-4">
+			<div class="card" role="button"  data-query="dancing">
+				<p>Dancing</p>
+			</div>
 		</div>
-		<button class="submit-button" data-popup-open="popup-1" data-tooltip="Please Select a Date Category Before Continuing" disabled>Submit</button>
+		<div class="col-4">
+			<div class="card" role="button"  data-query="karaoke">
+				<p>Karaoke</p>
+			</div>
+		</div>
+	</div>
+	<p>Please Set these options in order of most important (top) to least important (bottom)</p>
+	<ul id="sortable">
+		<li id="priceTier" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Price</li>
+		<li id="rating" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ratings</li>
+		<li id="distance" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Distance</li>
+	</ul>
+	<div id="rangeValue"></div>
+	<div id="slider"></div>
+
+	<section class='rating-widget'>
+	  <div class='rating-dollars text-center'>
+	    <ul id='dollars'>
+	      <li class='usd' data-value='1'>
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd' data-value='2'>
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd' data-value='3'>
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd' data-value='4'>
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd' data-value='5'>
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	    </ul>
+	  </div>
 	</section>
+
+	<section class='rating-widget'>
+	  <div class='rating-stars text-center'>
+	    <ul id='stars'>
+	      <li class='star' title='Poor' data-value='1'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star' title='Fair' data-value='2'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star' title='Good' data-value='3'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star' title='Excellent' data-value='4'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star' title='WOW!!!' data-value='5'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	    </ul>
+	  </div>
+	</section>
+
+	<button class="submit-button" data-popup-open="popup-1" data-tooltip="Please Select a Date Category Before Continuing" disabled>Submit</button>
 	<section class="try-again" hidden>
 		<div class="row">
 			<div class="col-12">
