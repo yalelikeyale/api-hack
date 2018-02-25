@@ -1,0 +1,46 @@
+.navBar {
+	margin-left:20px;
+}
+
+.logo{
+	width: 200px;
+	height: 100px;
+	margin-top: 20px;
+	margin-left: 50px;
+}
+
+.intro, .description{
+	width: 50%;
+	margin: auto;
+	text-align: center;
+}
+
+.description{
+	margin-bottom: 50px;
+}
+
+.fork{
+	position: relative;
+}
+
+#start, #help{
+	width:15%;
+	height: 40px;
+	position: absolute;
+	border-radius: 10px;
+	margin-bottom: 50px;
+	font-weight: 900;
+	border:1.5px solid black;
+	font-family: 'Libre Franklin', sans-serif;
+}
+
+#start {
+	right:5%;
+}
+
+#help {
+	left:5%;
+}
+
+
+

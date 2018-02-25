@@ -5,30 +5,39 @@
 	<title>Date Roulette</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/messaging.css">
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Libre+Franklin" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar">
-    	<h1 class="logo">What's Next</h2>
-  	</nav>
-	<div class="intro">
-		<span>Ever had this conversation...</span>
-	</div>
-	<div id="wrapper">
-	  <div class="chat">
-	    <div class="chat-container">
-	      <div class="chat-listcontainer">
+	<section class="landing">
+		<nav class="navbar">
+			<img src="images/logo.png" alt="Deazy Logo" class="logo">
+	  	</nav>
+		<div class="intro">
+			<h1>Ever had this convo...</h1>
+		</div>
+		<div id="wrapper">
+		  <div class="chat">
+		    <div class="chat-container">
+		      <div class="chat-listcontainer">
 
-	        <ul class="chat-message-list">
-	        </ul>
+		        <ul class="chat-message-list">
+		        </ul>
 
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<div>
-		<p>Don't let an invitation turn into an argument, use What's next! The venue picker that weighs data from foursquare and Google to find the best venues near you!</p>
-	</div>
-	<a href="preferences/app.html"><button id="start" type="submit">Let's Go Out</button></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="description">
+			<p>Don't let an invitation turn into an argument, use Deazy! The venue recommendation app that weighs data from Google and FourSquare</p>
+		</div>
+		<div class="fork">
+			<button id="help" type="button">Wait What</button>
+			<a href="preferences/app.html"><button id="start" type="button">Let's Go Out</button></a>	
+		</div>
+	</section>
+	<section class="walkthrough">
+		<div class="pickAcat"></div>
+	</section>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
 <script src="messaging.js"></script>
