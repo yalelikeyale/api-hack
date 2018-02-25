@@ -2,101 +2,145 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>What's Next</title>
+	<title>Deazy</title>
 	<link rel="stylesheet" type="text/css" href="css/pref.css">
 	<link rel="stylesheet" type="text/css" href="css/modal.css">
 	<link rel="stylesheet" type="text/css" href="css/grid.css">
-	<link rel="stylesheet" type="text/css" href="css/stars.css">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 </head>
 <body>
 	<div class="row">
-		<div class="col-4">
+		<div class="flip col-4">
 			<div class="card" role="button"  data-query="cocktails">
-				<p>Cocktails</p>
+				<div class="front">
+					<img src="images/cocktails.jpg">
+				</div>
+				<div class="back">
+					<span>Cocktails!</span>
+				</div>
 			</div>
 		</div>
-		<div class="col-4">
+		<div class="flip col-4">
 			<div class="card" role="button" data-query="dessert">
-				<p>Dessert</p>
+				<div class="front">
+					<img src="images/dessert.jpeg">
+				</div>
+				<div class="back">
+					<span>Dessert!</span>
+				</div>
 			</div>
 		</div>
-		<div class="col-4">
+		<div class="flip col-4">
 			<div class="card" role="button"  data-query="food">
-				<p>Feed Me</p>
+				<div class="front">
+					<img src="images/food.jpg">
+				</div>
+				<div class="back">
+					<span>Dinner!</span>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-4">
+		<div class="flip col-4">
 			<div class="card" role="button"  data-query="live music">
-				<p>Live Music</p>
+				<div class="front">
+					<img src="images/live_music.jpeg">
+				</div>
+				<div class="back">
+					<span>Live Music!</span>
+				</div>
 			</div>
 		</div>
-		<div class="col-4">
+		<div class="flip col-4">
 			<div class="card" role="button"  data-query="dancing">
-				<p>Dancing</p>
+				<div class="front">
+					<img src="images/dancing.jpeg">
+				</div>
+				<div class="back">
+					<span>Dancing!</span>
+				</div>
 			</div>
 		</div>
-		<div class="col-4">
+		<div class="flip col-4">
 			<div class="card" role="button"  data-query="karaoke">
-				<p>Karaoke</p>
+				<div class="front">
+					<img src="images/karaoke.jpeg">
+				</div>
+				<div class="back">
+					<span>Karaoke!</span>
+				</div>
 			</div>
 		</div>
 	</div>
-	<p>Please Set these options in order of most important (top) to least important (bottom)</p>
-	<ul id="sortable">
-		<li id="priceTier" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Price</li>
-		<li id="rating" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ratings</li>
-		<li id="distance" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Distance</li>
-	</ul>
-	<div id="rangeValue"></div>
-	<div id="slider"></div>
 
 	<section class='rating-widget'>
 	  <div class='rating-dollars text-center'>
 	    <ul id='dollars'>
-	      <li class='usd' data-value='1'>
+	      <li class='usd rating-1' data-value='1' data-index="0">
 	        <i class="far fa-money-bill-alt"></i>
 	      </li>
-	      <li class='usd' data-value='2'>
+	      <li class='usd rating-2' data-value='2' data-index="1">
 	        <i class="far fa-money-bill-alt"></i>
 	      </li>
-	      <li class='usd' data-value='3'>
+	      <li class='usd rating-2' data-value='2' data-index="2">
 	        <i class="far fa-money-bill-alt"></i>
 	      </li>
-	      <li class='usd' data-value='4'>
+	      <li class='usd rating-3' data-value='3' data-index="3">
 	        <i class="far fa-money-bill-alt"></i>
 	      </li>
-	      <li class='usd' data-value='5'>
+	      <li class='usd rating-3' data-value='3' data-index="4">
 	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd rating-3' data-value='3' data-index="5">
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd rating-4' data-value='4' data-index="6">
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd rating-4' data-value='4' data-index="7">
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd rating-4' data-value='4' data-index="8">
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	      <li class='usd rating-4' data-value='4' data-index="9">
+	        <i class="far fa-money-bill-alt"></i>
+	      </li>
+	    </ul>
+	  </div>
+
+	  <div class='rating-stars text-center'>
+	    <ul id='stars'>
+	      <li class='star include' title='Poor' data-value='1'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star include' title='Fair' data-value='2'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star include' title='Good' data-value='3'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star include' title='Excellent' data-value='4'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li class='star include' title='WOW' data-value='5'>
+	        <i class='fa fa-star fa-fw'></i>
 	      </li>
 	    </ul>
 	  </div>
 	</section>
 
-	<section class='rating-widget'>
-	  <div class='rating-stars text-center'>
-	    <ul id='stars'>
-	      <li class='star' title='Poor' data-value='1'>
-	        <i class='fa fa-star fa-fw'></i>
-	      </li>
-	      <li class='star' title='Fair' data-value='2'>
-	        <i class='fa fa-star fa-fw'></i>
-	      </li>
-	      <li class='star' title='Good' data-value='3'>
-	        <i class='fa fa-star fa-fw'></i>
-	      </li>
-	      <li class='star' title='Excellent' data-value='4'>
-	        <i class='fa fa-star fa-fw'></i>
-	      </li>
-	      <li class='star' title='WOW!!!' data-value='5'>
-	        <i class='fa fa-star fa-fw'></i>
-	      </li>
-	    </ul>
-	  </div>
-	</section>
+	<div id="slider"></div>
+
+	<p>Please Set these options in order of most important (top) to least important (bottom)</p>
+	<ul id="sortable">
+		<li id="priceTier" class="pref">Price <i class=" handle fas fa-bars"></i></li>
+		<li id="rating" class="pref">Ratings <i class="handle fas fa-bars"></i></li>
+		<li id="distance" class="pref">Distance <i class="handle fas fa-bars"></i></li>
+	</ul>
 
 	<button class="submit-button" data-popup-open="popup-1" data-tooltip="Please Select a Date Category Before Continuing" disabled>Submit</button>
 	<section class="try-again" hidden>
@@ -109,6 +153,7 @@
 	</section>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-<script src="recEngine.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js"></script>
+<script src="js/recEngine.js"></script>
 </body>
 </html>

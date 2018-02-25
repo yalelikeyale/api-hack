@@ -256,6 +256,10 @@ $('.card[role="button"]').click(function(e){
 	$('.submit-button').attr('disabled',false);
 });
 
+$(".flip").flip({
+    trigger: 'click'
+});
+
 $('#slider').slider({
 	max:15000,
 	min:500,
@@ -280,16 +284,28 @@ $('#slider').slider({
 	}
 });
 
-$( "#sortable" ).sortable();
-$( "#sortable" ).disableSelection();
+//dollar ratings hover
+$('#dollars').on('mouseover','.usd', function(e){
+	let usdGroup = $(this).data('value');
+	$(`.usd[data-value=${usdGroup}]`).addClass('hover');
+}).on('mouseout', '.usd',function(){
+	let usdGroup = $(this).data('value');
+	$(`.usd[data-value=${usdGroup}]`).removeClass('hover');
+});
 
-/* 1. Visualizing things on Hover - See next part for action on click */
+//dollar ratings click
+$('#dollars').on('click','.usd', function(e){
+	let usdGroup = $(this).data('value');
+	$(`.usd[data-value=${usdGroup}]`).toggleClass('active');
+});
+ 
+// star rating hover
   $('#stars li').on('mouseover', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-   
-    // Now highlight all the stars that's not after the current hovered star
+    let onStar = parseInt($(this).data('value'), 10); 
+
     $(this).parent().children('li.star').each(function(e){
-      if (e < onStar) {
+      if (e+1 < onStar) {
+      	$(this).removeClass('include');
         $(this).addClass('hover');
       }
       else {
@@ -300,26 +316,22 @@ $( "#sortable" ).disableSelection();
   }).on('mouseout', function(){
     $(this).parent().children('li.star').each(function(e){
       $(this).removeClass('hover');
+      $(this).addClass('include');
     });
   });
   
   
-  /* 2. Action to perform on click */
+//star ratings click
   $('#stars li').on('click', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    var stars = $(this).parent().children('li.star');
-    
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('selected');
-    }
-    
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass('selected');
+    let onStar = parseInt($(this).data('value'), 10);
+    let stars = $('#stars .star');
+    console.log(stars);
+    stars.removeClass('active');
+    for (i = 0; i < onStar-1; i++) {
+      $(stars[i]).addClass('active');
     }
     
   });
-  
-
 
 $('.price-option .option').click(function(e){
 	if($(this).hasClass('selected')){
@@ -339,6 +351,9 @@ $('.submit-button').click(function(e){
 	getRecs();
 });
 
+$( "#sortable" ).sortable({
+	handle:'.handle'
+}).disableSelection();
 
 $(getLocation)
   
