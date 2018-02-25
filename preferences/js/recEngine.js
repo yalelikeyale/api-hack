@@ -248,6 +248,8 @@ function getLocation(){
 	$.post(payload)
 }
 
+$('#fullpage').fullpage({anchors:['categories','filters','preferences']});
+
 $('.card[role="button"]').click(function(e){
 	$('.card[role="button"]').removeClass('selected');
 	$(this).addClass('selected');
