@@ -248,7 +248,7 @@ function getLocation(){
 	$.post(payload)
 }
 
-$('#fullpage').fullpage({anchors:['categories','filters','preferences']});
+$('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'], navigation:true, navigationTooltips:['Pick a Category', 'Price Filter','Rating Filter','Range Filter','Preferences'],recordHistory:false, showActiveTooltip:true});
 
 $('.card[role="button"]').click(function(e){
 	$('.card[role="button"]').removeClass('selected');
@@ -259,7 +259,7 @@ $('.card[role="button"]').click(function(e){
 });
 
 $(".flip").flip({
-    trigger: 'click'
+    trigger: 'hover'
 });
 
 $('#slider').slider({

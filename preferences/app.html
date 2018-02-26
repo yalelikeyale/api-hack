@@ -12,141 +12,189 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 </head>
 <body>
+	<nav class="logoFrame">
+		<img src="images/logo.png" alt="Deazy Logo" class="logo">
+  	</nav>
 	<div id="fullpage">
 		<div class="section" data-anchor="categories">
-			<div class="row">
-				<div class="flip col-4">
-					<div class="card" role="button"  data-query="cocktails">
-						<div class="front">
-							<img src="images/cocktails.jpeg">
+			<div class="section-wrapper">
+				<div class="menu-title">
+					<h1>What's the Flavor of the Night?</h1>
+					<h4><i>Click to reveal category, click again to select</i></h4>
+				</div>
+				<div class="row">
+					<div class="flip col-4">
+						<div class="card" role="button"  data-query="cocktails">
+							<div class="front">
+								<img src="images/cocktails.jpeg">
+							</div>
+							<div class="back">
+								<a href="app.html#pricing"><button>Let's get Cocktails!</button></a>
+							</div>
 						</div>
-						<div class="back">
-							<a href="app.html#filters"><button>Let's get Cocktails!</button></a>
+					</div>
+					<div class="flip col-4">
+						<div class="card" role="button" data-query="dessert">
+							<div class="front">
+								<img src="images/dessert.jpeg">
+							</div>
+							<div class="back">
+								<a href="app.html#pricing"><button>Let's get Dessert!</button></a>
+							</div>
+						</div>
+					</div>
+					<div class="flip col-4">
+						<div class="card" role="button"  data-query="food">
+							<div class="front">
+								<img src="images/food.jpg">
+							</div>
+							<div class="back">
+								<a href="app.html#pricing"><button>We're Hungy!</button></a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="flip col-4">
-					<div class="card" role="button" data-query="dessert">
-						<div class="front">
-							<img src="images/dessert.jpeg">
-						</div>
-						<div class="back">
-							<a href="app.html#filters"><button>Let's get Dessert!</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="flip col-4">
-					<div class="card" role="button"  data-query="food">
-						<div class="front">
-							<img src="images/food.jpg">
-						</div>
-						<div class="back">
-							<a href="app.html#filters"><button>We're Hungy!</button></a>
+				<div class="row">
+					<div class="flip col-4">
+						<div class="card" role="button"  data-query="live music">
+							<div class="front">
+								<img src="images/live_music.jpeg">
+							</div>
+							<div class="back">
+								<a href="app.html#pricing"><button>Let's catch a show</button></a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="flip col-4">
-					<div class="card" role="button"  data-query="live music">
-						<div class="front">
-							<img src="images/live_music.jpeg">
-						</div>
-						<div class="back">
-							<a href="app.html#filters"><button>Let's catch a show</button></a>
+					<div class="flip col-4">
+						<div class="card" role="button"  data-query="dancing">
+							<div class="front">
+								<img src="images/dancing.jpeg">
+							</div>
+							<div class="back">
+								<a href="app.html#pricing"><button>Let's go dancing!</button></a>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="flip col-4">
-					<div class="card" role="button"  data-query="dancing">
-						<div class="front">
-							<img src="images/dancing.jpeg">
-						</div>
-						<div class="back">
-							<a href="app.html#filters"><button>Let's go dancing!</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="flip col-4">
-					<div class="card" role="button"  data-query="karaoke">
-						<div class="front">
-							<img src="images/karaoke.jpeg">
-						</div>
-						<div class="back">
-							<a href="app.html#filters"><button>We want to sing!</button></a>
+					<div class="flip col-4">
+						<div class="card" role="button"  data-query="karaoke">
+							<div class="front">
+								<img src="images/karaoke.jpeg">
+							</div>
+							<div class="back">
+								<a href="app.html#pricing"><button>We want to sing!</button></a>
+							</div>
 						</div>
 					</div>
-				</div>
+				</div>		
 			</div>					
 		</div>
-		<div class="section" data-anchor="filters">
-			  <div class='rating-dollars text-center'>
-			    <ul id='dollars'>
-			      <li class='usd rating-1' data-value='1' data-index="0">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-2' data-value='2' data-index="1">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-2' data-value='2' data-index="2">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-3' data-value='3' data-index="3">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-3' data-value='3' data-index="4">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-3' data-value='3' data-index="5">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-4' data-value='4' data-index="6">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-4' data-value='4' data-index="7">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-4' data-value='4' data-index="8">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			      <li class='usd rating-4' data-value='4' data-index="9">
-			        <i class="far fa-money-bill-alt"></i>
-			      </li>
-			    </ul>
-			  </div>			
-			  <div class='rating-stars text-center'>
-			    <ul id='stars'>
-			      <li class='star include' title='Poor' data-value='1'>
-			        <i class='fa fa-star fa-fw'></i>
-			      </li>
-			      <li class='star include' title='Fair' data-value='2'>
-			        <i class='fa fa-star fa-fw'></i>
-			      </li>
-			      <li class='star include' title='Good' data-value='3'>
-			        <i class='fa fa-star fa-fw'></i>
-			      </li>
-			      <li class='star include' title='Excellent' data-value='4'>
-			        <i class='fa fa-star fa-fw'></i>
-			      </li>
-			      <li class='star include' title='WOW' data-value='5'>
-			        <i class='fa fa-star fa-fw'></i>
-			      </li>
-			    </ul>
-			  </div>				
-			  <div id="slider"></div>
+		<div class="section" data-anchor="pricing">
+			<div class="section-wrapper">
+				<div class="menu-title">
+			  		<h1>Big Spender?</h1>
+			  		<h4><i>Select Each Price Rating You Would Like to Include</i></h4>
+			  	</div>
+				<div class='rating-dollars text-center'>
+				    <ul id='dollars'>
+				      <li class='usd rating-1' data-value='1' data-index="0">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-2' data-value='2' data-index="1">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-2' data-value='2' data-index="2">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-3' data-value='3' data-index="3">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-3' data-value='3' data-index="4">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-3' data-value='3' data-index="5">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-4' data-value='4' data-index="6">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-4' data-value='4' data-index="7">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-4' data-value='4' data-index="8">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				      <li class='usd rating-4' data-value='4' data-index="9">
+				        <i class="far fa-money-bill-alt"></i>
+				      </li>
+				    </ul>
+				</div>	
+				<div class="nav-buttons">
+					<a href="app.html#categories"><button class="back">Back</button></a>
+					<a href="app.html#ratings"><button class="next">Next</button></a>
+				</div>			
+			</div>
 		</div>
+		<div class="section" data-anchor="ratings">
+			<div class="section-wrapper">
+				<div class="menu-title">
+					<h1>You fancy huh</h1>
+					<h4><i>Pick the lowest venue rating you'd take a chance on</i></h4>
+				</div>
+			    <div class='rating-stars text-center'>
+			      <ul id='stars'>
+			        <li class='star include' title='Poor' data-value='1'>
+			        <i class='fa fa-star fa-fw'></i>
+			        </li>
+			        <li class='star include' title='Fair' data-value='2'>
+			          <i class='fa fa-star fa-fw'></i>
+			        </li>
+			        <li class='star include' title='Good' data-value='3'>
+			          <i class='fa fa-star fa-fw'></i>
+			        </li>
+			        <li class='star include' title='Excellent' data-value='4'>
+			          <i class='fa fa-star fa-fw'></i>
+			        </li>
+			        <li class='star include' title='WOW' data-value='5'>
+			          <i class='fa fa-star fa-fw'></i>
+			        </li>
+			      </ul>
+			    </div>
+				<div class="nav-buttons">
+					<a href="app.html#pricing"><button class="back">Back</button></a>
+					<a href="app.html#range"><button class="next">Next</button></a>
+				</div>			
+			</div>
+		</div>
+		<div class="section" data-anchor="range">
+			<div class="section-wrapper">
+				<div class="menu-title">
+					<h1>Will you go the distance?</h1>
+					<h4><i>Select your commute range</i></h4>
+				</div>
+				<div id="slider"></div>
+				<div class="nav-buttons">
+					<a href="app.html#ratings"><button class="back">Back</button></a>
+					<a href="app.html#preferences"><button class="next">Next</button></a>
+				</div>			
+			</div>
+		</div>			
 		<div class="section" data-anchor="preferences">
-			<p>Please Set these options in order of most important (top) to least important (bottom)</p>
-			<ul id="sortable">
-				<li id="priceTier" class="pref">Price <i class=" handle fas fa-bars"></i></li>
-				<li id="rating" class="pref">Ratings <i class="handle fas fa-bars"></i></li>
-				<li id="distance" class="pref">Distance <i class="handle fas fa-bars"></i></li>
-			</ul>
-
-			<button class="submit-button" data-popup-open="popup-1" data-tooltip="Please Select a Date Category Before Continuing" disabled>Submit</button>				
+			<div class="section-wrapper">
+				<div class="menu-title">
+					<h1>Please Set these options in order of most important (top) to least important (bottom)</h1>		
+				</div>
+				<ul id="sortable">
+					<li id="priceTier" class="pref">Price <i class=" handle fas fa-bars"></i></li>
+					<li id="rating" class="pref">Ratings <i class="handle fas fa-bars"></i></li>
+					<li id="distance" class="pref">Distance <i class="handle fas fa-bars"></i></li>
+				</ul>
+				<div class="nav-buttons">
+					<a href="app.html#range"><button class="back">Back</button></a>
+					<a href="loading"><button class="next">Let's Go!</button></a>
+				</div>						
+			</div>			
 		</div>
 	</div>
-
 	<section class="try-again" hidden>
 		<div class="row">
 			<div class="col-12">
