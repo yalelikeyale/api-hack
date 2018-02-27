@@ -249,7 +249,7 @@ function getLocation(){
 	$.post(payload)
 }
 
-$('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'], navigation:true, navigationTooltips:['Pick a Category', 'Price Filter','Rating Filter','Range Filter','Preferences'],recordHistory:false, showActiveTooltip:true});
+$('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'],menu:'#nav-menu',recordHistory:false});
 
 $('.card[role="button"]').click(function(e){
 	$('.card[role="button"]').removeClass('selected');
@@ -373,6 +373,8 @@ $('.submit-button').click(function(e){
 $( "#sortable" ).sortable({
 	handle:'.handle'
 }).disableSelection();
+
+$('#fp-nav li:nth-child(2) span').html('<i class="fas fa-dollar-sign"></i>')
 
 $(getLocation)
   

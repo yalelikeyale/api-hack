@@ -104,10 +104,6 @@
   padding:none 20px;
 }
 
-/*.rating-dollars ul > li.usd.hover > i.far{
-   border-top: 2px dashed black;
-}
-*/
 .rating-stars ul > li.star.hover > i.fa{
   color:#FF0038;
 }
@@ -128,6 +124,7 @@
 }
 
 #dollars,#stars{
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -172,7 +169,7 @@
 }
 
 .nav-buttons{
-  margin-top:100px;
+  margin-top:150px;
   width: 100%;
   position: relative;
 }
@@ -196,6 +193,55 @@
 
 .next.right{
   right:100px;
+}
+
+#nav-menu{
+  position: fixed;
+  z-index:100;
+  margin-top:-53.5px;
+  top:50%;
+  opacity: 1;
+}
+
+#nav-menu li{
+  margin-top: 12px;
+  list-style: none;
+}
+
+#nav-menu.right{
+  right: 17px;
+}
+
+#nav-menu .icon{
+  font-size:20px;
+}
+
+#nav-menu .lightbulb{
+  color:red;
+}
+
+#nav-menu .dollar-sign{
+  color:green;
+}
+
+#nav-menu .thumbs-up{
+  color:yellow;
+}
+
+#nav-menu .car{
+  color:blue;
+}
+
+#nav-menu .smile{
+  color:pink;
+}
+
+#nav-menu li.active .icon{
+  font-size: 30px;
+}
+
+#nav-menu li:hover .icon{
+  font-size: 25px;
 }
 
 
