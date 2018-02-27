@@ -3,8 +3,8 @@
 }
 
 .logo{
-  width: 200px;
-  height: 100px;
+  width: 150px;
+  height: 75px;
   margin-top: 20px;
   margin-left: 50px;
 }
@@ -15,12 +15,33 @@
     margin: 0 auto;
 }
 .flip img {
+    height: 300px;
     width: 300px;
-    height: auto;
-    max-height: 200px
 }
 .flip .back {
+    height: 300px;
     text-align: center;
+}
+
+.cat-select{
+  display: block;
+  margin-top: 75px;
+}
+
+.cat-confirm:hover{
+  cursor: pointer;
+}
+
+.cat-confirm{
+  width:55%;
+  height: 60px;
+  border-radius: 10px;
+  border:1.5px solid #FF0038;
+  background-color: #FF0038;
+  color: white;
+  font-weight: 600;
+  font-size: large;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #priceFilter, #ratingFilter {
@@ -45,7 +66,7 @@
 }
 .rating-stars ul > li.star, .rating-dollars ul > li.usd {
   display:inline-block;
-  
+  cursor: pointer;
 }
 
 /* Idle State of the stars */
@@ -70,9 +91,8 @@
   font-size:4em;
  }
 
-/* attempting to add space before dollar groupings*/
-.usd[data-index="1"]:before, .usd[data-index="3"]:before, .usd[data-index="6"]:before{
-  content: "   ";
+.usd[data-index="1"], .usd[data-index="3"], .usd[data-index="6"]{
+  margin-left: 25px;
 }
 
 .rating-dollars ul > li.usd.hover > i.far{
@@ -95,7 +115,12 @@
   color:#FFCF38;
 }
 
-.menu-title,#dollars,#stars{
+.menu-title{
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+#dollars,#stars{
   text-align: center;
 }
 
