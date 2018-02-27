@@ -244,4 +244,37 @@
   font-size: 25px;
 }
 
+.range-animation{
+  display: inline-block;
+  margin-left: 100px
+}
+
+.range-animation li{
+  list-style: none;
+}
+
+.red{
+  background-color: #FF0038;
+  height: 3px;
+  width: 5px;
+}
+
+.dash{
+  display: inline-block; 
+}
+
+.dash svg{
+  width:20px;
+  height: 20px;
+}
+
+.slider-wrapper{
+  width: 50%;
+  margin:auto;
+}
+
+.hide-it{
+  display:none;
+}
+
 

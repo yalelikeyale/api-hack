@@ -267,24 +267,32 @@ $('#slider').slider({
 	max:15000,
 	min:500,
 	step:500,
-	value:7500,
-	animate:'fast',
-	create:function(event, ui){
-		let initVal = $(this).slider('value');
-		initVal /= 1000;
-		$('.ui-slider-handle').html(initVal.toString()+'km');
-	},
+	value:500,
 	slide:function(event, ui){
-		REC_SETTINGS.radius = ui.value;
 		let range = ui.value;
-		if(range > 500){
-			range /= 1000
-			range = range.toString() +'km'
-		} else {
-			range = range.toString()+'m'
+		REC_SETTINGS.radius = range;
+		if(range === 1000){
+			$('.range-animation.paper-plane').toggleClass('hide-it')
+		} else if (range === 3000){
+			$('.range-animation.paper-plane').toggleClass('hide-it')
+			$('.range-animation.bicycle').toggleClass('hide-it')
+		} else if (range === 5500){
+			$('.range-animation.bicycle').toggleClass('hide-it')
+			$('.range-animation.car').toggleClass('hide-it')		
+		} else if (range === 8000){
+			$('.range-animation.car').toggleClass('hide-it')
+			$('.range-animation.train').toggleClass('hide-it')
+		} else if (range === 10500) {
+			$('.range-animation.train').toggleClass('hide-it')
+			$('.range-animation.airplane').toggleClass('hide-it')
+		} else if (range === 13000){
+			$('.range-animation.airplane').toggleClass('hide-it')
+			$('.range-animation.rocket').toggleClass('hide-it')			
 		}
-		$(".ui-slider-handle").html(range);
-	}
+	  }
+	}).slider('pips',{
+	step:5,
+	rest:'label'
 });
 
 //dollar ratings hover
