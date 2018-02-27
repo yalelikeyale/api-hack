@@ -29,7 +29,8 @@ const data = {
 		'karaoke':['karaoke']
 	},
 	nextVen:0,
-	searchAgain:true
+	searchAgain:true,
+	ratingSelection:[]
 }
 
 const DET_SETTINGS = {
@@ -288,23 +289,38 @@ $('#slider').slider({
 
 //dollar ratings hover
 $('#dollars').on('mouseover','.usd', function(e){
-	let usdGroup = $(this).data('value');
-	$(`.usd[data-value=${usdGroup}]`).addClass('hover');
+	let usdGroupNumber = $(this).data('value');
+	let usdGroup = $(`.usd[data-value=${usdGroupNumber}]`)
+	usdGroup.css({'border-top':'2px dashed #FF0038','border-bottom':'2px dashed #FF0038'});
+	usdGroup.addClass('hover');
 }).on('mouseout', '.usd',function(){
-	let usdGroup = $(this).data('value');
-	$(`.usd[data-value=${usdGroup}]`).removeClass('hover');
+	let usdGroupNumber = $(this).data('value');
+	let usdGroup = $(`.usd[data-value=${usdGroupNumber}]`)
+	usdGroup.css('border','none');
+	usdGroup.removeClass('hover');
 });
 
 //dollar ratings click
 $('#dollars').on('click','.usd', function(e){
-	let usdGroup = $(this).data('value');
-	$(`.usd[data-value=${usdGroup}]`).toggleClass('active');
+	let usdGroupRating = $(this).data('value');
+	let usdRating = $(this).attr('title');
+	let usdGrouping = $(`.usd[data-value=${usdGroupRating}]`)
+	usdGrouping.toggleClass('active');
+	if($(this).hasClass('active')){
+		data.ratingSelection.push(usdRating);
+	} else {
+		data.ratingSelection.splice(data.ratingSelection.indexOf(usdRating),1);
+	}
+	if(data.ratingSelection.length > 0){
+		$('.js-dollar-choice').text(data.ratingSelection.join());
+	} else {
+		$('.js-dollar-choice').text('Please select each price rating you would like to include')
+	}
 });
  
 // star rating hover
   $('#stars li').on('mouseover', function(){
-    let onStar = parseInt($(this).data('value'), 10); 
-
+    let onStar = parseInt($(this).data('value'), 10);
     $(this).parent().children('li.star').each(function(e){
       if (e+1 < onStar) {
       	$(this).removeClass('include');
@@ -326,6 +342,7 @@ $('#dollars').on('click','.usd', function(e){
 //star ratings click
   $('#stars li').on('click', function(){
     let onStar = parseInt($(this).data('value'), 10);
+    $('.js-star-choice').attr('hidden',false).text(`You have chosen venues with a ${onStar} star rating and up`);
     let stars = $('#stars .star');
     console.log(stars);
     stars.removeClass('active');

@@ -9,6 +9,10 @@
   margin-left: 50px;
 }
 
+.menu-title h4{
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
 .flip {
     height: 199px;
     width: 300px;
@@ -95,12 +99,15 @@
   margin-left: 25px;
 }
 
-.rating-dollars ul > li.usd.hover > i.far{
+.rating-dollars ul > li.usd > i.far{
   color: rgb(33,108,42);
+  padding:none 20px;
 }
 
-
-/* Hover state of the stars */
+/*.rating-dollars ul > li.usd.hover > i.far{
+   border-top: 2px dashed black;
+}
+*/
 .rating-stars ul > li.star.hover > i.fa{
   color:#FF0038;
 }
@@ -126,6 +133,10 @@
 
 .section-wrapper{
   margin-bottom: 150px;
+}
+
+.js-choice-meaning{
+  text-align: center;
 }
 
 #slider{
@@ -166,14 +177,25 @@
   position: relative;
 }
 
-.back{
+.back,.next{
   position:absolute;
-  left:10px;
   bottom:10px;
+  padding: 15px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1px black;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: white;
+  cursor: pointer;
+  border: none;
 }
 
-.next{
-  position:absolute;
-  right:10px;
-  bottom:10px;
+.back.left{
+  left:100px;
 }
+
+.next.right{
+  right:100px;
+}
+
+

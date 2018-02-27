@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.css">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 </head>
@@ -24,7 +25,7 @@
 			<div class="section-wrapper">
 				<div class="menu-title">
 					<h1>What's the Flavor of the Night?</h1>
-					<h4><i>Click to reveal category, click again to select</i></h4>
+					<h4><i>Hover over icon to reveal category, click  to select</i></h4>
 				</div>
 				<div class="row">
 					<div class="flip col-4">
@@ -108,45 +109,45 @@
 			<div class="section-wrapper">
 				<div class="menu-title">
 			  		<h1>Big Spender?</h1>
-			  		<h4><i>Select Each Price Rating You Would Like to Include</i></h4>
+					<h4>Your search will include venues that are rated as: <span class="js-dollar-choice"><i>Please select each price rating you would like to include</i></span></h4>
 			  	</div>
 				<div class='rating-dollars text-center'>
 				    <ul id='dollars'>
-				      <li class='usd rating-1' data-value='1' data-index="0">
+				      <li class='usd rating-1' data-value='1' data-index="0" title="CHEAP">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-2' data-value='2' data-index="1">
+				      <li class='usd rating-2' data-value='2' data-index="1" title="AFFORDABLE">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-2' data-value='2' data-index="2">
+				      <li class='usd rating-2' data-value='2' data-index="2" title="AFFORDABLE">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-3' data-value='3' data-index="3">
+				      <li class='usd rating-3' data-value='3' data-index="3" title="PRICEY">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-3' data-value='3' data-index="4">
+				      <li class='usd rating-3' data-value='3' data-index="4" title="PRICEY">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-3' data-value='3' data-index="5">
+				      <li class='usd rating-3' data-value='3' data-index="5" title="PRICEY">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-4' data-value='4' data-index="6">
+				      <li class='usd rating-4' data-value='4' data-index="6" title="EXPENSIVE">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-4' data-value='4' data-index="7">
+				      <li class='usd rating-4' data-value='4' data-index="7" title="EXPENSIVE">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-4' data-value='4' data-index="8">
+				      <li class='usd rating-4' data-value='4' data-index="8" title="EXPENSIVE">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
-				      <li class='usd rating-4' data-value='4' data-index="9">
+				      <li class='usd rating-4' data-value='4' data-index="9" title="EXPENSIVE">
 				        <i class="far fa-money-bill-alt"></i>
 				      </li>
 				    </ul>
 				</div>	
 				<div class="nav-buttons">
-					<a href="app.html#categories"><button class="back">Back</button></a>
-					<a href="app.html#ratings"><button class="next">Next</button></a>
+					<a href="app.html#categories"><button class="back left">Back</button></a>
+					<a href="app.html#ratings"><button class="next right">Next</button></a>
 				</div>			
 			</div>
 		</div>
@@ -154,7 +155,7 @@
 			<div class="section-wrapper">
 				<div class="menu-title">
 					<h1>You fancy huh</h1>
-					<h4><i>Pick the lowest venue rating you'd take a chance on</i></h4>
+					<h4 class="js-star-choice"><i>Pick the lowest venue rating you'd take a chance on</i></h4>
 				</div>
 			    <div class='rating-stars text-center'>
 			      <ul id='stars'>
@@ -176,8 +177,8 @@
 			      </ul>
 			    </div>
 				<div class="nav-buttons">
-					<a href="app.html#pricing"><button class="back">Back</button></a>
-					<a href="app.html#range"><button class="next">Next</button></a>
+					<a href="app.html#pricing"><button class="back left">Back</button></a>
+					<a href="app.html#range"><button class="next right">Next</button></a>
 				</div>			
 			</div>
 		</div>
@@ -189,8 +190,8 @@
 				</div>
 				<div id="slider"></div>
 				<div class="nav-buttons">
-					<a href="app.html#ratings"><button class="back">Back</button></a>
-					<a href="app.html#preferences"><button class="next">Next</button></a>
+					<a href="app.html#ratings"><button class="back left">Back</button></a>
+					<a href="app.html#preferences"><button class="next right">Next</button></a>
 				</div>			
 			</div>
 		</div>			
@@ -205,8 +206,8 @@
 					<li id="distance" class="pref">Distance <i class="handle fas fa-bars"></i></li>
 				</ul>
 				<div class="nav-buttons">
-					<a href="app.html#range"><button class="back">Back</button></a>
-					<a href="loading"><button class="next">Let's Go!</button></a>
+					<a href="app.html#range"><button class="back left">Back</button></a>
+					<a href="loading"><button class="next right">Let's Go!</button></a>
 				</div>						
 			</div>			
 		</div>
