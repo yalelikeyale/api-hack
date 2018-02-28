@@ -271,18 +271,17 @@ $('#slider').slider({
 	value:500,
 	slide:function(event, ui){
 		let range = ui.value;
-		console.log(range);
 		REC_SETTINGS.radius = range;
-		if(range === 3000){
-			$('#body').css('--speed','1.2');
-		} else if (range === 5500){
-			$('#body').css('--speed','1.3');	
-		} else if (range === 8000){
-			$('#body').css('--speed','1.4');
-		} else if (range === 10500) {
+		if(range >= 13000){
+			$('#body').css('--speed','1.7');
+		} else if (range >= 10500){
+			$('#body').css('--speed','1.6');	
+		} else if (range >= 8000){
 			$('#body').css('--speed','1.5');
-		} else if (range === 13000){
-			$('#body').css('--speed','1.6');		
+		} else if (range >= 5500) {
+			$('#body').css('--speed','1.4');
+		} else if (range >= 3000){
+			$('#body').css('--speed','1.3');		
 		}
 	  }
 	}).slider('pips',{
@@ -305,20 +304,33 @@ $('#dollars').on('mouseover','.usd', function(e){
 
 //dollar ratings click
 $('#dollars').on('click','.usd', function(e){
+	data.dollarSelection = [];
 	let usdGroupRating = $(this).data('value');
-	let usdRating = $(this).attr('title');
-	let usdGrouping = $(`.usd[data-value=${usdGroupRating}]`)
-	usdGrouping.toggleClass('active');
-	if($(this).hasClass('active')){
-		data.dollarSelection.push(usdRating);
-	} else {
-		data.dollarSelection.splice(data.dollarSelection.indexOf(usdRating),1);
-	}
-	if(data.dollarSelection.length > 0){
-		$('.js-dollar-choice').text(data.dollarSelection.join());
-	} else {
-		$('.js-dollar-choice').text('Please select each price rating you would like to include')
-	}
+	let usdGrouping = $(`.usd[data-value=${usdGroupRating}]`);
+	let dollarOptions = $('#dollars .usd');
+	usdGrouping.each(function(i){
+		$(usdGrouping[i]).toggleClass('active');
+	})
+	dollarOptions.each(function(i){
+		let usdRating = $(dollarOptions[i]).attr('title');
+		if($(dollarOptions[i]).hasClass('active')){
+			if(data.dollarSelection.indexOf(usdRating)<0){
+				data.dollarSelection.push(usdRating);
+			}
+		}
+	});
+    let dollarsSelected = data.dollarSelection.length;
+	if(dollarsSelected > 2){
+		let last = data.dollarSelection.pop();
+		let grammarList = data.dollarSelection.join(', ') + ' and ' + last.toString();
+    	$('.js-dollar-choice').text(`You have selected venues considered to be ${grammarList}`)
+    } else if (dollarsSelected > 1) {
+    	$('.js-dollar-choice').text(`You have selected venues considered to be ${data.dollarSelection.join(' and ')}`)
+    } else if (dollarsSelected > 0) {
+    	$('.js-dollar-choice').text(`You have selected venues considered to be ${data.dollarSelection[0]}`)
+    } else {
+    	$('.js-dollar-choice').html('<i>Please select each price rating you would like to include</i>')
+    }
 });
  
 $('#stars li').on('mouseover', function(){

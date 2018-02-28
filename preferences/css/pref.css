@@ -273,4 +273,12 @@
   display:none;
 }
 
+.ui-slider-pips [class*=ui-slider-pip-selected]{
+  color:black !important;
+}
+
+.ui-slider-pips [class*=ui-slider-pip-initial]{
+  color:#999 !important;
+  font-weight: normal !important;
+}
 

@@ -19,7 +19,8 @@
     top: 40%;
     left: 49%;
 
-    background: black;
+    background: #FF0038;
+    opacity: 0.6;
     width: 15px;
     height: 105px;
     border-radius: 15px;
@@ -36,7 +37,7 @@
     position: relative;
     top: -30px;
     left: -11px;
-    background: black;
+    background: #FF0038;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -52,7 +53,7 @@
     left: 5px;
     top: 25px;
 
-    background: black;
+    background: #FF0038;
     width: 60px;
     height: 10px;
     border-radius: 5px;
@@ -71,7 +72,7 @@
     top: 0px;
     left: 55px;
 
-    background: black;
+    background: #FF0038;
     width: 60px;
     height: 10px;
     border-radius: 5px;
@@ -90,7 +91,7 @@
     left: 5px;
     top: 15px;
 
-    background: black;
+    background: #FF0038;
     width: 60px;
     height: 10px;
     border-radius: 5px;
@@ -109,7 +110,7 @@
     top: 0px;
     left: 55px;
 
-    background: black;
+    background: #FF0038;
     width: 60px;
     height: 10px;
     border-radius: 5px;
@@ -128,7 +129,7 @@
     top: -30px;
     left: 10px;
 
-    background: black;
+    background: #FF0038;
     width: 50px;
     height: 10px;
     border-radius: 5px;
@@ -147,7 +148,7 @@
     top: 0px;
     left: 45px;
 
-    background: black;
+    background: #FF0038;
     width: 25px;
     height: 10px;
     border-radius: 5px;
@@ -166,7 +167,7 @@
     top: -40px;
     left: 10px;
 
-    background: black;
+    background: #FF0038;
     width: 50px;
     height: 10px;
     border-radius: 5px;
@@ -185,7 +186,7 @@
     top: 0px;
     left: 46px;
 
-    background: black;
+    background: #FF0038;
     width: 25px;
     height: 10px;
     border-radius: 5px;
