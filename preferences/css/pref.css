@@ -56,11 +56,6 @@
 	display: inline-block;
 }
 
-.selected {
-	background-color:yellow;
-}
-
-/* Rating Star Widgets Style */
 .rating-stars ul, .rating-dollars ul {
   list-style-type:none;
   padding:0;
@@ -73,25 +68,23 @@
   cursor: pointer;
 }
 
-/* Idle State of the stars */
-.rating-stars ul > li.star > i.fa, .rating-dollars ul > li.usd > i.far {
-  font-size:2.5em; /* Change the size of the stars */
-  color:#ccc; /* Color on idle state */
+.rating-stars .star .fa, .rating-dollars .usd .far {
+  font-size:2.5em;
 }
 
- .rating-dollars ul > li.usd.rating-1 > i.far{
+ .rating-dollars .usd.rating-1 .far{
   font-size:2.5em;
  }
 
-.rating-dollars ul > li.usd.rating-2 > i.far{
+.rating-dollars .usd.rating-2 .far{
   font-size:3em;
  }
 
-.rating-dollars ul > li.usd.rating-3 > i.far{
+.rating-dollars .usd.rating-3 .far{
   font-size:3.5em;
  }
 
-.rating-dollars ul > li.usd.rating-4 > i.far{
+.rating-dollars .usd.rating-4 .far{
   font-size:4em;
  }
 
@@ -99,33 +92,36 @@
   margin-left: 25px;
 }
 
-.rating-dollars ul > li.usd > i.far{
-  color: rgb(33,108,42);
+.rating-dollars .usd .far{
+  color: rgb(69,181,82);
   padding:none 20px;
 }
 
-.rating-stars ul > li.star.hover > i.fa{
-  color:#FF0038;
+.rating-dollars .usd.active .far {
+  color:#00ff18;
+  border-bottom: 2px dashed #FF0038;
 }
 
-/* Hover state of the stars */
-.rating-stars ul > li.star.include > i.fa{
-  color:rgb(50,205,50);
+.rating-stars ul .star.hover .fa{
+  color:black;
 }
 
-/* Selected state of the stars */
-.rating-stars ul > li.star.active > i.fa, .rating-dollars ul > li.usd.active > i.far {
-  color:#FFCF38;
+.rating-stars .star.include .fa{
+  color:#f7e91a;
 }
 
-.menu-title{
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
+.rating-stars .star.exclude .fa{
+  color:black;
 }
 
 #dollars,#stars{
   margin-top: 50px;
   text-align: center;
+}
+
+.menu-title{
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .section-wrapper{

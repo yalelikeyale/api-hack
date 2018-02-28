@@ -30,7 +30,8 @@ const data = {
 	},
 	nextVen:0,
 	searchAgain:true,
-	ratingSelection:[]
+	dollarSelection:[],
+	starSelection:[]
 }
 
 const DET_SETTINGS = {
@@ -309,58 +310,61 @@ $('#dollars').on('click','.usd', function(e){
 	let usdGrouping = $(`.usd[data-value=${usdGroupRating}]`)
 	usdGrouping.toggleClass('active');
 	if($(this).hasClass('active')){
-		data.ratingSelection.push(usdRating);
+		data.dollarSelection.push(usdRating);
 	} else {
-		data.ratingSelection.splice(data.ratingSelection.indexOf(usdRating),1);
+		data.dollarSelection.splice(data.dollarSelection.indexOf(usdRating),1);
 	}
-	if(data.ratingSelection.length > 0){
-		$('.js-dollar-choice').text(data.ratingSelection.join());
+	if(data.dollarSelection.length > 0){
+		$('.js-dollar-choice').text(data.dollarSelection.join());
 	} else {
 		$('.js-dollar-choice').text('Please select each price rating you would like to include')
 	}
 });
  
-// star rating hover
-  $('#stars li').on('mouseover', function(){
-    let onStar = parseInt($(this).data('value'), 10);
-    $(this).parent().children('li.star').each(function(e){
-      if (e+1 < onStar) {
-      	$(this).removeClass('include');
-        $(this).addClass('hover');
-      }
-      else {
-        $(this).removeClass('hover');
-      }
-    });
-    
-  }).on('mouseout', function(){
-    $(this).parent().children('li.star').each(function(e){
-      $(this).removeClass('hover');
-      $(this).addClass('include');
-    });
-  });
-  
-  
-//star ratings click
-  $('#stars li').on('click', function(){
-    let onStar = parseInt($(this).data('value'), 10);
-    $('.js-star-choice').attr('hidden',false).text(`You have chosen venues with a ${onStar} star rating and up`);
-    let stars = $('#stars .star');
-    console.log(stars);
-    stars.removeClass('active');
-    for (i = 0; i < onStar-1; i++) {
-      $(stars[i]).addClass('active');
-    }
-    
-  });
-
-$('.price-option .option').click(function(e){
-	if($(this).hasClass('selected')){
-		$(this).removeClass('selected');
-	} else {
-		$(this).addClass('selected');
-	}
+$('#stars li').on('mouseover', function(){
+	let onStar = parseInt($(this).data('value'), 10);
+	$(this).parent().children('li.star').each(function(e){
+  	if (e+1 < onStar) {
+    	$(this).addClass('hover');
+  	} else {
+    	$(this).removeClass('hover');
+  	  }
+	});
+}).on('mouseout', function(){
+	$(this).parent().children('li.star').each(function(e){
+  $(this).removeClass('hover');
 });
+});
+  
+$('#stars li').on('click', function(){ 
+	data.starSelection = [];
+    let onStar = parseInt($(this).data('value'), 10);
+    let stars = $('#stars .star');
+    stars.removeClass('exclude');
+    stars.each(function(i){
+    	if(i < onStar-1){
+    		$(stars[i]).addClass('exclude');
+    		$(stars[i]).removeClass('include');
+    	} else {
+    		$(stars[i]).addClass('include');
+    	}
+    });
+    stars.each(function(i){
+    	if($(stars[i]).hasClass('include')){
+    		data.starSelection.push($(stars[i]).data('value'))
+    	}
+    })
+    let starsSelected = data.starSelection.length;
+	if(starsSelected > 2){
+		let last = data.starSelection.pop();
+		let grammarList = data.starSelection.join(', ') + ' and ' + last.toString();
+    	$('.js-star-choice').text(`You have selected venues with ${grammarList} stars`)
+    } else if (starsSelected > 1) {
+    	$('.js-star-choice').text(`You have selected venues with ${data.starSelection.join(' and ')} stars`)
+    } else {
+    	$('.js-star-choice').text(`You have selected venues with ${data.starSelection[0]} stars`)
+    }
+  });
 
 $('.submit-button').click(function(e){
 	data.prefOrder = $('#sortable').sortable('toArray');
