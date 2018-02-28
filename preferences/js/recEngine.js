@@ -270,24 +270,18 @@ $('#slider').slider({
 	value:500,
 	slide:function(event, ui){
 		let range = ui.value;
+		console.log(range);
 		REC_SETTINGS.radius = range;
-		if(range === 1000){
-			$('.range-animation.paper-plane').toggleClass('hide-it')
-		} else if (range === 3000){
-			$('.range-animation.paper-plane').toggleClass('hide-it')
-			$('.range-animation.bicycle').toggleClass('hide-it')
+		if(range === 3000){
+			$('#body').css('--speed','1.2');
 		} else if (range === 5500){
-			$('.range-animation.bicycle').toggleClass('hide-it')
-			$('.range-animation.car').toggleClass('hide-it')		
+			$('#body').css('--speed','1.3');	
 		} else if (range === 8000){
-			$('.range-animation.car').toggleClass('hide-it')
-			$('.range-animation.train').toggleClass('hide-it')
+			$('#body').css('--speed','1.4');
 		} else if (range === 10500) {
-			$('.range-animation.train').toggleClass('hide-it')
-			$('.range-animation.airplane').toggleClass('hide-it')
+			$('#body').css('--speed','1.5');
 		} else if (range === 13000){
-			$('.range-animation.airplane').toggleClass('hide-it')
-			$('.range-animation.rocket').toggleClass('hide-it')			
+			$('#body').css('--speed','1.6');		
 		}
 	  }
 	}).slider('pips',{

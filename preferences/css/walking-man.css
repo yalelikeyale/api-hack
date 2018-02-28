@@ -1,0 +1,320 @@
+:root {
+    --speed: 1; /* between 0 and 1.7 */
+  }
+
+  .input {
+    position: fixed;
+    padding: 10px;
+    background: goldenrod;
+    border-radius: 10px;
+  }
+
+  /** Drawing **/
+
+  #body {
+    --anim-duration: calc((var(--speed) * -1 + 2) * 1s);
+    --angle: calc(var(--speed) * 10 * 1deg);
+
+    position: absolute;
+    top: 40%;
+    left: 49%;
+
+    background: black;
+    width: 15px;
+    height: 105px;
+    border-radius: 15px;
+
+    transform: rotate(var(--angle));
+
+    animation-name: walk-torso;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #head {
+    position: relative;
+    top: -30px;
+    left: -11px;
+    background: black;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    animation-name: walk-head;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #leg1 {
+    position: relative;
+    left: 5px;
+    top: 25px;
+
+    background: black;
+    width: 60px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(calc(60deg - var(--angle)));
+
+    animation-name: walk-leg1;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #calf1 {
+    position: relative;
+    top: 0px;
+    left: 55px;
+
+    background: black;
+    width: 60px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(10deg);
+
+    animation-name: walk-calf1;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #leg2 {
+    position: relative;
+    left: 5px;
+    top: 15px;
+
+    background: black;
+    width: 60px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(calc(110deg - var(--angle)));
+
+    animation-name: walk-leg2;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #calf2 {
+    position: relative;
+    top: 0px;
+    left: 55px;
+
+    background: black;
+    width: 60px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(10deg);
+
+    animation-name: walk-calf2;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #arm1 {
+    position: relative;
+    top: -30px;
+    left: 10px;
+
+    background: black;
+    width: 50px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(48deg);
+
+    animation-name: walk-arm1;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #forearm1 {
+    position: relative;
+    top: 0px;
+    left: 45px;
+
+    background: black;
+    width: 25px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(-88deg);
+
+    animation-name: walk-forearm1;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #arm2 {
+    position: relative;
+    top: -40px;
+    left: 10px;
+
+    background: black;
+    width: 50px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(158deg);
+
+    animation-name: walk-arm2;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  #forearm2 {
+    position: relative;
+    top: 0px;
+    left: 46px;
+
+    background: black;
+    width: 25px;
+    height: 10px;
+    border-radius: 5px;
+
+    transform-origin: 0%;
+    transform: rotate(-65deg);
+
+    animation-name: walk-forearm2;
+    animation-duration: var(--anim-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  /** Animation **/
+
+  @keyframes walk-head {
+      0%      { left: -11px; }
+      12.5%   { left: -10px; }
+      25%     { left: -11px; }
+      50%     { left: -11px; }
+      62.5%   { left: -10px; }
+      75%     { left: -11px; }
+      100%    { left: -11px; }
+  }
+
+  @keyframes walk-torso {
+      0%      { top: 40%; }
+      12.5%   { top: 41%; }
+      25%     { top: 40%; }
+      37.5%   { top: 39%; }
+      50%     { top: 40%; }
+      62.5%   { top: 41%; }
+      75%     { top: 40%; }
+      87.5%   { top: 39%; }
+      100%    { top: 40%; }
+  }
+
+  @keyframes walk-arm1 {
+      0%      { transform: rotate(68deg); }
+      12.5%   { transform: rotate(68deg); }
+      25%     { transform: rotate(118deg); }
+      37.5%   { transform: rotate(145deg); }
+      50%     { transform: rotate(158deg); }
+      62.5%   { transform: rotate(163deg); }
+      75%     { transform: rotate(101deg); }
+      87.5%   { transform: rotate(83deg); }
+      100%    { transform: rotate(68deg); }
+  }
+
+  @keyframes walk-forearm1 {
+      0%      { transform: rotate(-88deg); width: 25px; }
+      12.5%   { transform: rotate(-81deg); width: 25px; }
+      25%     { transform: rotate(-53deg); width: 35px; }
+      37.5%   { transform: rotate(-60deg); width: 40px; }
+      50%     { transform: rotate(-65deg); width: 40px; }
+      62.5%   { transform: rotate(-55deg); width: 40px; }
+      75%     { transform: rotate(-34deg); width: 40px; }
+      87.5%   { transform: rotate(-70deg); width: 35px; }
+      100%    { transform: rotate(-88deg); width: 25px; }
+  }
+
+  @keyframes walk-arm2 {
+      0%      { transform: rotate(158deg); }
+      12.5%   { transform: rotate(163deg); }
+      25%     { transform: rotate(101deg); }
+      37.5%   { transform: rotate(83deg); }
+      50%     { transform: rotate(68deg); }
+      62.5%   { transform: rotate(68deg); }
+      75%     { transform: rotate(118deg); }
+      87.5%   { transform: rotate(145deg); }
+      100%    { transform: rotate(158deg); }
+  }
+
+  @keyframes walk-forearm2 {
+      0%      { transform: rotate(-65deg); width: 40px; }
+      12.5%   { transform: rotate(-55deg); width: 40px; }
+      25%     { transform: rotate(-34deg); width: 40px; }
+      37.5%   { transform: rotate(-70deg); width: 35px; }
+      50%     { transform: rotate(-88deg); width: 25px; }
+      62.5%   { transform: rotate(-81deg); width: 25px; }
+      75%     { transform: rotate(-53deg); width: 35px; }
+      87.5%   { transform: rotate(-60deg); width: 40px; }
+      100%    { transform: rotate(-65deg); width: 40px; }
+  }
+
+  @keyframes walk-leg1 {
+      0%      { transform: rotate(calc(60deg - var(--angle))); }
+      12.5%   { transform: rotate(calc(63deg - var(--angle))); }
+      25%     { transform: rotate(calc(82deg - var(--angle))); }
+      37.5%   { transform: rotate(calc(95deg - var(--angle))); }
+      50%     { transform: rotate(calc(110deg - var(--angle))); }
+      62.5%   { transform: rotate(calc(95deg - var(--angle))); }
+      75%     { transform: rotate(calc(65deg - var(--angle))); }
+      87.5%   { transform: rotate(calc(56deg - var(--angle))); }
+      100%    { transform: rotate(calc(60deg - var(--angle))); }
+  }
+
+  @keyframes walk-calf1 {
+      0%      { transform: rotate(10deg); }
+      12.5%   { transform: rotate(27deg); }
+      25%     { transform: rotate(14deg); }
+      37.5%   { transform: rotate(5deg); }
+      50%     { transform: rotate(10deg); }
+      62.5%   { transform: rotate(51deg); }
+      75%     { transform: rotate(70deg); }
+      87.5%   { transform: rotate(30deg); }
+      100%    { transform: rotate(10deg); }
+  }
+
+  @keyframes walk-leg2 {
+      0%      { transform: rotate(calc(110deg - var(--angle))); }
+      12.5%   { transform: rotate(calc(95deg - var(--angle))); }
+      25%     { transform: rotate(calc(65deg - var(--angle))); }
+      37.5%   { transform: rotate(calc(56deg - var(--angle))); }
+      50%     { transform: rotate(calc(60deg - var(--angle))); }
+      62.5%   { transform: rotate(calc(63deg - var(--angle))); }
+      75%     { transform: rotate(calc(82deg - var(--angle))); }
+      87.5%   { transform: rotate(calc(95deg - var(--angle))); }
+      100%    { transform: rotate(calc(110deg - var(--angle))); }
+  }
+
+  @keyframes walk-calf2 {
+      0%      { transform: rotate(10deg); }
+      12.5%   { transform: rotate(51deg); }
+      25%     { transform: rotate(70deg); }
+      37.5%   { transform: rotate(30deg); }
+      50%     { transform: rotate(12deg); }
+      62.5%   { transform: rotate(27deg); }
+      75%     { transform: rotate(14deg); }
+      87.5%   { transform: rotate(5deg); }
+      100%    { transform: rotate(10deg); }
+  }
