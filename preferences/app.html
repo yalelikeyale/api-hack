@@ -30,76 +30,76 @@
 				</div>
 				<div class="row">
 					<div class="flip col-4">
-						<div class="card" role="button"  data-query="cocktails">
+						<div class="card" role="button">
 							<div class="front">
 								<svg class="icon">
 									<use xlink:href="#drink"/>
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm">Let's get Cocktails!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="cocktails">Let's get Cocktails!</button></a>
 							</div>
 						</div>
 					</div>
 					<div class="flip col-4">
-						<div class="card" role="button" data-query="dessert">
+						<div class="card" role="button">
 							<div class="front">
 								<svg class="icon">
 									<use xlink:href="#cupcake"/>
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm">Let's get Dessert!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="dessert or coffee">Let's get Dessert!</button></a>
 							</div>
 						</div>
 					</div>
 					<div class="flip col-4">
-						<div class="card" role="button"  data-query="food">
+						<div class="card" role="button">
 							<div class="front">
 								<svg class="icon">
 									<use xlink:href="#fast-food"/>
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm">We're Hungy!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="food">We're Hungy!</button></a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="flip col-4">
-						<div class="card" role="button"  data-query="live music">
+						<div class="card" role="button">
 							<div class="front">
 								<svg class="icon">
 									<use xlink:href="#concert"/>
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm">Let's catch a show</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="live music">Let's catch a show</button></a>
 							</div>
 						</div>
 					</div>
 					<div class="flip col-4">
-						<div class="card" role="button"  data-query="dancing">
+						<div class="card" role="button">
 							<div class="front">
 								<svg class="icon">
 									<use xlink:href="#woman"/>
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm">Let's go dancing!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="dancing">Let's go dancing!</button></a>
 							</div>
 						</div>
 					</div>
 					<div class="flip col-4">
-						<div class="card" role="button"  data-query="karaoke">
+						<div class="card" role="button">
 							<div class="front">
 								<svg class="icon">
 									<use xlink:href="#karaoke"/>
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm">We want to sing!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="karaoke">We want to sing!</button></a>
 							</div>
 						</div>
 					</div>
@@ -228,16 +228,25 @@
   			</div>
 			<div class="section-wrapper">
 				<div class="menu-title">
-					<h1>Please Set these options in order of most important (top) to least important (bottom)</h1>		
+					<h1>What matters most?</h1>
+					<h4><i>Please sort top(important) to bottom(least important)</i></h4>		
 				</div>
-				<ul id="sortable">
-					<li id="priceTier" class="pref">Price <i class=" handle fas fa-bars"></i></li>
-					<li id="rating" class="pref">Ratings <i class="handle fas fa-bars"></i></li>
-					<li id="distance" class="pref">Distance <i class="handle fas fa-bars"></i></li>
-				</ul>
+					<div class="sortable-wrapper">
+						<ul id="sortable">
+							<li id="priceTier" class="pref" data-rank="1">
+								<span class="pref-option"><span class="place">1st </span>- Price</span> <i class=" handle fas fa-bars"></i>
+							</li>
+							<li id="rating" class="pref" data-rank="2">
+								<span class="pref-option"><span class="place">2nd  </span>- Ratings</span> <i class="handle fas fa-bars"></i>
+							</li>
+							<li id="distance" class="pref" data-rank="3">
+								<span class="pref-option"><span class="place">3rd  </span>- Distance</span><i class="handle fas fa-bars"></i>
+							</li>
+						</ul>
+					</div>
 				<div class="nav-buttons">
 					<a href="app.html#range"><button class="back left">Back</button></a>
-					<a href="loading"><button class="next right">Let's Go!</button></a>
+					<a href="loading/load.html"><button class="final next right" disabled>Let's Go!</button></a>
 				</div>						
 			</div>			
 		</div>

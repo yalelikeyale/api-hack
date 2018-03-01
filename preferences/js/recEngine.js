@@ -23,7 +23,7 @@ const data = {
 	searchKeywords:{
 		'cocktails':['cocktails'],
 		'live music':['live music','music venue','band','rock','indie','guitar','acoustic','heavy metal','good music'],
-		'desert':['gelato','ice cream','desert','cake','chocolate','sorbet'],
+		'desert':['gelato','ice cream','desert','cake','chocolate','sorbet', 'coffee','latte','flat white','cappuccino'],
 		'food':['restaurant','food'],
 		'dancing':['club','dancing','dance','nightclub','salsa'],
 		'karaoke':['karaoke']
@@ -45,7 +45,6 @@ const REC_SETTINGS = {
 		radius:7500,
 		query:'',
 		limit:15,
-		venuePhotos:1,
 		openNow:0,
 		time:'any',
 		price:'',
@@ -250,15 +249,23 @@ function getLocation(){
 	$.post(payload)
 }
 
-$('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'],menu:'#nav-menu',recordHistory:false});
-
-$('.card[role="button"]').click(function(e){
-	$('.card[role="button"]').removeClass('selected');
-	$(this).addClass('selected');
-	REC_SETTINGS.query = $(this).attr('data-query');
-	$('.submit-button').removeAttr('data-tooltip');
-	$('.submit-button').attr('disabled',false);
+$('.final.next').click(function(e){
+	data.prefOrder = $('#sortable').sortable('toArray');
+	REC_SETTINGS.price = data.priceArray.join()
+	data.minRating = Math.min(data.starSelection);
+	console.log(REC_SETTINGS);
+	getRecs();
 });
+
+$('.cat-confirm').click(function(e){
+	let query = $(this).data('query')
+	REC_SETTINGS.query = query
+	console.log(REC_SETTINGS.query);
+	$('.final.next').attr('disabled',false);
+});
+
+//styling js functions
+$('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'],menu:'#nav-menu',recordHistory:false});
 
 $(".flip").flip({
     trigger: 'hover'
@@ -305,6 +312,7 @@ $('#dollars').on('mouseover','.usd', function(e){
 //dollar ratings click
 $('#dollars').on('click','.usd', function(e){
 	data.dollarSelection = [];
+	data.priceArray = [];
 	let usdGroupRating = $(this).data('value');
 	let usdGrouping = $(`.usd[data-value=${usdGroupRating}]`);
 	let dollarOptions = $('#dollars .usd');
@@ -316,6 +324,7 @@ $('#dollars').on('click','.usd', function(e){
 		if($(dollarOptions[i]).hasClass('active')){
 			if(data.dollarSelection.indexOf(usdRating)<0){
 				data.dollarSelection.push(usdRating);
+				data.priceArray.push(usdGroupRating);
 			}
 		}
 	});
@@ -378,18 +387,17 @@ $('#stars li').on('click', function(){
     }
   });
 
-$('.submit-button').click(function(e){
-	data.prefOrder = $('#sortable').sortable('toArray');
-	REC_SETTINGS.radius = sliderObject.val();
-	data.priceArray = $.map($('.price-option .selected'), function(option){
-		return $(option).attr('data-option');
-	});
-	data.minRating = $('.rating-option .selected').attr('data-option');
-	getRecs();
-});
-
 $( "#sortable" ).sortable({
-	handle:'.handle'
+	handle:'.handle',
+	update:(event,ui)=>{
+		let prefOrder = $('#sortable .pref')
+		prefOrder.each(function(i){
+			$(prefOrder[i]).attr('data-rank',i+1);
+		})
+		$('#sortable .pref[data-rank="1"] .place').text('1st ')
+		$('#sortable .pref[data-rank="2"] .place').text('2nd ')
+		$('#sortable .pref[data-rank="3"] .place').text('3rd ')
+	}
 }).disableSelection();
 
 $('#fp-nav li:nth-child(2) span').html('<i class="fas fa-dollar-sign"></i>')

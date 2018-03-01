@@ -142,26 +142,38 @@
 }
 
 #sortable{
-  max-width: 400px;
+  width: 50%;
   list-style: none;
   font-family: 'Montserrat', sans-serif;
   background-color: white;
+  margin: auto;
 }
 
 #sortable .pref{
   background-color: white;
   font-size: 18px;
-  line-height: 40px;
-  height: 40px;
   padding: 11px 0 11px 20px;
-  margin-bottom: 2px;
+  border:2px solid black;
+  border-radius: 10px;
+  margin-bottom: 5px;
 }
 
 #sortable .pref .handle{
   float:right;
-  line-height: 40px;
   font-size: 20px;
   margin-right: 20px;
+}
+
+#sortable .pref[data-rank="1"]{
+  background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56%,rgba(252,235,0,1) 96%);
+}
+
+#sortable .pref[data-rank="2"]{
+  background: linear-gradient(45deg,  rgba(160,160,160,1) 0%,rgba(232,232,232,1) 56%);
+}
+
+#sortable .pref[data-rank="3"]{
+  background:  linear-gradient(45deg,  rgba(223,182,103,1) 0%,rgba(249,243,232,1) 56%,rgba(231,192,116,1) 96%)
 }
 
 .nav-buttons{
@@ -200,12 +212,12 @@
 }
 
 #nav-menu li{
-  margin-top: 12px;
+  margin-top: 15px;
   list-style: none;
 }
 
 #nav-menu.right{
-  right: 17px;
+  right: 10px;
 }
 
 #nav-menu .icon{
@@ -221,7 +233,7 @@
 }
 
 #nav-menu .thumbs-up{
-  color:yellow;
+  color:gold;
 }
 
 #nav-menu .car{
@@ -240,37 +252,15 @@
   font-size: 25px;
 }
 
-.range-animation{
-  display: inline-block;
-  margin-left: 100px
-}
-
-.range-animation li{
-  list-style: none;
-}
-
 .red{
   background-color: #FF0038;
   height: 3px;
   width: 5px;
 }
 
-.dash{
-  display: inline-block; 
-}
-
-.dash svg{
-  width:20px;
-  height: 20px;
-}
-
 .slider-wrapper{
   width: 50%;
   margin:auto;
-}
-
-.hide-it{
-  display:none;
 }
 
 .ui-slider-pips [class*=ui-slider-pip-selected]{
@@ -281,4 +271,9 @@
   color:#999 !important;
   font-weight: normal !important;
 }
+
+
+
+
+
 
