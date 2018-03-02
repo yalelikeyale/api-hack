@@ -217,10 +217,13 @@
 }
 
 #nav-menu.right{
-  right: 10px;
+  top: 40%;
+  right: 30px;
 }
 
 #nav-menu .icon{
+  height: 30px;
+  width: 30px;
   font-size:20px;
 }
 

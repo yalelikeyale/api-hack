@@ -246,7 +246,7 @@
 					</div>
 				<div class="nav-buttons">
 					<a href="app.html#range"><button class="back left">Back</button></a>
-					<a href="loading/load.html"><button class="final next right" disabled>Let's Go!</button></a>
+					<button class="final next right" disabled>Let's Go!</button>
 				</div>						
 			</div>			
 		</div>
@@ -262,7 +262,7 @@
 			<button id="tryAgain" type="submit">Let's Try Again</button>
 		</div>
 	</section>
-	<div id="nav-menu" class="fb-show-active right">
+	<section id="nav-menu" class="fb-show-active right">
 		<ul>
 			<li data-menuanchor="categories">
 				<a href="#categories"><span><i class="far fa-lightbulb lightbulb icon"></i></span></a>
@@ -280,7 +280,20 @@
 				<a href="#preferences"><span><i class="far fa-smile smile icon"></i></span></a>
 			</li>
 		</ul>
-	</div>
+	</section>
+	<section id="loading-page" hidden>
+	  	<div id="phrase_box">
+	  		<span class="js-status-update"></span>
+		</div>
+	</section>
+	<section id="google-results" hidden>
+		<div class="venue-name">
+			<span class="js-ven-name"></span>
+		</div>
+		<div class="venue-address">
+			<span class="js-ven-add"></span>
+		</div>
+	</section>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 <script src="https://cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js"></script>

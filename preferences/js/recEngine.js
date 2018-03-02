@@ -20,6 +20,7 @@ const data = {
 	},
 	venues:[],
 	venLibrary:[],
+	selectedVen:{},
 	searchKeywords:{
 		'cocktails':['cocktails'],
 		'live music':['live music','music venue','band','rock','indie','guitar','acoustic','heavy metal','good music'],
@@ -53,8 +54,12 @@ const REC_SETTINGS = {
 		v:data.VERSION
 	}
 
-function genVenCard(selectedVenue){
-	console.log(selectedVenue);
+function genVenCard(){
+	console.log(data.selectedVen);
+	$('#loading-page').attr('hidden',true);
+	$('#google-results').attr('hidden',false);
+	$('.js-ven-name').text(data.selectedVen.name);
+	$('.js-ven-add').text(data.selectedVen.formatted_address);
 }
 
 function filterGoogleReviews(response){
@@ -67,7 +72,7 @@ function filterGoogleReviews(response){
 		});
 	});
 	if (data.searchAgain===false){
-		genVenCard(response.result);
+		data.selectedVen = response.result;
 	} else {
 		if ((data.nextVen + 1 < data.venues.length)){
 			prepareSearch()
@@ -206,12 +211,32 @@ function rankResults(response){
 	scoreRecs()
 }
 
+function loading(){
+	$('#fullpage').attr('hidden',true);
+	$('#loading-page').attr('hidden',false);
+	const responses = ['Searching Venues in your area','comparing venues','we have found your venue'];
+	let idx = 1
+	$('.js-status-update').text(responses[0]);
+	const respInt = setInterval(()=>{
+		if(idx>responses.length && !data.searchAgain){
+			clearInterval(respInt);
+			genVenCard()
+		}
+		$('.js-status-update').text(responses[idx])
+		idx++
+	}, 3000)
+}
+
 function getRecs(response){
 	const payload = {
 		url:'https://api.foursquare.com/v2/venues/explore',
 		dataType:'json',
 		data:REC_SETTINGS,
-		success: rankResults
+		beforeSend:loading,
+		error:function(error){
+			console.log(error);
+		},
+		success: rankResults,
 	}
 	$.ajax(payload)
 }
@@ -253,14 +278,12 @@ $('.final.next').click(function(e){
 	data.prefOrder = $('#sortable').sortable('toArray');
 	REC_SETTINGS.price = data.priceArray.join()
 	data.minRating = Math.min(data.starSelection);
-	console.log(REC_SETTINGS);
 	getRecs();
 });
 
 $('.cat-confirm').click(function(e){
 	let query = $(this).data('query')
 	REC_SETTINGS.query = query
-	console.log(REC_SETTINGS.query);
 	$('.final.next').attr('disabled',false);
 });
 
