@@ -108,18 +108,56 @@
   color: white;
 }
 
-#phrase-box .fa-check-circle{
-  color: white;
-  font-size: 2.5em;
-  margin-right: 15px;
-  -webkit-transition: color 500ms ease-out;
-  -moz-transition: color 500ms ease-out;
-  -o-transition: color 500ms ease-out;
-  transition: color 500ms ease-out;
+.check-box svg{
+  display: block;
+  width: 100px;
 }
 
-#phrase-box .fa-check-circle.found{
-  color: green;
+.check-box .path.animated {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+
+.check-box .check.animated {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
 }
 
 .overlay{

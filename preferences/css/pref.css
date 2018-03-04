@@ -9,7 +9,18 @@
   margin-left: 50px;
 }
 
+.menu-title{
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 50px;
+}
+
+.menu-title h1{
+  margin-bottom: 10px;
+}
+
 .menu-title h4{
+  margin-top: 10px !important;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -117,11 +128,6 @@
 #dollars,#stars{
   margin-top: 50px;
   text-align: center;
-}
-
-.menu-title{
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
 }
 
 .section-wrapper{
@@ -275,6 +281,66 @@
   font-weight: normal !important;
 }
 
+.venue-name{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.venue-descript{
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+.photo-album{
+  margin-bottom:100px;
+}
+
+.stage-front{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.stage-front .photo{
+  height: 150px;
+  width: 100px;
+}
+
+.slide .photo{
+  height: 50px;
+  cursor: pointer;
+}
+
+.travel-methods{
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+}
+
+.travel-methods .method{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.travel-methods li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 25px;
+}
+
+.travel-method .method.current{
+  font-size: 3.5em;
+}
+
+#map{
+  height: 300px;
+  width: 50%;
+  margin: auto;
+}
 
 
 

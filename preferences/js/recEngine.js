@@ -3,6 +3,8 @@ const data = {
 	CLIENT_ID:'MDDIFKZ5GFSAGZHAOFYPNQRATOT13FY2OYFUY1JDF5UNUZBA',
 	CLIENT_SECRET:'2ZUIA2A15LIKRSBGM3EN5BCCOX0YICNBJETKSRKOHDCQFSTT',
 	VERSION:'20180210',
+	userLat:'',
+	userLng:'',
 	prefOrder:[],
 	priceArray:[],
 	minRating:'',
@@ -54,16 +56,56 @@ const REC_SETTINGS = {
 		v:data.VERSION
 	}
 
+const DIRECTIONS_SETTINGS = {
+	origin:'',
+	destination: {
+		placeId:''
+	},
+	travelMode:'DRIVING'
+}
+
+function initMap() {
+	console.log('init map')
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: {
+      	lat: data.userLat, 
+      	lng: data.userLng,
+      }
+    });
+    directionsDisplay.setMap(map);
+    displayDirections(directionsService, directionsDisplay)
+  }
+
+function displayDirections(directionsService, directionsDisplay) {
+	console.log('display map')
+	directionsService.route(DIRECTIONS_SETTINGS, function(response, status) {
+  	if (status === 'OK') {
+   		directionsDisplay.setDirections(response);
+  	} else {
+    	window.alert('Directions request failed due to ' + status);
+  	}
+	});
+}
+
 function genVenCard(){
-	console.log(data.selectedVen);
+	DIRECTIONS_SETTINGS.destination.placeId = data.selectedVen.place_id
 	$('#loading-page').attr('hidden',true);
 	$('#google-results').attr('hidden',false);
+	// $.fn.fullpage.destroy()
 	$('.js-ven-name').text(data.selectedVen.name);
-	$('.js-ven-add').text(data.selectedVen.formatted_address);
+	let review = data.selectedVen.reviews.find(review => {
+		return review.rating >= 4;
+	});
+	$('.js-ven-rev').text(review.text)
+	initMap()
 }
 
 function endLoading(){
-	$('.fa-check-circle').addClass('found');
+	$('.check-box .check').toggleClass('hide-it')
+	setTimeout($('.check-box .check').addClass('animated'),2000)
 	const fadeEnd = $('#loading-page').fadeOut(2000,()=>{
 		genVenCard()
 	});
@@ -302,6 +344,9 @@ function getRecs(response){
 
 function grabLocation(response){
 	REC_SETTINGS.ll = [response.location.lat,response.location.lng].join()
+	DIRECTIONS_SETTINGS.origin = [response.location.lat,response.location.lng].join()
+	data.userLat = response.location.lat
+	data.userLng = response.location.lng
 }
 
 function toggleDisplay(selectors){
@@ -345,6 +390,21 @@ $('.cat-confirm').click(function(e){
 	REC_SETTINGS.query = query
 	$('.final.next').attr('disabled',false);
 });
+
+$('.travel-methods .method').on('click', function(e){
+	console.log('clicked a travel method');
+	let selectedMethod = $(this).data('method');
+	console.log(selectedMethod);
+	DIRECTIONS_SETTINGS.travelMode = selectedMethod;
+	$(this).addClass('current').siblings().removeClass('current')
+	$('.js-display-method').text(selectedMethod);
+	initMap()
+})
+
+$('.slides').on('click','.photo', function(e){
+	let photo = $(this).clone()
+	$('.js-photo-insert').html(photo);
+})
 
 //styling js functions
 $('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'],menu:'#nav-menu',recordHistory:false});
