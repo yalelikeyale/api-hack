@@ -281,11 +281,35 @@
   font-weight: normal !important;
 }
 
+#right-side{
+  position: relative;
+  top: 100;
+  right: 0;
+  width: 50%;
+  float: right;
+  height: 1000px;
+}
+
+#left-side{
+  width: 50%;
+  float: left;
+  height: 1000px;
+}
+
 .venue-name{
   width: 50%;
   margin: auto;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.venue-info{
+  text-align: center;
+}
+
+.venue-web, .venue-address{
+  width: 50%;
+  margin: auto;
 }
 
 .venue-descript{
@@ -301,45 +325,59 @@
 .stage-front{
   width: 50%;
   margin: auto;
-  text-align: center;
 }
 
 .stage-front .photo{
-  height: 150px;
-  width: 100px;
+  width: 300px;
+  height: 300px;
+}
+
+.slides{
+  margin: auto;
 }
 
 .slide .photo{
-  height: 50px;
+  height: 150px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   cursor: pointer;
+  width: 100%;
 }
 
 .travel-methods{
   display: inline-block;
-  width: 50%;
+  width: 100%;
   text-align: center;
 }
 
+.method-circle{
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
 .travel-methods .method{
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   cursor: pointer;
+  padding: 10px;
 }
 
 .travel-methods li {
   list-style: none;
   display: inline-block;
-  margin: 0 25px;
+  margin: 0 50px;
 }
 
 .travel-method .method.current{
-  font-size: 3.5em;
+  background-color: yellow;
 }
 
 #map{
-  height: 300px;
-  width: 50%;
-  margin: auto;
+  position: absolute;
+  height: 1000px;
+  width: 100%;
+  right: 0;
 }
 
 

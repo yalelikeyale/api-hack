@@ -312,76 +312,105 @@
 		</div>
 	</section>
 	<section id="google-results" hidden>
-		<div class="logoFrame">
-			<img src="images/logo.png" alt="Deazy Logo" class="logo">
-		</div>
-		<div class="venue-name">
-			<h1 class="js-ven-name ven-name"></h1>
-		</div>
-		<div class="venue-descript">
-			<h4><q><i class="js-ven-rev ven-rev"></i></q> - Person who actually takes the time to express opinions online</h4>
-		</div>
-		<!-- Game plan is to have top photo be automatic then bottom be something you can scroll through to find specific photo -->
-		<div class="photo-album">
-			<div class="stage-front js-photo-insert">
-				<img class="photo" src="images/logo.svg">
+		<div id="left-side">
+			<div class="venue-name">
+				<h1 class="js-ven-name ven-name"></h1>
 			</div>
-			<div class="slides">
-			    <div class="row">
-			    	<div class="col-2">
-			    		<div class="slide">
-			    			<img class="photo" role="button" src="images/couple.svg">
-			    		</div>
-			    	</div>
-			    	<div class="col-2">
-			    		<div class="slide">
-			    			<img class="photo" role="button" src="images/car.svg">
-			    		</div>
-			    	</div>
-			    	<div class="col-2">
-			    		<div class="slide">
-			    			<img class="photo" role="button" src="images/train.svg">
-			    		</div>
-			    	</div>
-			    	<div class="col-2">
-			    		<div class="slide">
-			    			<img class="photo" role="button" src="images/logo.svg">
-			    		</div>
-			    	</div>
-			    	<div class="col-2">
-			    		<div class="slide">
-			    			<img class="photo" role="button" src="images/car.svg">
-			    		</div>
-			    	</div>
-			    	<div class="col-2">
-			    		<div class="slide">
-			    			<img class="photo" role="button" src="images/train.svg">
-			    		</div>
-			    	</div>
-			    </div>
+			<div class="venue-descript">
+				<h4><q><i class="js-ven-rev ven-rev"></i></q> - Person who actually takes the time to express opinions online</h4>
+			</div>
+			<div class="venue-address">
+				<span class="js-ven-address ven-address"></span>
+			</div>
+			<div class="venue-info">
+				 <span class="js-ven-hours ven-hours"></span>&nbsp;&nbsp;<span class="js-ven-phone ven-phone"></span>
+			</div>
+			<div class="venue-web">
+				<span class="js-ven-web ven-web"></span>
+			</div>
+			<div class="photo-album">
+				<div class="stage-front js-photo-insert">
+					
+				</div>
+				<div class="slides">
+				    <div class="row">
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    </div>
+				    <div class="row">
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    </div>
+				    <div class="row">
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    	<div class="col-4">
+				    		<div class="slide">
+				    			
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
 			</div>
 		</div>
-		<div class="travel-methods">
-			<ul>
-				<li>
-					<img class="method" data-method="WALKING" src="images/couple.svg" role="button">
-				</li>
-				<li>
-					<img class="method current" data-method="DRIVING" src="images/car.svg" role="button">
-				</li>
-				<li>
-					<img class="method" data-method="TRANSIT" src="images/train.svg" role="button">
-				</li>
-			</ul>
+		<div id="right-side">
+			<div class="travel-methods">
+				<ul>
+					<li>
+						<div class="method-circle">
+							<img class="method" data-method="WALKING" src="images/couple.svg" role="button">
+						</div>
+					</li>
+					<li>
+						<div class="method-circle">
+							<img class="method current" data-method="DRIVING" src="images/car.svg" role="button">
+						</div>
+					</li>
+					<li>
+						<div class="method-circle">
+							<img class="method" data-method="TRANSIT" src="images/train.svg" role="button">
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="map"></div>
 		</div>
-		<div class="display-method">
-			<h5><span class="js-display-method">DRIVING</span>DIRECTIONS</h5>
-		</div>
-		<div id="map">
-			
-		</div>
-		<div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-		<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<!-- 		<div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+		<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
 	</section>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
@@ -389,6 +418,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-ui-Slider-Pips/1.11.4/jquery-ui-slider-pips.min.js"></script>
 <script src="js/recEngine.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiIzpZm4vKrXS_XCBPDOa6HL_4cFq1RWU"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiIzpZm4vKrXS_XCBPDOa6HL_4cFq1RWU&libraries=places"></script>
 </body>
 </html>

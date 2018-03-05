@@ -5,6 +5,16 @@ const data = {
 	VERSION:'20180210',
 	userLat:'',
 	userLng:'',
+	today: new Date(),
+	weekly_period:{
+		'sunday':0,
+		'monday':1,
+		'tuesday':2,
+		'wednesday':3,
+		'thursday':4,
+		'friday':5,
+		'saturday':6
+	},
 	prefOrder:[],
 	priceArray:[],
 	minRating:'',
@@ -23,6 +33,7 @@ const data = {
 	venues:[],
 	venLibrary:[],
 	selectedVen:{},
+	photos:[],
 	searchKeywords:{
 		'cocktails':['cocktails'],
 		'live music':['live music','music venue','band','rock','indie','guitar','acoustic','heavy metal','good music'],
@@ -65,7 +76,6 @@ const DIRECTIONS_SETTINGS = {
 }
 
 function initMap() {
-	console.log('init map')
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -80,7 +90,6 @@ function initMap() {
   }
 
 function displayDirections(directionsService, directionsDisplay) {
-	console.log('display map')
 	directionsService.route(DIRECTIONS_SETTINGS, function(response, status) {
   	if (status === 'OK') {
    		directionsDisplay.setDirections(response);
@@ -90,16 +99,58 @@ function displayDirections(directionsService, directionsDisplay) {
 	});
 }
 
-function genVenCard(){
+function startCarousel(){
+	let albumLength = data.photos.length
+	let myIndex = 0;
+	setInterval(function(){
+		if(myIndex===albumLength){myIndex=0}
+		let photo = data.photos[myIndex]
+		$('.js-photo-insert').html(photo);
+		myIndex++
+	},5000);
+}
+
+function renderVenPage(){
+	let open_time;
+	let close_time;
 	DIRECTIONS_SETTINGS.destination.placeId = data.selectedVen.place_id
 	$('#loading-page').attr('hidden',true);
 	$('#google-results').attr('hidden',false);
-	// $.fn.fullpage.destroy()
+	startCarousel()
+	$.fn.fullpage.destroy()
 	$('.js-ven-name').text(data.selectedVen.name);
 	let review = data.selectedVen.reviews.find(review => {
 		return review.rating >= 4;
 	});
+	let open_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].open.hours
+	let close_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].close.hours
+	let open_min = data.selectedVen.opening_hours.periods[data.today.getDay()].open.minutes
+	if(open_min<10){
+		open_min = ("0" + open_min).slice(-2);
+	}
+	let close_min = data.selectedVen.opening_hours.periods[data.today.getDay()].close.minutes
+	if(close_min<10){
+		close_min = ("0" + open_min).slice(-2);
+	}
+	if(open_hour>12){
+		open_hour -= 12
+		open_time = open_hour.toString() + ':' + open_min.toString()+'pm'
+	} else {
+		open_time = open_hour.toString() + ':' + open_min.toString()+'am'
+	}
+	if(close_hour>12){
+		close_hour -= 12
+		close_time = close_hour.toString() + ':' + close_min.toString()+'pm'
+	} else if (close_hour === 0){
+		close_time = '12:' + close_min.toString()+'am'
+	} else {
+		close_time = close_hour.toString() + ':' + close_min.toString()+'am'
+	}
+	$('.js-ven-hours').text(`Hours: ${open_time} - ${close_time}`)
+	$('.js-ven-phone').text('Phone: '+data.selectedVen.formatted_phone_number)
+	$('.js-ven-web').html(`<a href="${data.selectedVen.website}">${data.selectedVen.website}</a>`)
 	$('.js-ven-rev').text(review.text)
+	$('.js-ven-address').text(data.selectedVen.formatted_address);
 	initMap()
 }
 
@@ -107,39 +158,54 @@ function endLoading(){
 	$('.check-box .check').toggleClass('hide-it')
 	setTimeout($('.check-box .check').addClass('animated'),2000)
 	const fadeEnd = $('#loading-page').fadeOut(2000,()=>{
-		genVenCard()
+		renderVenPage()
 	});
 	setTimeout(fadeEnd,1000)
 }
 
-function filterGoogleReviews(response){
-	let reviews = response.result.reviews;
-	reviews.forEach(review => {
-		data.searchKeywords[REC_SETTINGS.query].forEach(sTerm => {
-			if ( review.text.toLowerCase().indexOf(sTerm) >=0 ){
-				data.searchAgain = false;
-			}
-		});
+function storeVenue(venue){
+	data.selectedVen = venue;
+	let photos = venue.photos
+	photos.forEach(photo =>{
+		let _url = photo.getUrl({'maxWidth': 300})
+		data.photos.push(`<img class="photo" role="button" src="${_url}">`)
+	})
+	let slides = $('.slides .slide');
+	slides.each(i => {
+		let src = $(slides[i]).html(data.photos[i])
 	});
-	if (data.searchAgain===false){
-		data.selectedVen = response.result;
-		endLoading()
-	} else {
-		if ((data.nextVen + 1 < data.venues.length)){
-			prepareSearch()
+	$('.js-photo-insert').html(data.photos[6]);
+	renderVenPage()
+}
+
+function filterGoogleReviews(response, status){
+	if(status == google.maps.places.PlacesServiceStatus.OK){
+		let reviews = response.reviews;
+		reviews.forEach(review => {
+			data.searchKeywords[REC_SETTINGS.query].forEach(sTerm => {
+				if ( review.text.toLowerCase().indexOf(sTerm) >=0 ){
+					data.searchAgain = false;
+				}
+			});
+		});
+		if (data.searchAgain===false){
+			storeVenue(response)
 		} else {
-			renderTryAgain()
+			if ((data.nextVen + 1 < data.venues.length)){
+				prepareSearch()
+			} else {
+				renderTryAgain()
+			}
 		}
 	}
 }
 
-
 function googleDetails(response){
-	const payload = {
-		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${response.results[0].place_id}&key=${data.GOOGLE_KEY}`,
-		success:filterGoogleReviews
-	}
-	$.ajax(payload);
+	let request = {
+	  placeId: response.results[0].place_id
+	};
+	service = new google.maps.places.PlacesService($('#map').get(0));
+	service.getDetails(request, filterGoogleReviews);
 }
 
 function googleSearch(venSearchParams){
@@ -391,12 +457,11 @@ $('.cat-confirm').click(function(e){
 	$('.final.next').attr('disabled',false);
 });
 
-$('.travel-methods .method').on('click', function(e){
-	console.log('clicked a travel method');
+$('.travel-methods').on('click','.method', function(e){
 	let selectedMethod = $(this).data('method');
-	console.log(selectedMethod);
 	DIRECTIONS_SETTINGS.travelMode = selectedMethod;
-	$(this).addClass('current').siblings().removeClass('current')
+	$(this).siblings().removeClass('current');
+	$(this).addClass('current')
 	$('.js-display-method').text(selectedMethod);
 	initMap()
 })
