@@ -99,24 +99,12 @@ function displayDirections(directionsService, directionsDisplay) {
 	});
 }
 
-function startCarousel(){
-	let albumLength = data.photos.length
-	let myIndex = 0;
-	setInterval(function(){
-		if(myIndex===albumLength){myIndex=0}
-		let photo = data.photos[myIndex]
-		$('.js-photo-insert').html(photo);
-		myIndex++
-	},5000);
-}
-
 function renderVenPage(){
 	let open_time;
 	let close_time;
 	DIRECTIONS_SETTINGS.destination.placeId = data.selectedVen.place_id
 	$('#loading-page').attr('hidden',true);
 	$('#google-results').attr('hidden',false);
-	startCarousel()
 	$.fn.fullpage.destroy()
 	$('.js-ven-name').text(data.selectedVen.name);
 	let review = data.selectedVen.reviews.find(review => {
@@ -163,19 +151,19 @@ function endLoading(){
 	setTimeout(fadeEnd,1000)
 }
 
-function storeVenue(venue){
+function storeVenueData(venue){
 	data.selectedVen = venue;
 	let photos = venue.photos
 	photos.forEach(photo =>{
 		let _url = photo.getUrl({'maxWidth': 300})
-		data.photos.push(`<img class="photo" role="button" src="${_url}">`)
+		data.photos.push(`<img class="photo" src="${_url}">`)
 	})
-	let slides = $('.slides .slide');
-	slides.each(i => {
-		let src = $(slides[i]).html(data.photos[i])
+	let slots = $('.photo-slot');
+	slots.each(i => {
+		$(slots[i]).html(data.photos[i])
 	});
-	$('.js-photo-insert').html(data.photos[6]);
-	renderVenPage()
+	endLoading()
+
 }
 
 function filterGoogleReviews(response, status){
@@ -189,7 +177,7 @@ function filterGoogleReviews(response, status){
 			});
 		});
 		if (data.searchAgain===false){
-			storeVenue(response)
+			storeVenueData(response)
 		} else {
 			if ((data.nextVen + 1 < data.venues.length)){
 				prepareSearch()
@@ -460,16 +448,37 @@ $('.cat-confirm').click(function(e){
 $('.travel-methods').on('click','.method', function(e){
 	let selectedMethod = $(this).data('method');
 	DIRECTIONS_SETTINGS.travelMode = selectedMethod;
-	$(this).siblings().removeClass('current');
-	$(this).addClass('current')
+	let methods = $('.method-circle')
+	methods.each(function(idx){
+		$(methods[idx]).removeClass('current');
+	});
+	$(this).parent().addClass('current')
 	$('.js-display-method').text(selectedMethod);
 	initMap()
 })
 
-$('.slides').on('click','.photo', function(e){
-	let photo = $(this).clone()
-	$('.js-photo-insert').html(photo);
-})
+$('#down').click(function(){
+  let $flipBook = $('.flip-book');
+  let first = $flipBook.children().first();
+
+  $(first).toggleClass('pop');
+
+  setTimeout(function(e) {
+  	$(first).toggleClass('pop');
+    $flipBook.append(first);
+    }, 260);
+});
+
+$('#up').click(function(){
+  let $flipBook = $('.flip-book');
+  let last = $flipBook.children().last()
+  let first = $flipBook.children().first();
+  $flipBook.prepend(last);
+  $(first).toggleClass('pop');
+  setTimeout(function(e) {
+    $(first).toggleClass('pop');
+  }, 150);  
+});
 
 //styling js functions
 $('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'],menu:'#nav-menu',recordHistory:false});

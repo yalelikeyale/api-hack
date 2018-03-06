@@ -168,7 +168,7 @@
 			    <div class='rating-stars text-center'>
 			      <ul id='stars'>
 			        <li class='star include' title='Poor' data-value='1'>
-			        <i class='fa fa-star fa-fw'></i>
+			        	<i class='fa fa-star fa-fw'></i>
 			        </li>
 			        <li class='star include' title='Fair' data-value='2'>
 			          <i class='fa fa-star fa-fw'></i>
@@ -329,63 +329,29 @@
 				<span class="js-ven-web ven-web"></span>
 			</div>
 			<div class="photo-album">
-				<div class="stage-front js-photo-insert">
-					
-				</div>
-				<div class="slides">
-				    <div class="row">
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    </div>
-				    <div class="row">
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    </div>
-				    <div class="row">
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    	<div class="col-4">
-				    		<div class="slide">
-				    			
-				    		</div>
-				    	</div>
-				    </div>
-				</div>
-			</div>
+			    <div class="flip-up">
+			      	<button id="up"><i class="fas fa-angle-up"></i></button>
+			    </div>
+			    <div class="viewport">
+			      	<ul class="flip-book">
+			      		<li>
+			      			<span class="photo-slot"></span>
+			      		</li>
+			      		<li>
+			      			<span class="photo-slot"></span>
+			      		</li>
+			      		<li>
+			      			<span class="photo-slot"></span>
+			      		</li>
+			      		<li>
+			      			<span class="photo-slot"></span>
+			      		</li>
+			        </ul>
+			    </div>
+			    <div class="flip-down">
+			        <button id="down"><i class="fas fa-angle-down"></i></button>
+			    </div>
+		    </div>
 		</div>
 		<div id="right-side">
 			<div class="travel-methods">
@@ -396,8 +362,8 @@
 						</div>
 					</li>
 					<li>
-						<div class="method-circle">
-							<img class="method current" data-method="DRIVING" src="images/car.svg" role="button">
+						<div class="method-circle current">
+							<img class="method" data-method="DRIVING" src="images/car.svg" role="button">
 						</div>
 					</li>
 					<li>

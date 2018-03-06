@@ -318,31 +318,108 @@
   text-align: center;
 }
 
-.photo-album{
-  margin-bottom:100px;
+.viewport {
+  position: relative;
+  width: 400px;
+  margin: 40px auto;
+  height: 400px;
+  overflow: hidden;
+  background-color: #fff;
 }
 
-.stage-front{
-  width: 50%;
-  margin: auto;
+.flip-book {
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  perspective: 250px;
+  perspective-origin: 50% 25%;
 }
 
-.stage-front .photo{
-  width: 300px;
-  height: 300px;
+.flip-book li {
+  position: absolute;
+  list-style-type: none;
+  background-color: #fff;
+  width: 250px;
+  height: 250px;
+  padding: 0;
+  margin: 0;
+  transition-delay: 100ms;
+  transition: all 200ms ease-in-out;
 }
 
-.slides{
-  margin: auto;
-}
-
-.slide .photo{
-  height: 150px;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
+.photo-slot {
+  display: block;
   width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: white;
+  color: #444;
+  font-size: 150px;
+  font-weight: bold;
+  line-height: 200px;
+  cursor: pointer;
+  text-shadow: 2px 2px rgba(255,255,255,0.33);
+  transition: all 200ms ease-in-out;
+}
+
+.photo{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-book li:nth-child(1) {
+  display: block;
+  z-index: 40;
+  transform: translate3d(0, 120px, 40px);
+  box-shadow: 0 0 8px 8px rgba(0,0,0,0.15);
+}
+
+.flip-book li:nth-child(1) .photo-slot {
+  opacity: 1;
+}
+
+.flip-book li:nth-child(2) {
+  display: block;
+  z-index: 30;
+  transform: translate3d(0, 80px, 20px);
+  box-shadow: 0 0 4px 4px rgba(0,0,0,0.175);
+}
+
+.flip-book li:nth-child(2) .photo-slot {
+  opacity: 0.7;
+}
+
+.flip-book li:nth-child(3) {
+  display: block;
+  z-index: 20;
+  transform: translate3d(0, 40px, 10px);
+  box-shadow: 0 0 2px 2px rgba(0,0,0,0.2);
+}
+
+.flip-book li:nth-child(3) .photo-slot {
+  opacity: 0.4;
+}
+
+.flip-book li:nth-child(4) {
+  display: block;
+  z-index: 10;
+  transform: translate3d(0, 20px, 0);
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.225);
+}
+
+.flip-book li:nth-child(4) .photo-slot {
+  opacity: 0.1;
+}
+
+.flip-book li.pop {
+  opacity: 0;
+  transition-duration: 250ms;
+  transform: translate3d(0, 240px, 80px);
 }
 
 .travel-methods{
@@ -352,7 +429,7 @@
 }
 
 .method-circle{
-  border: 2px solid black;
+  border: 2px solid red;
   border-radius: 50%;
 }
 
@@ -369,8 +446,8 @@
   margin: 0 50px;
 }
 
-.travel-method .method.current{
-  background-color: yellow;
+.method-circle.current{
+  border-color: green;
 }
 
 #map{
