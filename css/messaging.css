@@ -1,13 +1,9 @@
 #wrapper {
   width: 600px;
-  margin: 50px auto;
+  margin: auto;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  border-radius: 10px;
-}
-
-body {
-  font-family: Arial;
-  background: #fff;
+  border-radius: 30px;
+  margin-right: 30px;
 }
 
 .chat ul {

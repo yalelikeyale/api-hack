@@ -1,4 +1,4 @@
-var chatMessages = [{
+const chatMessages = [{
   name: "ms1",
   msg: "Hey! Let's get dinner tonight?",
   delay: 300,
@@ -59,25 +59,42 @@ var chatMessages = [{
   align: "left"
 }
                    ];
-var chatDelay = 0;
 
+let chatCount = 0;
 function onRowAdded() {
   $('.chat-container').animate({
     scrollTop: $('.chat-container').prop('scrollHeight')
   });
 };
-$.each(chatMessages, function(index, obj) {
-  if(index!==0){
-    chatDelay = chatDelay + 1000;
-    chatDelay += obj.delay;
-  }
-  msgname = "." + obj.name;
-  msginner = ".messageinner-" + obj.name;
-  spinner = ".sp-" + obj.name;
-  $(".chat-message-list").append("<li class='message-" + obj.align + " " + obj.name + "' hidden><div class='messageinner-" + obj.name + "' hidden><span class='message-text'>" + obj.msg + "</span></div></li>");
-  $(msgname).delay(chatDelay).fadeIn();
-  scrollDelay = chatDelay;
-  $(spinner).delay(chatDelay).hide(1);
-  $(msginner).delay(chatDelay+10).fadeIn();
-  setTimeout(onRowAdded, chatDelay);
-});
+
+function chatAnimation(){
+  let chatDelay = 0;
+  chatCount++
+  console.log(chatCount)
+  $('.chat-message-list').empty()
+  $.each(chatMessages, function(index, obj) {
+    if(index!==0){
+      chatDelay = chatDelay + 1000;
+      chatDelay += obj.delay;
+    }
+    msgname = "." + obj.name;
+    msginner = ".messageinner-" + obj.name;
+    spinner = ".sp-" + obj.name;
+    $(".chat-message-list").append("<li class='message-" + obj.align + " " + obj.name + "' hidden><div class='messageinner-" + obj.name + "' hidden><span class='message-text'>" + obj.msg + "</span></div></li>");
+    $(msgname).delay(chatDelay).fadeIn();
+    scrollDelay = chatDelay;
+    $(spinner).delay(chatDelay).hide(1);
+    $(msginner).delay(chatDelay+10).fadeIn();
+    setTimeout(onRowAdded, chatDelay);
+  })
+}
+
+$(chatAnimation)
+setInterval(chatAnimation,17000);
+
+
+
+
+
+
+

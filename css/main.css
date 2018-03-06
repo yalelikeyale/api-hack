@@ -3,15 +3,20 @@
 }
 
 .logo{
-	width: 200px;
-	height: 100px;
+	width: 100px;
+	height: 50px;
 	margin-top: 20px;
 	margin-left: 50px;
 }
 
+.intro h1{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .intro, .description{
 	width: 50%;
-	margin: auto;
+	margin: 15px auto;
 	text-align: center;
 }
 
@@ -19,27 +24,28 @@
 	margin-bottom: 50px;
 }
 
-.fork{
-	position: relative;
+.start-container{
+	width: 50%;
+	margin: auto;
+	text-align: center;
 }
 
 #start, #help{
-	width:15%;
+	width:100px;
 	height: 40px;
-	position: absolute;
 	border-radius: 10px;
-	margin-bottom: 50px;
 	font-weight: 900;
 	border:1.5px solid black;
 	font-family: 'Libre Franklin', sans-serif;
 }
 
-#start {
-	right:5%;
+.left{
+	width: 50%;
+	float: left;
 }
 
-#help {
-	left:5%;
+.right{
+	float: right;
 }
 
 
