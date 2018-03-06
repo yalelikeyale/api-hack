@@ -289,22 +289,24 @@
 			  <div id="discoBallMiddle"></div>
 			</div>
 		</div>
-		<div class="check-box">
-			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-			  <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
-			  <polyline class="path check hide-it" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
-			</svg>
-		</div>
-	  	<div id="phrase-box">
-	  		<span class="status-style js-status-update">Finding your venue</span>
-	  		<div class="overlay">
-			  <div class='preloader-dots'>
-			    <div class='dot'></div>
-			    <div class='dot'></div>
-			    <div class='dot'></div>
-			  </div>
+		<div class="loading-message">
+			<div class="check-box">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+				  <circle class="path circle" fill="none" stroke="black" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+				  <polyline class="path check" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+				</svg>
 			</div>
-		</div>			
+		  	<div id="phrase-box">
+		  		<span class="status-style js-status-update">Dance for a bit while we find a venue</span>
+		  		<div class="overlay">
+				  <div class='preloader-dots'>
+				    <div class='dot'></div>
+				    <div class='dot'></div>
+				    <div class='dot'></div>
+				  </div>
+				</div>
+			</div>
+		</div>		
 		<div class="dance-floor">
 			<div class="dance-space">
 				<img class="dancing-couple" src="images/logo.svg">
@@ -319,20 +321,18 @@
 			<div class="venue-descript">
 				<h4><q><i class="js-ven-rev ven-rev"></i></q> - Person who actually takes the time to express opinions online</h4>
 			</div>
-			<div class="venue-address">
-				<span class="js-ven-address ven-address"></span>
-			</div>
 			<div class="venue-info">
 				 <span class="js-ven-hours ven-hours"></span>&nbsp;&nbsp;<span class="js-ven-phone ven-phone"></span>
-			</div>
-			<div class="venue-web">
-				<span class="js-ven-web ven-web"></span>
 			</div>
 			<div class="photo-album">
 			    <div class="flip-up">
 			      	<button id="up"><i class="fas fa-angle-up"></i></button>
 			    </div>
 			    <div class="viewport">
+			    	<div class="vp-c1"></div>
+			        <div class="vp-c2"></div>
+			        <div class="vp-c3"></div>
+			        <div class="vp-c4"></div>
 			      	<ul class="flip-book">
 			      		<li>
 			      			<span class="photo-slot"></span>

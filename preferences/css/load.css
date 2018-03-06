@@ -1,12 +1,3 @@
-#loading-page {
-  width: 100%;
-  height: 100%;
-  background: -webkit-linear-gradient(bottom left, #111, #222);
-  background: -moz-linear-gradient(bottom left, #111, #222);
-  background: linear-gradient(bottom left, #111, #222);
-  margin: 0;  
-}
-
 @-webkit-keyframes rotateDiscoBall {
     0% {-webkit-transform: rotateX(90deg) rotateZ(0deg) rotate(0deg); }
     100% {-webkit-transform: rotateX(90deg) rotateZ(360deg) rotate(0deg); }
@@ -67,7 +58,7 @@
 
 .square {
   -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;	
+  transform-style: preserve-3d; 
   position: absolute;
   top: 50px;
   left: 50px;
@@ -89,27 +80,8 @@
   animation: rotateDiscoBallMiddle 18s linear infinite;
 }
 
-.disco-hanger{
-  width: 100%;
-  height: 40%;
-}
-
-#phrase-box{
-  width: 66%;
-  margin: auto;
-  height: 50px;
-  background-color: none;
-  text-align: center;
-}
-
-#phrase-box .status-style{
-  text-align: center;
-  font-size: 25px;
-  color: white;
-}
-
 .check-box svg{
-  display: block;
+  display: inline-block;
   width: 100px;
 }
 
@@ -122,6 +94,7 @@
     stroke-dashoffset: -100;
     -webkit-animation: dash-check .9s .35s ease-in-out forwards;
     animation: dash-check .9s .35s ease-in-out forwards;
+    stroke: green;
 }
 
 @-webkit-keyframes dash {
@@ -211,22 +184,37 @@
   }
 }
 
-.dance-floor{
-  position: relative;
-  width: 25%;
-  margin: 25px auto;
-  height: 100%;
+.disco-hanger{
+  height: 150px;
 }
 
-.dance-space{
-  position: absolute;
+.loading-message{
+  height: 75px;
+  line-height: 75px;
   text-align: center;
 }
 
-.dancing-couple{
-  height: 300px;
-  width: 75%;
+.check-box{
+  display: inline-block;
 }
 
+.check-box svg{
+  width: 50px;
+  padding-top:15px;
+}
+
+#phrase-box{
+  display: inline-block;
+}
+
+.status-style{
+  font-size: 30px;
+}
+
+.dance-space{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
 
 

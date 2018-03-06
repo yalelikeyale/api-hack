@@ -108,7 +108,7 @@ function renderVenPage(){
 	$.fn.fullpage.destroy()
 	$('.js-ven-name').text(data.selectedVen.name);
 	let review = data.selectedVen.reviews.find(review => {
-		return review.rating >= 4;
+		return (review.rating >= 4 && review.text.length < 300)
 	});
 	let open_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].open.hours
 	let close_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].close.hours
@@ -143,12 +143,10 @@ function renderVenPage(){
 }
 
 function endLoading(){
-	$('.check-box .check').toggleClass('hide-it')
-	setTimeout($('.check-box .check').addClass('animated'),2000)
-	const fadeEnd = $('#loading-page').fadeOut(2000,()=>{
+	$('.check-box .check').addClass('animated')
+	$('#loading-page').fadeOut(2000,()=>{
 		renderVenPage()
 	});
-	setTimeout(fadeEnd,1000)
 }
 
 function storeVenueData(venue){

@@ -1,3 +1,4 @@
+
 .logoFrame {
   margin-left:20px;
 }
@@ -320,11 +321,51 @@
 
 .viewport {
   position: relative;
-  width: 400px;
-  margin: 40px auto;
+  width: 300px;
+  margin: auto;
   height: 400px;
   overflow: hidden;
   background-color: #fff;
+}
+
+.vp-c1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+}
+
+.vp-c2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+.vp-c3 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.vp-c4 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
 }
 
 .flip-book {
@@ -334,7 +375,7 @@
   height: 100%;
   margin: 0 auto;
   padding: 0;
-  perspective: 250px;
+  perspective: 200px;
   perspective-origin: 50% 25%;
 }
 
@@ -342,15 +383,15 @@
   position: absolute;
   list-style-type: none;
   background-color: #fff;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   padding: 0;
   margin: 0;
   transition-delay: 100ms;
   transition: all 200ms ease-in-out;
 }
 
-.photo-slot {
+.flip-book .photo-slot {
   display: block;
   width: 100%;
   height: 100%;
@@ -366,10 +407,26 @@
   transition: all 200ms ease-in-out;
 }
 
-.photo{
+.photo {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.photo-slot.c1 {
+  background-color: #fc0;
+}
+
+.photo-slot.c2 {
+  background-color: #9c3;
+}
+
+.photo-slot.c3 {
+  background-color: #f60;
+}
+
+.photo-slot.c4 {
+  background-color: #e850b2;
 }
 
 .flip-book li:nth-child(1) {
@@ -379,7 +436,7 @@
   box-shadow: 0 0 8px 8px rgba(0,0,0,0.15);
 }
 
-.flip-book li:nth-child(1) .photo-slot {
+.flip-book li:nth-child(1) span {
   opacity: 1;
 }
 
@@ -390,7 +447,7 @@
   box-shadow: 0 0 4px 4px rgba(0,0,0,0.175);
 }
 
-.flip-book li:nth-child(2) .photo-slot {
+.flip-book li:nth-child(2) span {
   opacity: 0.7;
 }
 
@@ -401,7 +458,7 @@
   box-shadow: 0 0 2px 2px rgba(0,0,0,0.2);
 }
 
-.flip-book li:nth-child(3) .photo-slot {
+.flip-book li:nth-child(3) span {
   opacity: 0.4;
 }
 
@@ -412,7 +469,7 @@
   box-shadow: 0 0 1px 1px rgba(0,0,0,0.225);
 }
 
-.flip-book li:nth-child(4) .photo-slot {
+.flip-book li:nth-child(4) span {
   opacity: 0.1;
 }
 
@@ -420,6 +477,19 @@
   opacity: 0;
   transition-duration: 250ms;
   transform: translate3d(0, 240px, 80px);
+}
+
+#up,#down{
+  border: none;
+  cursor: pointer;
+}
+
+.flip-up, .flip-down{
+  text-align: center;
+}
+
+.fa-angle-up,.fa-angle-down{
+  font-size: 3em;
 }
 
 .travel-methods{
@@ -452,9 +522,9 @@
 
 #map{
   position: absolute;
-  height: 1000px;
+  height: 500px;
   width: 100%;
-  right: 0;
+  right: 10px;
 }
 
 
