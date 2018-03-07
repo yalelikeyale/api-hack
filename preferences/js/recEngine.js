@@ -32,6 +32,7 @@ const data = {
 	},
 	venues:[],
 	venLibrary:[],
+	libraryKey:'',
 	selectedVen:{},
 	photos:[],
 	searchKeywords:{
@@ -136,6 +137,9 @@ function renderVenPage(){
 	} else {
 		close_time = close_hour.toString() + ':' + close_min.toString()+'am'
 	}
+	$('.js-insert-rating').text(data.selectedVen.rating)
+	$('.js-insert-pricing').text(data.venLibrary[data.libraryKey].pricing)
+	$('.js-insert-distance').text(data.venLibrary[data.libraryKey].distance)
 	$('.js-ven-hours').text(`Hours: ${open_time} - ${close_time}`)
 	$('.js-ven-phone').text('Phone: '+data.selectedVen.formatted_phone_number)
 	$('.js-ven-web').html(`<a href="${data.selectedVen.website}">${data.selectedVen.website}</a>`)
@@ -209,7 +213,8 @@ function googleSearch(venSearchParams){
 
 //errored here
 function prepareSearch(){
-	let venueToSearch = data.venLibrary[Object.keys(data.venues[data.nextVen])[0]];
+	data.libraryKey = Object.keys(data.venues[data.nextVen])[0]
+	let venueToSearch = data.venLibrary[data.libraryKey];
 	googleSearch(venueToSearch);
 }
 
@@ -271,6 +276,8 @@ function genRecsObj(venue) {
 		data.venLibrary[ven_ID].lat = venue.venue.location.lat
 		data.venLibrary[ven_ID].lng = venue.venue.location.lng
 		data.venLibrary[ven_ID].phone = venue.venue.contact.phone
+		data.venLibrary[ven_ID].pricing = venue.venue.price.tier;
+		data.venLibrary[ven_ID].distance = venue.venue.location.distance;
 		venueObj[ven_ID] = {};
 		venueObj[ven_ID].rating = venue.venue.rating;
 		venueObj[ven_ID].priceTier = venue.venue.price.tier;

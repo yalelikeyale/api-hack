@@ -1,64 +1,33 @@
 const chatMessages = [{
   name: "ms1",
   msg: "Hey! Let's get dinner tonight?",
-  delay: 300,
+  delay: 500,
   align: "right"
 },
 {
   name: "ms2",
-  msg: "You know I can't say no to food!",
-  delay: 400,
+  msg: "You know I can't say no to Food! How about Frankies!? ",
+  delay: 1000,
   align: "left"
 },
 {
   name: "ms3",
-  msg: "How about our go to pizza place? It's been a whole 3 days since we've been!",
-  delay: 200,
+  msg: "AHH I went there for lunch. hmm what are you in the mood for? Chinese?",
+  delay: 400,
   align: "right"
 },
 {
   name: "ms4",
-  msg: "Ahh!! I was going to keep this a secret, but I went for lunch with some coworkers",
-  delay: 400,
+  msg: "Not really:( ",
+  delay: 300,
   align: "left"
 },
 {
   name: "ms5",
-  msg: "WOW - What's next? Are you going to start watching GOT w/o me?!",
-  delay: 350,
-  align: "right"
-},
-{
-  name: "ms6",
-  msg: "I know, I know. How about sushi! hehe",
-  delay: 200,
-  align: "left"
-},
-{
-  name: "ms7",
-  msg: "I don't have the stomach size of a baby, Samantha.",
-  delay: 350,
-  align: "right"
-},
-{
-  name: "ms8",
-  msg: "hmm well I feel like I'm making all of the recommondations here",
+  msg: "Ugh the struggle is too real sometimes",
   delay: 400,
-  align: "left"
-},
-{
-  name: "ms9",
-  msg: "Hey! I didn't go and cheat on our spot by taking other people there!",
-  delay: 200,
   align: "right"
-},
-{
-  name: "ms10",
-  msg: "You're ridiculous. I'm going to yoga",
-  delay: 800,
-  align: "left"
-}
-                   ];
+}];
 
 let chatCount = 0;
 function onRowAdded() {
@@ -90,10 +59,20 @@ function chatAnimation(){
 }
 
 $(chatAnimation)
-setInterval(chatAnimation,17000);
+setInterval(chatAnimation,10000);
 
-$('#fullpage').fullpage({anchors:['landing','walkthrough'],recordHistory:false});
-
-
+$('.cd-testimonials-wrapper').flexslider({
+    selector: ".cd-testimonials > li",
+    animation: "slide",
+    controlNav: true,
+    slideshow: false,
+    smoothHeight: true,
+    start: function() {
+      $('.cd-testimonials').children('li').css({
+        'opacity': 1,
+        'position': 'relative'
+      });
+    }
+  });
 
 

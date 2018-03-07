@@ -5,34 +5,65 @@
 	<title>Deazy</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/messaging.css">
+	<link rel="stylesheet" type="text/css" href="css/testimonial.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Libre+Franklin|Playfair+Display|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 </head>
 <body>
-	<div id="fullpage">
-		<div class="section landing" data-anchor="landing">
-			<nav class="logoFrame">
-				<img src="images/logo.png" alt="Deazy Logo" class="logo">
-		  	</nav>
-		  	<div class="landing-view">
-			  	<div class="left">
-					<div class="intro">
-						<h1>Ever had this convo <span><i class="fas fa-long-arrow-alt-right"></i></span></h1>
-						<h4><i>Don't let an invitation turn into an argument, use Deazy!</i></h4>
-					</div>
-					<div class="description">
-						<p class="p1">Deazy, the venue recommendation app that weighs data from Google and FourSquare to find the best venue near you that fits your mood.</p>
-					</div>
-					<div class="buttons">
-						<div class="start-container">
-							<a href="preferences/app.html"><button id="help" type="button">Let's Go!</button></a>	
-						</div>
-						<div class="help-container">
-							<a href="index.html#walkthrough"><button id="start" type="button">Wait What?</button></a>
+	<div class="section landing">
+		<nav class="logoFrame">
+			<img src="images/logo.png" alt="Deazy Logo" class="logo">
+	  	</nav>
+	  	<div class="landing-view">
+		  	<div class="left">
+				<div class="intro">
+					<h1>Ever had this convo <span><i class="fas fa-long-arrow-alt-right"></i></span></h1>
+					<h4>Don't let picking a spot to go out turn into an argument, use Deazy!</h4>
+				</div>
+				<div class="testimonial-container">
+					<div class="dk-container">
+						<div class="cd-testimonials-wrapper cd-container">
+							<ul class="cd-testimonials">
+								<li>
+									<div class="testimonial-content">
+										<p>I love Marshal, but sometimes him always agreeing with me gets a little boring. I like that we share the same clothes, it's cost effective, but I wanted to spice up our nights out. <br><br>Thanks Deazy for adding that dash of spice</p>
+										<div class="cd-author">
+											<img src="images/cheese_couple.jpeg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>Cindy <strong>Kim</strong></li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="testimonial-content">
+										<p>There was always so much drama about where Ken and I would go out! OMG it got to the point where I literally couldn't even do it. <br><br> Thanks Deazy!</p>
+										<div class="cd-author">
+											<img src="images/couple2.jpeg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>Barbie <strong>Kensington</strong></li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="testimonial-content">
+										<p>To be honest, I had no idea there were so many good restaurants in my area. I just could never make up my mind and would always wind up at Chili's. <br> <br>Ya know, a bloomin onion and a Bud Light doesn't sound so bad right now.</p>
+										<div class="cd-author">
+											<img src="images/guy.jpeg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>Hoyt <strong>Guy</strong></li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
-				<div id="wrapper" class="right">
+			</div>
+			<div class="right">
+				<div id="wrapper">
 				  <div class="chat">
 				    <div class="chat-container">
 				      <div class="chat-listcontainer">
@@ -44,72 +75,15 @@
 				    </div>
 				  </div>
 				</div>
-			</div>
-		</div>
-		<div class="section" data-anchor="walkthrough">
-			<div class="directions left">
-				<div class="directions-title">
-					<h1>With Deazy, Dates are made Eazy</h1>
-				</div>
-				<div class="directions-steps">
-					<p>Simply select your search settings:</p>
-					<ol>
-						<li>Pick a category!</li>
-						<ul>
-							<li>What are you in the mood for? Select from a range of venue categories:</li>
-							<ul>
-								<li>Cocktails</li>
-							</ul>
-							<ul>
-								<li>Dessert</li>
-							</ul>
-							<ul>
-								<li>Dinner</li>
-							</ul>
-							<ul>
-								<li>Live Music</li>
-							</ul>
-							<ul>
-								<li>Dance Clubs</li>
-							</ul>
-							<ul>
-								<li>Karaoke</li>
-							</ul>
-						</ul>
-						<li>How much are you willing to spend!</li>
-						<ul>
-							<li>Filter venues by how expensive the venue has been rated as</li>
-							<li>Venues outside of the selected price tiers will be excluded</li>
-						</ul>
-						<li>Select a minimum rating!</li>
-						<ul>
-							<li>Venues rated below the selected minimum rating will be excluded</li>
-						</ul>
-						<li>Determine how far you're willing to commute!</li>
-						<ul>
-							<li>Venues outside the selected range will be filtered out</li>
-						</ul>
-						<li>Set your preferences</li>
-						<ul>
-							<li>Decide what is most important to you</li>
-							<li>Would you rather travel a bit further to go to a higher rated venue or stay close to home?</li> 
-							<li>Maybe you just want to find the cheapest place near you</li>
-							<li>This is where you make that choice</li>
-						</ul>
-					</ol>
-				</div>
-			</div>
-			<div class="ui-walkthrough right">
-				<img class="ui-clip" src="images/ui-clip.gif">
 				<div class="start-container">
-					<a href="preferences/app.html"><button id="help" type="button">Let's Go!</button></a>	
-				</div>
+				    <a href="preferences/app.html"><button id="start" type="button">Find a Venue</button></a>	
+			    </div>
 			</div>
 		</div>
 	</div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/jquery.flexslider.js"></script>
 <script src="messaging.js"></script>
 </body>
 </html>

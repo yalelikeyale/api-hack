@@ -1,3 +1,7 @@
+*{
+	box-sizing: border-box;
+}
+
 .left{
 	width: 50%;
 	float: left;
@@ -20,7 +24,7 @@
 
 .intro{
 	width: 75%;
-	margin: 50px auto;
+	margin: auto;
 	text-align: center;
 }
 
@@ -28,6 +32,7 @@
 	margin: auto;
 	font-size: 30px;
 	font-family: 'Roboto', sans-serif;
+	text-transform: capitalize;
 }
 
 .fa-long-arrow-alt-right{
@@ -51,63 +56,24 @@
 	width: 300px;
 }
 
-.buttons{
-	position: relative;
+.start-container {
 	display: inline-block;
 	width: 100%;
-	height: auto;
-}
-
-.start-container, .help-container{
-	display: inline-block;
-	width: 50%;
-	margin: auto;
+	margin: 50px auto;
 	text-align: center;
 }
 
-.start-container{
-	position: absolute;
-	right: 5px;
-}
-
-.help-container{
-	position: absolute;
-	left: 5px;
-}
-
 #start{
-	width:100px;
+	width:150px;
 	height: 40px;
 	border-radius: 10px;
 	font-weight: 900;
 	font-size: 15px;
-	text-transform: capitalize;
 	border:3px solid #FF0038;
 	font-family: 'Libre Franklin', sans-serif;
 	cursor: pointer;
 }
 
-#help{
-	width:100px;
-	height: 40px;
-	border-radius: 10px;
-	font-weight: 900;
-	font-size: 15px;
-	text-transform: capitalize;
-	border:3px solid #FF0038;
-	font-family: 'Libre Franklin', sans-serif;
-	cursor: pointer;
-}
-
-.ui-walkthrough{
-	width: 50%;
-	height: 500px;
-}
-
-.ui-clip{
-	width: 100%;
-	height: auto;
-}
 
 
 
