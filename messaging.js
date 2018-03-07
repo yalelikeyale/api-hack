@@ -18,13 +18,13 @@ const chatMessages = [{
 },
 {
   name: "ms4",
-  msg: "Ahh!! I was going to keep this a secret, but I went for lunch :|",
+  msg: "Ahh!! I was going to keep this a secret, but I went for lunch with some coworkers",
   delay: 400,
   align: "left"
 },
 {
   name: "ms5",
-  msg: "WOW",
+  msg: "WOW - What's next? Are you going to start watching GOT w/o me?!",
   delay: 350,
   align: "right"
 },
@@ -36,7 +36,7 @@ const chatMessages = [{
 },
 {
   name: "ms7",
-  msg: "I don't have the stomach size of a baby. You know I like to eat a lot!",
+  msg: "I don't have the stomach size of a baby, Samantha.",
   delay: 350,
   align: "right"
 },
@@ -54,7 +54,7 @@ const chatMessages = [{
 },
 {
   name: "ms10",
-  msg: "I'm going to yoga",
+  msg: "You're ridiculous. I'm going to yoga",
   delay: 800,
   align: "left"
 }
@@ -92,8 +92,7 @@ function chatAnimation(){
 $(chatAnimation)
 setInterval(chatAnimation,17000);
 
-
-
+$('#fullpage').fullpage({anchors:['landing','walkthrough'],recordHistory:false});
 
 
 

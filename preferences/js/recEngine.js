@@ -45,7 +45,9 @@ const data = {
 	nextVen:0,
 	searchAgain:true,
 	dollarSelection:[],
-	starSelection:[]
+	starSelection:[],
+	directionsService:{},
+	directionsDisplay:{}
 }
 
 const DET_SETTINGS = {
@@ -76,17 +78,17 @@ const DIRECTIONS_SETTINGS = {
 }
 
 function initMap() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
-    var map = new google.maps.Map(document.getElementById('map'), {
+    data.directionsService = new google.maps.DirectionsService;
+    data.directionsDisplay = new google.maps.DirectionsRenderer;
+    let map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: {
       	lat: data.userLat, 
       	lng: data.userLng,
       }
     });
-    directionsDisplay.setMap(map);
-    displayDirections(directionsService, directionsDisplay)
+    data.directionsDisplay.setMap(map);
+    displayDirections(data.directionsService, data.directionsDisplay)
   }
 
 function displayDirections(directionsService, directionsDisplay) {
@@ -204,6 +206,8 @@ function googleSearch(venSearchParams){
 	$.ajax(payload)
 }
 
+
+//errored here
 function prepareSearch(){
 	let venueToSearch = data.venLibrary[Object.keys(data.venues[data.nextVen])[0]];
 	googleSearch(venueToSearch);
@@ -452,7 +456,7 @@ $('.travel-methods').on('click','.method', function(e){
 	});
 	$(this).parent().addClass('current')
 	$('.js-display-method').text(selectedMethod);
-	initMap()
+	displayDirections(data.directionsService, data.directionsDisplay)
 })
 
 $('#down').click(function(){
