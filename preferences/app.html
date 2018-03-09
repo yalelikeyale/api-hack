@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery-ui-Slider-Pips/1.11.4/jquery-ui-slider-pips.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="icons" hidden>
@@ -38,7 +39,7 @@
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="cocktails">Let's get Cocktails!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="cocktails" data-path="images/cocktail.svg">Let's get Cocktails!</button></a>
 							</div>
 						</div>
 					</div>
@@ -50,7 +51,7 @@
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="dessert or coffee">Let's get Dessert!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="dessert" data-path="images/cupcake.svg">Let's get Dessert!</button></a>
 							</div>
 						</div>
 					</div>
@@ -62,7 +63,7 @@
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="food">We're Hungy!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="food" data-path="images/fast-food.svg">We're Hungy!</button></a>
 							</div>
 						</div>
 					</div>
@@ -76,7 +77,7 @@
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="live music">Let's catch a show</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="live music" data-path="images/concert.svg">Let's catch a show</button></a>
 							</div>
 						</div>
 					</div>
@@ -88,7 +89,7 @@
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="dancing">Let's go dancing!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="dancing" data-path="images/dancing.svg">Let's go dancing!</button></a>
 							</div>
 						</div>
 					</div>
@@ -100,7 +101,7 @@
 								</svg>
 							</div>
 							<div class="back">
-								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="karaoke">We want to sing!</button></a>
+								<a href="app.html#pricing" class="cat-select"><button class="cat-confirm" data-query="karaoke" data-path="images/karaoke.svg">We want to sing!</button></a>
 							</div>
 						</div>
 					</div>
@@ -319,21 +320,49 @@
 				<h1 class="js-ven-name ven-name"></h1>
 			</div>
 			<div class="ven-stats">
-				<ul>
-					<li><span class="js-insert-rating"></span></li>
-				</ul>
-				<ul>
-					<li><span class="js-insert-pricing"></span></li>
-				</ul>
-				<ul>
-					<li><span class="js-insert-distance"></span></li>
-				</ul>
+			    <div id='ven-rating'>
+			      <ul id='ven-stars'>
+			        <li class='star-item'>
+			          <div class="stars-outer">
+			            <div class="stars-inner" data-index="0"></div>
+			         </div>
+			        </li>
+			        <li class='star-item'>
+			          <div class="stars-outer">
+			            <div class="stars-inner" data-index="1"></div>
+			          </div>
+			        </li>
+			        <li class='star-item'>
+			          <div class="stars-outer">
+			            <div class="stars-inner" data-index="2"></div>
+			          </div>
+			        </li>
+			        <li class='star-item'>
+			          <div class="stars-outer">
+			            <div class="stars-inner" data-index="3"></div>
+			          </div>
+			        </li>
+			        <li class='star-item'>
+			          <div class="stars-outer">
+			            <div class="stars-inner" data-index="4"></div>
+			          </div>
+			        </li>
+			      </ul>
+			    </div>
+			    <div id="ven-pricing">
+					<ul class="js-insert-dollars ven-usdcount">
+						
+					</ul>
+				</div>
+				<div id="ven-distance">
+					<span class="js-insert-distance"></span>
+				</div>
 			</div>
 			<div class="venue-descript">
-				<h4><q><i class="js-ven-rev ven-rev"></i></q> - Person who actually takes the time to express opinions online</h4>
+				<h4><q><i class="js-ven-rev ven-rev"></i></q></h4>
 			</div>
 			<div class="venue-info">
-				 <span class="js-ven-hours ven-hours"></span>&nbsp;&nbsp;<span class="js-ven-phone ven-phone"></span>
+				 <i class="far fa-clock"></i><span class="js-ven-hours ven-hours"></span>&nbsp;&nbsp;<i class="fas fa-phone"></i><span class="js-ven-phone ven-phone"></span>
 			</div>
 			<div class="photo-album">
 			    <div class="flip-up">
@@ -365,7 +394,6 @@
 		    </div>
 		</div>
 		<div id="right-side">
-			<h3>Select a Mode of Transportation</h3>
 			<div class="travel-methods">
 				<ul>
 					<li>
@@ -388,7 +416,8 @@
 			<div id="map"></div>
 		</div>
 <!-- 		<div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-		<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+		<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> 
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
 	</section>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>

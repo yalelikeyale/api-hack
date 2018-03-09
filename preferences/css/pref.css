@@ -351,8 +351,8 @@
   left: 0;
   width: 20px;
   height: 20px;
-  border-left: 1px solid #000;
-  border-top: 1px solid #000;
+  border-left: 2px solid gold;
+  border-top: 2px solid gold;
 }
 
 .vp-c2 {
@@ -361,8 +361,8 @@
   right: 0;
   width: 20px;
   height: 20px;
-  border-top: 1px solid #000;
-  border-right: 1px solid #000;
+  border-top: 2px solid blue;
+  border-right: 2px solid blue;
 }
 
 .vp-c3 {
@@ -371,8 +371,8 @@
   bottom: 0;
   width: 20px;
   height: 20px;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
+  border-right: 2px solid #00ff18;
+  border-bottom: 2px solid #00ff18;
 }
 
 .vp-c4 {
@@ -381,8 +381,8 @@
   left: 0;
   width: 20px;
   height: 20px;
-  border-bottom: 1px solid #000;
-  border-left: 1px solid #000;
+  border-bottom: 2px solid #FF0038;
+  border-left: 2px solid #FF0038;
 }
 
 .flip-book {
@@ -539,11 +539,88 @@
 
 #map{
   position: absolute;
-  height: 500px;
+  height: 600px;
   width: 100%;
   right: 10px;
 }
 
+#ven-stars li{
+  list-style: none;
+  display: inline-block;
+}
+
+.stars-outer {
+  position: relative;
+  font-family: FontAwesome;
+}
+ 
+.stars-outer::before {
+  content: "\f006";
+  font-size: 1em;
+}
+ 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  font-size: 1em;
+}
+ 
+.stars-inner::before {
+  content: "\f005";
+  color: #f8ce0b;
+}
+
+.ven-name{
+  font-family: 'Raleway', sans-serif;
+}
+
+.ven-stats{
+  width: 50%;
+  height: 30px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+#ven-pricing .ven-usdcount{
+  display: inline-block;
+}
+
+.ven-usdcount .ven-usd{
+  list-style: none;
+  display: inline-block;
+}
+
+.ven-usd .fa-dollar-sign{
+  font-size: 1em;
+  color: green;
+}
+
+#ven-rating, #ven-pricing, #ven-distance{
+  display: inline-block;
+}
+
+/*help*/
+#ven-rating{
+  position: absolute;
+  left: 5%;
+  margin-left: -20px;
+}
+
+#ven-pricing{
+  position: absolute;
+  right: 45%;
+}
+
+#ven-distance{
+  position: absolute;
+  top: 50%;
+  right: 25%;
+}
 
 
 

@@ -38,7 +38,7 @@ const data = {
 	searchKeywords:{
 		'cocktails':['cocktails'],
 		'live music':['live music','music venue','band','rock','indie','guitar','acoustic','heavy metal','good music'],
-		'desert':['gelato','ice cream','desert','cake','chocolate','sorbet', 'coffee','latte','flat white','cappuccino'],
+		'dessert or coffee':['gelato','ice cream','desert','cake','chocolate','sorbet', 'coffee','latte','flat white','cappuccino'],
 		'food':['restaurant','food'],
 		'dancing':['club','dancing','dance','nightclub','salsa'],
 		'karaoke':['karaoke']
@@ -48,7 +48,11 @@ const data = {
 	dollarSelection:[],
 	starSelection:[],
 	directionsService:{},
-	directionsDisplay:{}
+	directionsDisplay:{},
+	map:{},
+	startIcon:'images/car.svg',
+	endIcon:'',
+	startMarker:{}
 }
 
 const DET_SETTINGS = {
@@ -78,28 +82,92 @@ const DIRECTIONS_SETTINGS = {
 	travelMode:'DRIVING'
 }
 
+
+
+function makeStartMarker( position, icon, title ) {
+    data.startMarker = new google.maps.Marker({
+        position: position,
+        map: data.map,
+        icon: icon,
+        title: title
+    });
+}
+
+function makeEndMarker( position, icon, title ) {
+    new google.maps.Marker({
+        position: position,
+        map: data.map,
+        icon: icon,
+        title: title
+    });
+}
+
+var deleteMarker = function() {
+    data.startMarker.setMap(null);
+}
+
 function initMap() {
     data.directionsService = new google.maps.DirectionsService;
-    data.directionsDisplay = new google.maps.DirectionsRenderer;
-    let map = new google.maps.Map(document.getElementById('map'), {
+    data.directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+    data.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: {
       	lat: data.userLat, 
       	lng: data.userLng,
       }
     });
-    data.directionsDisplay.setMap(map);
+    data.directionsDisplay.setMap(data.map);
     displayDirections(data.directionsService, data.directionsDisplay)
   }
 
 function displayDirections(directionsService, directionsDisplay) {
+	const icons = {
+	  	start: {
+	    	url: data.startIcon,
+	    	size: new google.maps.Size(71, 71),
+	    	origin: new google.maps.Point(0, 0),
+	    	anchor: new google.maps.Point(17, 34),
+	    	scaledSize: new google.maps.Size(35, 35)
+	  	},
+	  	end:{
+	   		url: data.endIcon,
+	    	size: new google.maps.Size(71, 71),
+	    	origin: new google.maps.Point(0, 0),
+	    	anchor: new google.maps.Point(17, 34),
+	    	scaledSize: new google.maps.Size(35, 35)
+	  	}
+	 };
 	directionsService.route(DIRECTIONS_SETTINGS, function(response, status) {
   	if (status === 'OK') {
    		directionsDisplay.setDirections(response);
+        let leg = response.routes[ 0 ].legs[ 0 ];
+        makeStartMarker( leg.start_location, icons.start, "start" );
+        makeEndMarker( leg.end_location, icons.end, 'end' );
   	} else {
     	window.alert('Directions request failed due to ' + status);
   	}
 	});
+}
+
+function fillStars(rating){
+	const starTotal = 5;
+	
+	$('.stars-inner').each(star => {
+		if(rating>1){
+			rating-=1;
+			$(`.stars-inner[data-index="${star}"`).css('width','100%')
+		} else if (rating>0){
+			let fill = (Math.round(rating*100))+'%'
+			$(`.stars-inner[data-index="${star}"`).css('width',`${fill}`)
+		}
+	});
+}
+
+function fillDollars(usdCount){
+	console.log('made it here');
+	for(i=0;i<usdCount;i++){
+		$('.js-insert-dollars').append('<li class="ven-usd"><i class="fas fa-dollar-sign"></i></li>')
+	}
 }
 
 function renderVenPage(){
@@ -137,11 +205,18 @@ function renderVenPage(){
 	} else {
 		close_time = close_hour.toString() + ':' + close_min.toString()+'am'
 	}
-	$('.js-insert-rating').text(data.selectedVen.rating)
-	$('.js-insert-pricing').text(data.venLibrary[data.libraryKey].pricing)
-	$('.js-insert-distance').text(data.venLibrary[data.libraryKey].distance)
-	$('.js-ven-hours').text(`Hours: ${open_time} - ${close_time}`)
-	$('.js-ven-phone').text('Phone: '+data.selectedVen.formatted_phone_number)
+	fillStars(data.selectedVen.rating)
+	fillDollars(data.venLibrary[data.libraryKey].pricing)
+	let venDist = data.venLibrary[data.libraryKey].distance;
+	if(venDist<1000){
+		venDist += 'm'
+	} else {
+		venDist = (venDist/1000).toFixed(2)
+		venDist+='km'
+	}
+	$('.js-insert-distance').text(venDist)
+	$('.js-ven-hours').text(`${open_time} - ${close_time}`)
+	$('.js-ven-phone').text(data.selectedVen.formatted_phone_number)
 	$('.js-ven-web').html(`<a href="${data.selectedVen.website}">${data.selectedVen.website}</a>`)
 	$('.js-ven-rev').text(review.text)
 	$('.js-ven-address').text(data.selectedVen.formatted_address);
@@ -173,7 +248,9 @@ function storeVenueData(venue){
 function filterGoogleReviews(response, status){
 	if(status == google.maps.places.PlacesServiceStatus.OK){
 		let reviews = response.reviews;
+		//error
 		reviews.forEach(review => {
+			//error
 			data.searchKeywords[REC_SETTINGS.query].forEach(sTerm => {
 				if ( review.text.toLowerCase().indexOf(sTerm) >=0 ){
 					data.searchAgain = false;
@@ -211,7 +288,7 @@ function googleSearch(venSearchParams){
 }
 
 
-//errored here
+//errored here cannot convert null or undefined to object
 function prepareSearch(){
 	data.libraryKey = Object.keys(data.venues[data.nextVen])[0]
 	let venueToSearch = data.venLibrary[data.libraryKey];
@@ -450,12 +527,15 @@ $('.final.next').click(function(e){
 
 $('.cat-confirm').click(function(e){
 	let query = $(this).data('query')
+	let iconPath = $(this).data('path')
+	data.endIcon = iconPath
 	REC_SETTINGS.query = query
 	$('.final.next').attr('disabled',false);
 });
 
 $('.travel-methods').on('click','.method', function(e){
 	let selectedMethod = $(this).data('method');
+	data.startIcon = $(this).attr('src');
 	DIRECTIONS_SETTINGS.travelMode = selectedMethod;
 	let methods = $('.method-circle')
 	methods.each(function(idx){
@@ -463,6 +543,7 @@ $('.travel-methods').on('click','.method', function(e){
 	});
 	$(this).parent().addClass('current')
 	$('.js-display-method').text(selectedMethod);
+	deleteMarker()
 	displayDirections(data.directionsService, data.directionsDisplay)
 })
 
