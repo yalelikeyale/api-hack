@@ -512,7 +512,6 @@ function renderTryAgain(){
 	});
 }
 
-
 function getLocation(){
 	const payload = {
 		url:`https://www.googleapis.com/geolocation/v1/geolocate?key=${data.GOOGLE_KEY}`,
