@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/grid.css">
 	<link rel="stylesheet" type="text/css" href="css/walking-man.css">
 	<link rel="stylesheet" type="text/css" href="css/load.css">
+	<link rel="stylesheet" type="text/css" href="css/ven_rec.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.css">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -253,17 +254,6 @@
 			</div>			
 		</div>
 	</div>
-	<section class="try-again" hidden>
-		<div class="logoFrame">
-			<img src="images/logo.png" alt="Deazy Logo" class="logo">
-  		</div>
-		<div class="row">
-			<div class="col-12">
-				<p>We were not able to find a recommendation. Please adjust your search preferences and try again:)</p>
-			</div>
-			<button id="tryAgain" type="submit">Let's Try Again</button>
-		</div>
-	</section>
 	<section id="nav-menu" class="fb-show-active right">
 		<ul>
 			<li data-menuanchor="categories">
@@ -315,106 +305,122 @@
 		</div>
 	</section>
 	<section id="google-results" hidden>
-		<div id="left-side">
-			<div class="venue-name">
-				<h1 class="js-ven-name ven-name"></h1>
-			</div>
-			<div class="ven-stats">
-			    <div id='ven-rating'>
-			      <ul id='ven-stars'>
-			        <li class='star-item'>
-			          <div class="stars-outer">
-			            <div class="stars-inner" data-index="0"></div>
-			         </div>
-			        </li>
-			        <li class='star-item'>
-			          <div class="stars-outer">
-			            <div class="stars-inner" data-index="1"></div>
-			          </div>
-			        </li>
-			        <li class='star-item'>
-			          <div class="stars-outer">
-			            <div class="stars-inner" data-index="2"></div>
-			          </div>
-			        </li>
-			        <li class='star-item'>
-			          <div class="stars-outer">
-			            <div class="stars-inner" data-index="3"></div>
-			          </div>
-			        </li>
-			        <li class='star-item'>
-			          <div class="stars-outer">
-			            <div class="stars-inner" data-index="4"></div>
-			          </div>
-			        </li>
-			      </ul>
+		<div class="ven row">
+			<div class="col-6">
+				<div class="venue-name">
+					<h1 class="js-ven-name ven-name"></h1>
+				</div>
+				<div class="ven-stats row">
+				    <div id='ven-rating' class="col-4">
+				      <span>Rating: </span>
+				      <ul id='ven-stars'>
+				        <li class='star-item'>
+				          <div class="stars-outer">
+				            <div class="stars-inner" data-index="0"></div>
+				         </div>
+				        </li>
+				        <li class='star-item'>
+				          <div class="stars-outer">
+				            <div class="stars-inner" data-index="1"></div>
+				          </div>
+				        </li>
+				        <li class='star-item'>
+				          <div class="stars-outer">
+				            <div class="stars-inner" data-index="2"></div>
+				          </div>
+				        </li>
+				        <li class='star-item'>
+				          <div class="stars-outer">
+				            <div class="stars-inner" data-index="3"></div>
+				          </div>
+				        </li>
+				        <li class='star-item'>
+				          <div class="stars-outer">
+				            <div class="stars-inner" data-index="4"></div>
+				          </div>
+				        </li>
+				      </ul>
+				    </div>
+				    <div id="ven-pricing" class="col-4">
+				    	<span>Pricing: </span>
+						<ul class="js-insert-dollars ven-usdcount">
+							
+						</ul>
+					</div>
+					<div id="ven-distance" class="col-4">
+						<span>Commute: <span class="js-insert-distance"></span></span>
+					</div>
+				</div>
+				<div class="venue-descript">
+					<h4><q><i class="js-ven-rev ven-rev"></i></q></h4>
+				</div>
+				<div class="venue-info">
+					 <i class="far fa-clock"></i><span class="js-ven-hours ven-hours"></span>&nbsp;&nbsp;<i class="fas fa-phone"></i><span class="js-ven-phone ven-phone"></span>
+				</div>
+				<div class="photo-album">
+				    <div class="flip-up">
+				      	<button id="up"><i class="fas fa-angle-up"></i></button>
+				    </div>
+				    <div class="viewport">
+				    	<div class="vp-c1"></div>
+				        <div class="vp-c2"></div>
+				        <div class="vp-c3"></div>
+				        <div class="vp-c4"></div>
+				      	<ul class="flip-book">
+				      		<li>
+				      			<span class="photo-slot"></span>
+				      		</li>
+				      		<li>
+				      			<span class="photo-slot"></span>
+				      		</li>
+				      		<li>
+				      			<span class="photo-slot"></span>
+				      		</li>
+				      		<li>
+				      			<span class="photo-slot"></span>
+				      		</li>
+				        </ul>
+				    </div>
+				    <div class="flip-down">
+				        <button id="down"><i class="fas fa-angle-down"></i></button>
+				    </div>
 			    </div>
-			    <div id="ven-pricing">
-					<ul class="js-insert-dollars ven-usdcount">
-						
+			</div>
+			<div class="col-6">
+				<div class="travel-methods">
+					<ul>
+						<li>
+							<div class="method-circle">
+								<img class="method" data-method="WALKING" src="images/couple.svg" role="button">
+							</div>
+						</li>
+						<li>
+							<div class="method-circle current">
+								<img class="method" data-method="DRIVING" src="images/car.svg" role="button">
+							</div>
+						</li>
+						<li>
+							<div class="method-circle">
+								<img class="method" data-method="TRANSIT" src="images/train.svg" role="button">
+							</div>
+						</li>
 					</ul>
 				</div>
-				<div id="ven-distance">
-					<span class="js-insert-distance"></span>
-				</div>
+				<div id="map"></div>
 			</div>
-			<div class="venue-descript">
-				<h4><q><i class="js-ven-rev ven-rev"></i></q></h4>
-			</div>
-			<div class="venue-info">
-				 <i class="far fa-clock"></i><span class="js-ven-hours ven-hours"></span>&nbsp;&nbsp;<i class="fas fa-phone"></i><span class="js-ven-phone ven-phone"></span>
-			</div>
-			<div class="photo-album">
-			    <div class="flip-up">
-			      	<button id="up"><i class="fas fa-angle-up"></i></button>
-			    </div>
-			    <div class="viewport">
-			    	<div class="vp-c1"></div>
-			        <div class="vp-c2"></div>
-			        <div class="vp-c3"></div>
-			        <div class="vp-c4"></div>
-			      	<ul class="flip-book">
-			      		<li>
-			      			<span class="photo-slot"></span>
-			      		</li>
-			      		<li>
-			      			<span class="photo-slot"></span>
-			      		</li>
-			      		<li>
-			      			<span class="photo-slot"></span>
-			      		</li>
-			      		<li>
-			      			<span class="photo-slot"></span>
-			      		</li>
-			        </ul>
-			    </div>
-			    <div class="flip-down">
-			        <button id="down"><i class="fas fa-angle-down"></i></button>
-			    </div>
-		    </div>
 		</div>
-		<div id="right-side">
-			<div class="travel-methods">
-				<ul>
-					<li>
-						<div class="method-circle">
-							<img class="method" data-method="WALKING" src="images/couple.svg" role="button">
-						</div>
-					</li>
-					<li>
-						<div class="method-circle current">
-							<img class="method" data-method="DRIVING" src="images/car.svg" role="button">
-						</div>
-					</li>
-					<li>
-						<div class="method-circle">
-							<img class="method" data-method="TRANSIT" src="images/train.svg" role="button">
-						</div>
-					</li>
-				</ul>
+	</section>
+	<section id="try-again" hidden>
+		<div class="logoFrame">
+			<img src="images/logo.png" alt="Deazy Logo" class="logo">
+  		</div>
+		<div class="row">
+			<div class="col-12">
+				<p>We were not able to find a recommendation. Please adjust your search preferences and try again:)</p>
 			</div>
-			<div id="map"></div>
+			<button id="tryAgain" type="submit">Let's Try Again</button>
 		</div>
+	</section>
 <!-- 		<div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 		<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> 
 <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->

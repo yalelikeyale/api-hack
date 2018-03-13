@@ -38,7 +38,7 @@ const data = {
 	searchKeywords:{
 		'cocktails':['cocktails'],
 		'live music':['live music','music venue','band','rock','indie','guitar','acoustic','heavy metal','good music'],
-		'dessert or coffee':['gelato','ice cream','desert','cake','chocolate','sorbet', 'coffee','latte','flat white','cappuccino'],
+		'dessert':['gelato','ice cream','desert','cake','chocolate','sorbet', 'coffee','latte','flat white','cappuccino'],
 		'food':['restaurant','food'],
 		'dancing':['club','dancing','dance','nightclub','salsa'],
 		'karaoke':['karaoke']
@@ -49,6 +49,7 @@ const data = {
 	starSelection:[],
 	directionsService:{},
 	directionsDisplay:{},
+	estTravel:'',
 	map:{},
 	startIcon:'images/car.svg',
 	endIcon:'',
@@ -140,9 +141,12 @@ function displayDirections(directionsService, directionsDisplay) {
 	directionsService.route(DIRECTIONS_SETTINGS, function(response, status) {
   	if (status === 'OK') {
    		directionsDisplay.setDirections(response);
+   		data.estTravel = response.routes[0].legs[0].duration.text
+   		console.log(data.estTravel)
+   		$('.js-insert-distance').text(data.estTravel);
         let leg = response.routes[ 0 ].legs[ 0 ];
         makeStartMarker( leg.start_location, icons.start, "start" );
-        makeEndMarker( leg.end_location, icons.end, 'end' );
+        makeEndMarker( leg.end_location, icons.end, 'end');
   	} else {
     	window.alert('Directions request failed due to ' + status);
   	}
@@ -181,45 +185,39 @@ function renderVenPage(){
 	let review = data.selectedVen.reviews.find(review => {
 		return (review.rating >= 4 && review.text.length < 300)
 	});
-	let open_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].open.hours
-	let close_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].close.hours
-	let open_min = data.selectedVen.opening_hours.periods[data.today.getDay()].open.minutes
-	if(open_min<10){
-		open_min = ("0" + open_min).slice(-2);
-	}
-	let close_min = data.selectedVen.opening_hours.periods[data.today.getDay()].close.minutes
-	if(close_min<10){
-		close_min = ("0" + open_min).slice(-2);
-	}
-	if(open_hour>12){
-		open_hour -= 12
-		open_time = open_hour.toString() + ':' + open_min.toString()+'pm'
+	if(data.selectedVen.opening_hours!=null && data.selectedVen.opening_hours.periods!= null){
+		let open_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].open.hours
+		let close_hour = data.selectedVen.opening_hours.periods[data.today.getDay()].close.hours
+		let open_min = data.selectedVen.opening_hours.periods[data.today.getDay()].open.minutes
+		if(open_min<10){
+			open_min = ("0" + open_min).slice(-2);
+		}
+		let close_min = data.selectedVen.opening_hours.periods[data.today.getDay()].close.minutes
+		if(close_min<10){
+			close_min = ("0" + open_min).slice(-2);
+		}
+		if(open_hour>12){
+			open_hour -= 12
+			open_time = open_hour.toString() + ':' + open_min.toString()+'pm'
+		} else {
+			open_time = open_hour.toString() + ':' + open_min.toString()+'am'
+		}
+		if(close_hour>12){
+			close_hour -= 12
+			close_time = close_hour.toString() + ':' + close_min.toString()+'pm'
+		} else if (close_hour === 0){
+			close_time = '12:' + close_min.toString()+'am'
+		} else {
+			close_time = close_hour.toString() + ':' + close_min.toString()+'am'
+		}
+		$('.js-ven-hours').text(`${open_time} - ${close_time}`)
 	} else {
-		open_time = open_hour.toString() + ':' + open_min.toString()+'am'
-	}
-	if(close_hour>12){
-		close_hour -= 12
-		close_time = close_hour.toString() + ':' + close_min.toString()+'pm'
-	} else if (close_hour === 0){
-		close_time = '12:' + close_min.toString()+'am'
-	} else {
-		close_time = close_hour.toString() + ':' + close_min.toString()+'am'
+		$('.js-ven-hours').text('Unknown')
 	}
 	fillStars(data.selectedVen.rating)
 	fillDollars(data.venLibrary[data.libraryKey].pricing)
-	let venDist = data.venLibrary[data.libraryKey].distance;
-	if(venDist<1000){
-		venDist += 'm'
-	} else {
-		venDist = (venDist/1000).toFixed(2)
-		venDist+='km'
-	}
-	$('.js-insert-distance').text(venDist)
-	$('.js-ven-hours').text(`${open_time} - ${close_time}`)
 	$('.js-ven-phone').text(data.selectedVen.formatted_phone_number)
-	$('.js-ven-web').html(`<a href="${data.selectedVen.website}">${data.selectedVen.website}</a>`)
 	$('.js-ven-rev').text(review.text)
-	$('.js-ven-address').text(data.selectedVen.formatted_address);
 	initMap()
 }
 
@@ -248,15 +246,17 @@ function storeVenueData(venue){
 function filterGoogleReviews(response, status){
 	if(status == google.maps.places.PlacesServiceStatus.OK){
 		let reviews = response.reviews;
-		//error
-		reviews.forEach(review => {
-			//error
-			data.searchKeywords[REC_SETTINGS.query].forEach(sTerm => {
-				if ( review.text.toLowerCase().indexOf(sTerm) >=0 ){
-					data.searchAgain = false;
-				}
+		if(reviews != null){
+			reviews.forEach(review => {
+				data.searchKeywords[REC_SETTINGS.query].forEach(sTerm => {
+					if ( review.text.toLowerCase().indexOf(sTerm) >=0 ){
+						data.searchAgain = false;
+					}
+				});
 			});
-		});
+		} else {
+			renderTryAgain()
+		}
 		if (data.searchAgain===false){
 			storeVenueData(response)
 		} else {
@@ -288,11 +288,14 @@ function googleSearch(venSearchParams){
 }
 
 
-//errored here cannot convert null or undefined to object
 function prepareSearch(){
-	data.libraryKey = Object.keys(data.venues[data.nextVen])[0]
-	let venueToSearch = data.venLibrary[data.libraryKey];
-	googleSearch(venueToSearch);
+	if(data.venues[data.nextVen] != null){
+		data.libraryKey = Object.keys(data.venues[data.nextVen])[0]
+		let venueToSearch = data.venLibrary[data.libraryKey];
+		googleSearch(venueToSearch);
+	} else {
+		renderTryAgain()
+	}
 }
 
 function rankVenues(){
@@ -501,9 +504,11 @@ function toggleDisplay(selectors){
 }
 
 function renderTryAgain(){
-	toggleDisplay(['.preferencePage','.try-again'])
-	$('#tryAgain').click(function(e){
-		toggleDisplay(['.preferencePage','.try-again'])
+	console.log('reached render try again')
+	toggleDisplay(['#loading-page','#try-again']);
+	$('#tryAgain').click(function(){
+		toggleDisplay(['#fullpage','#try-again'])
+		window.location.href = "file:///Users/WiseYale/Desktop/thinkful/capstones/api-capstone/project/preferences/app.html";
 	});
 }
 
