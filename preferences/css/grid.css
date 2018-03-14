@@ -17,7 +17,6 @@
   margin: 0 auto;
 }
 
-/* Clearfix */
 .row::before,
 .row::after {
   display: table;
@@ -36,6 +35,10 @@
 
 .col-3, .col-4, .col-6, .col-12{
   width: 100%;
+}
+
+.mobile.col-4{
+  width: 33.33%;
 }
 
 /* Non-mobile, grid */

@@ -1,14 +1,5 @@
-*{
-	box-sizing: border-box;
-}
-
-.left{
-	width: 50%;
-	float: left;
-}
-
-.right{
-	float: right;
+.landing-view{
+	display: none;
 }
 
 .logoFrame {
@@ -16,50 +7,37 @@
 }
 
 .logo{
-	width: 100px;
-	height: 50px;
-	margin-top: 20px;
-	margin-left: 50px;
+	width: 50px;
+	height: 25px;
+	margin-top: 10px;
+	margin-left: 25px;
 }
 
 .intro{
-	width: 75%;
-	margin: auto;
 	text-align: center;
 }
 
 .intro h1{
-	margin: auto;
-	font-size: 30px;
+	font-size: 26px;
 	font-family: 'Roboto', sans-serif;
 	text-transform: capitalize;
-}
-
-.fa-long-arrow-alt-right{
-	font-size: 30px;
 }
 
 .description{
 	width: 75%;
 	margin: auto;
-	margin-bottom: 50px;
-	text-align: left;
+	margin-top: 25px;
+	font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.description .p1, .description .p2{
-	font-family: 'Playfair Display', serif;
-	text-indent: 50px;
-}
-
-.ui-clip{
-	height: 300px;
-	width: 300px;
+.description .p2{
+	margin-bottom: 0;
 }
 
 .start-container {
 	display: inline-block;
 	width: 100%;
-	margin: 50px auto;
+	 margin: 25px auto; 
 	text-align: center;
 }
 
@@ -72,6 +50,75 @@
 	border:3px solid #FF0038;
 	font-family: 'Libre Franklin', sans-serif;
 	cursor: pointer;
+}
+
+@media only screen and (min-width: 600px){
+  	.mobile-landing{
+   		display: none;
+  	}
+
+  	.landing-view{
+  		display: block;
+  	}
+
+	*{
+		box-sizing: border-box;
+	}
+
+	.left{
+		width: 50%;
+		float: left;
+	}
+
+	.right{
+		float: right;
+		margin-right: 50px;
+	}
+
+	.logoFrame {
+		margin-left:20px;
+	}
+
+	.logo{
+		width: 100px;
+		height: 50px;
+		margin-top: 20px;
+		margin-left: 50px;
+	}
+
+	.intro{
+		width: 75%;
+		margin: auto;
+		text-align: center;
+	}
+
+	.intro h1{
+		margin: auto;
+		font-size: 30px;
+		font-family: 'Roboto', sans-serif;
+		text-transform: capitalize;
+	}
+
+	.fa-long-arrow-alt-right{
+		font-size: 30px;
+	}
+
+	.description{
+		width: 75%;
+		margin: auto;
+		margin-bottom: 50px;
+		text-align: left;
+	}
+
+	.description .p1, .description .p2{
+		font-family: 'Playfair Display', serif;
+		text-indent: 50px;
+	}
+
+	.ui-clip{
+		height: 300px;
+		width: 300px;
+	}
 }
 
 

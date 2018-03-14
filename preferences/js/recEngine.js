@@ -522,6 +522,19 @@ function getLocation(){
 	$.post(payload)
 }
 
+function renderPreferences(){
+	$('.fade-in').fadeIn('fast', getLocation)
+	$('#fullpage').fullpage({
+		anchors:['categories','pricing','ratings','range','preferences'],
+		menu:'#nav-menu',
+		recordHistory:false
+	});
+
+	$(".flip").flip({
+	    trigger: 'hover'
+	});
+}
+
 $('.final.next').click(function(e){
 	data.prefOrder = $('#sortable').sortable('toArray');
 	REC_SETTINGS.price = data.priceArray.join()
@@ -575,11 +588,6 @@ $('#up').click(function(){
 });
 
 //styling js functions
-$('#fullpage').fullpage({anchors:['categories','pricing','ratings','range','preferences'],menu:'#nav-menu',recordHistory:false});
-
-$(".flip").flip({
-    trigger: 'hover'
-});
 
 $('#slider').slider({
 	max:15000,
@@ -712,7 +720,7 @@ $( "#sortable" ).sortable({
 
 $('#fp-nav li:nth-child(2) span').html('<i class="fas fa-dollar-sign"></i>')
 
-$(getLocation)
+$(renderPreferences)
   
   
 

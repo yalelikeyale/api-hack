@@ -221,8 +221,9 @@
   }
 
   #map{
-    height: 600px;
-    width: 100%;
+    height: 300px;
+    width: 300px;
+    display: block !important;
   }
 
   #ven-stars, #ven-pricing, .ven-usdcount{
@@ -344,8 +345,9 @@
   }
 
   #map{
-    height: 600px;
-    width: 100%;
+    height: 500px;
+    width: 500px;
+    display: block !important;
   }
 }
 
