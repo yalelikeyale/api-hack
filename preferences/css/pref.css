@@ -21,6 +21,7 @@
 .menu-title h4{
   margin-top: 10px !important;
   font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 14px;
 }
 
 .section[data-anchor="categories"] .fp-tableCell{
@@ -216,6 +217,10 @@
 
 @media only screen and (min-width: 640px) {
 
+  .logo{
+    display: block;
+  }
+
   .logoFrame {
      margin-left:20px; 
   }
@@ -236,16 +241,17 @@
   .menu-title h1{
     margin-top: 0;
     margin-bottom: 10px;
+    font-size: 30px;
   }
 
   .flip {
-      height: 199px;
+      height: 200px;
       width: 300px;
       margin: 0 auto;
   }
-  .flip img {
-      height: 300px;
-      width: 300px;
+  .flip .card .front .icon {
+      height: 75%;
+      width: 75%;
   }
   .flip .back {
       height: 300px;
@@ -497,6 +503,10 @@
   .ui-slider-pips [class*=ui-slider-pip-initial]{
     color:#999 !important;
     font-weight: normal !important;
+  }
+
+  .ui-slider-label{
+    font-size: 0.8em !important;
   }
 
 }

@@ -504,7 +504,6 @@ function toggleDisplay(selectors){
 }
 
 function renderTryAgain(){
-	console.log('reached render try again')
 	toggleDisplay(['#loading-page','#try-again']);
 	$('#tryAgain').click(function(){
 		toggleDisplay(['#fullpage','#try-again'])
@@ -585,6 +584,11 @@ $('#up').click(function(){
   setTimeout(function(e) {
     $(first).toggleClass('pop');
   }, 150);  
+});
+
+$('.refresh').click(function(){
+	toggleDisplay(['#fullpage','#google-results'])
+	window.location.href = "file:///Users/WiseYale/Desktop/thinkful/capstones/api-capstone/project/preferences/app.html";
 });
 
 //styling js functions
@@ -717,8 +721,6 @@ $( "#sortable" ).sortable({
 		$('#sortable .pref[data-rank="3"] .place').text('3rd ')
 	}
 }).disableSelection();
-
-$('#fp-nav li:nth-child(2) span').html('<i class="fas fa-dollar-sign"></i>')
 
 $(renderPreferences)
   
