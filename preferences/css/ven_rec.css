@@ -190,7 +190,6 @@
   .travel-methods{
     display: inline-block;
     width: 100%;
-    text-align: center;
   }
 
   .method-circle{
@@ -219,6 +218,7 @@
     height: 300px;
     width: 300px;
     display: block !important;
+    margin: auto;
   }
 
   #ven-stars, #ven-pricing, .ven-usdcount{
@@ -291,6 +291,23 @@
     height: 25px;
   }
 
+  .try-again{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .refresh{
+    height: 40px;
+    border-radius:15px;
+    width: 75%;
+    border: 2px solid #FF0038;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: white;
+}
 
 @media only screen and (min-width: 1100px){
 

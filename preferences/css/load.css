@@ -82,7 +82,7 @@
 
 .check-box svg{
   display: inline-block;
-  width: 100px;
+  width: 25px;
 }
 
 .check-box .path.animated {
@@ -140,7 +140,7 @@
 .preloader-dots {
   margin: 0 auto;
   text-align: center;
-  height: 20px;
+  height: 10px;
   width: 40px;
 }
 
@@ -185,12 +185,12 @@
 }
 
 .disco-hanger{
-  height: 150px;
+  height: 75px;
 }
 
 .loading-message{
-  height: 75px;
-  line-height: 75px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
 }
 
@@ -204,17 +204,87 @@
 }
 
 #phrase-box{
+  margin-top: 100px;
   display: inline-block;
 }
 
 .status-style{
-  font-size: 30px;
+  font-size: 18px;
+}
+
+.dance-floor{
+  margin-top: 100px;
 }
 
 .dance-space{
   width: 50%;
   margin: auto;
   text-align: center;
+}
+
+.dancing-couple{
+  height: 300px;
+  width:150px;
+}
+
+@media only screen and (min-width: 640px) {
+
+  .disco-hanger{
+    height: 150px;
+  }
+
+  .check-box svg{
+    width: 100px;
+  }
+
+  .loading-message{
+    height: 75px;
+    line-height: 75px;
+    position: relative;
+    width: 50%;
+    margin: auto;
+  }
+
+  .check-box{
+    position: absolute;
+    left: 15px;
+  }
+
+  #phrase-box{
+    margin-top: 0;
+    display: inline-block;
+    position: absolute;
+    right: 100px;
+  }
+
+  .overlay{
+    display: inline-block;
+    right: 0;
+  }
+
+  .preloader-dots {
+    height: 20px;
+    width: 40px;
+  }
+
+  .preloader-dots .dot {
+    height: 6px;
+    width: 6px;
+  }
+
+  .status-style{
+    font-size: 30px;
+  }
+
+  .dance-floor{
+    margin-top: 0;
+  }
+
+  .dancing-couple{
+    height: 400px;
+    width:250px;
+    margin-top: -25px;
+  }
 }
 
 

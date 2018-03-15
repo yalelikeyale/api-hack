@@ -536,8 +536,15 @@ function renderPreferences(){
 
 $('.final.next').click(function(e){
 	data.prefOrder = $('#sortable').sortable('toArray');
-	REC_SETTINGS.price = data.priceArray.join()
 	data.minRating = Math.min(data.starSelection);
+	let usdOptions = $('.mobile-usd .option')
+	usdOptions.each(usd =>{
+		if($(usdOptions[usd])[0].checked){
+			data.priceArray.push($(usdOptions[usd])[0].value)
+		}
+	})
+	REC_SETTINGS.price = data.priceArray.join()
+	console.log(REC_SETTINGS.price)
 	getRecs();
 });
 
@@ -592,7 +599,6 @@ $('.refresh').click(function(){
 });
 
 //styling js functions
-
 $('#slider').slider({
 	max:15000,
 	min:500,
