@@ -506,7 +506,7 @@ function renderTryAgain(){
 	toggleDisplay(['#loading-page','#try-again']);
 	$('#tryAgain').click(function(){
 		toggleDisplay(['#fullpage','#try-again'])
-		window.location.href = "api-hack/preferences/app.html";
+		window.location = "/api-hack/preferences/app.html";
 	});
 }
 
@@ -594,7 +594,7 @@ $('#up').click(function(){
 
 $('.refresh').click(function(){
 	toggleDisplay(['#fullpage','#google-results'])
-	window.location = "/preferences/app.html";
+	window.location = "/api-hack/preferences/app.html";
 });
 
 //styling js functions
