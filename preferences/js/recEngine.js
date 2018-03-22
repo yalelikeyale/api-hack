@@ -594,7 +594,7 @@ $('#up').click(function(){
 
 $('.refresh').click(function(){
 	toggleDisplay(['#fullpage','#google-results'])
-	window.location.href = "/preferences/app.html";
+	window.location = "/preferences/app.html";
 });
 
 //styling js functions
