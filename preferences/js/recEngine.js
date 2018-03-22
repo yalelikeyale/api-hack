@@ -507,7 +507,7 @@ function renderTryAgain(){
 	toggleDisplay(['#loading-page','#try-again']);
 	$('#tryAgain').click(function(){
 		toggleDisplay(['#fullpage','#try-again'])
-		window.location.href = "file:///Users/WiseYale/Desktop/thinkful/capstones/api-capstone/project/preferences/app.html";
+		window.location.href = "api-hack/preferences/app.html";
 	});
 }
 
