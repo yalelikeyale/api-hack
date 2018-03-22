@@ -141,8 +141,7 @@ function displayDirections(directionsService, directionsDisplay) {
 	directionsService.route(DIRECTIONS_SETTINGS, function(response, status) {
   	if (status === 'OK') {
    		directionsDisplay.setDirections(response);
-   		data.estTravel = response.routes[0].legs[0].duration.text
-   		console.log(data.estTravel)
+   		data.estTravel = response.routes[0].legs[0].duration.text;
    		$('.js-insert-distance').text(data.estTravel);
         let leg = response.routes[ 0 ].legs[ 0 ];
         makeStartMarker( leg.start_location, icons.start, "start" );
@@ -595,7 +594,7 @@ $('#up').click(function(){
 
 $('.refresh').click(function(){
 	toggleDisplay(['#fullpage','#google-results'])
-	window.location.href = "file:///Users/WiseYale/Desktop/thinkful/capstones/api-capstone/project/preferences/app.html";
+	window.location.href = "/preferences/app.html";
 });
 
 //styling js functions
