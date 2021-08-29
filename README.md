@@ -1,9 +1,6 @@
 # Deazy 
----
-#### The venue recommendation app powered by Google & FourSquare
 
-[Click here to check it out live](https://yalelikeyale.github.io/api-hack/)
-
-Deazy finds the best venue near the user within certain categories that the user will select from. Deazy weighs ratings + pricing + distance from the user to find the ideal venue based on the users selected preferences. 
-
-HTML/CSS/JavaScript/jQuery
+1 Google Maps 403 - API key not found? 
+2 Env Variables for API keys
+3 Foursquare APIs in request body? 
+4 version says 2018 - likely needs update

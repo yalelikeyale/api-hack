@@ -1,8 +1,8 @@
 const data = {
-	GOOGLE_KEY:'AIzaSyBiIzpZm4vKrXS_XCBPDOa6HL_4cFq1RWU',
-	CLIENT_ID:'MDDIFKZ5GFSAGZHAOFYPNQRATOT13FY2OYFUY1JDF5UNUZBA',
-	CLIENT_SECRET:'2ZUIA2A15LIKRSBGM3EN5BCCOX0YICNBJETKSRKOHDCQFSTT',
-	VERSION:'20180210',
+	GOOGLE_KEY:'ABCDEFGHI',
+	CLIENT_ID:'ABCDEFGHI',
+	CLIENT_SECRET:'SBDDFASDLKD',
+	VERSION:'20180323',
 	userLat:'',
 	userLng:'',
 	today: new Date(),
@@ -277,10 +277,14 @@ function googleDetails(response){
 }
 
 function googleSearch(venSearchParams){
+	console.log(venSearchParams)
 	data.nextVen++;
 	let query = venSearchParams.name + ' '+venSearchParams.address
 	const payload = {
-		url:`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&location=${[venSearchParams.lat, venSearchParams.lng].join()}&key=${data.GOOGLE_KEY}`,
+		url:`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&location=${[venSearchParams.lat, venSearchParams.lng].join()}&key=${data.GOOGLE_KEY}`,
+		error:function(error){
+			console.log(error);
+		},
 		success: googleDetails
 	}
 	$.ajax(payload)
@@ -298,6 +302,7 @@ function prepareSearch(){
 }
 
 function rankVenues(){
+	console.log('made it to rank venues')
 	function compare(a,b){
 		let id_a = Object.keys(a)[0];
 		let id_b = Object.keys(b)[0];
@@ -471,6 +476,7 @@ function loading(){
 }
 
 function getRecs(response){
+	console.log(REC_SETTINGS)
 	const payload = {
 		url:'https://api.foursquare.com/v2/venues/explore',
 		dataType:'json',
@@ -486,6 +492,7 @@ function getRecs(response){
 
 function grabLocation(response){
 	REC_SETTINGS.ll = [response.location.lat,response.location.lng].join()
+	console.log(REC_SETTINGS)
 	DIRECTIONS_SETTINGS.origin = [response.location.lat,response.location.lng].join()
 	data.userLat = response.location.lat
 	data.userLng = response.location.lng
